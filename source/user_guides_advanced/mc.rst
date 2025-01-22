@@ -949,7 +949,7 @@ KMC注意事项
 
 3. Pruning工具和Sparsity工具模型评估函数(test_fn/val_fn)返回字典类型，需要增加ind1，ind2参数，作为剪枝优化的目标精度，应包含如下信息：
 
-.. code-block:: c
+.. code-block:: txt
 
    {'ind1': 模型评估指标1(Acc@top1/mAP@0.5),
     'ind2': 模型评估指标1(Acc@top5/mAP@0.5-0.95),
@@ -957,7 +957,7 @@ KMC注意事项
 
 其中，性能评估采取百分制。examples/cls/resnet50_cifar/train_val.py 中示例如下：
 
-.. code-block:: c
+.. code-block:: txt
 
    {'acc1': top1_acc_avg, 
     'ind1': top1_acc_avg, 
