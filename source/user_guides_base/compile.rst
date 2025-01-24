@@ -1441,12 +1441,14 @@ name来一一对应。
 
 .. figure:: ../media/sim_7.png
     :alt: pipeline
+    :scale: 70 %
     :align: center
 \
 2. 起始节点和中间节点中间分支可闭环
 
 .. figure:: ../media/sim_8.png
     :alt: pipeline
+    :scale: 90 %
     :align: center
 
 起始节点和中间节点中间分支不可闭环情况：
@@ -1455,12 +1457,14 @@ a. -sln与-eln指定算子节点子网范围内，存在多输出算子，部分
 
 .. figure:: ../media/sim_9.png
     :alt: pipeline
+    :scale: 40 %
     :align: center
 
 b. -sln与-eln指定算子节点子网范围内，存在多输入算子，部分输入在子网内，部分输入在子网外
 
 .. figure:: ../media/sim_10.png
     :alt: pipeline
+    :scale: 40 %
     :align: center
 
 编译器 --input-order使用限制？
