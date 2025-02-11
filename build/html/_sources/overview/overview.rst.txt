@@ -619,26 +619,26 @@ TS.Knight工具链第二层命令行支持两种使用方式：一是配置文�
 
    {
 
-      "chip": TX5336AV200,
+      "chip": "TX5336AV200",
       "quant": {
          "model": "resnet18.onnx",
-         "infer-func": " infer_resnet18",
+         "infer-func": "infer_resnet18",
          "data": "path/data_dir",
          "bit-width": 8,
          "iteration": 50,
          "batch-size": 1,
          "ir-batch": 1,
          "log-level": 3,
-         "quant-mode": kl,
-         "run-mode": quant,
-         "output-dequant": ”false”,
+         "quant-mode": "kl",
+         "run-mode": "quant",
+         "output-dequant": false,
          "save-dir": "output",
          "user-defined-script": "model_define.py",
-         input-configs:[
+         "input-configs":[
             {
             "input_name": "input1",
             "data_dir": "path/to/img_data",
-            "color_space": BGR,
+            "color_space": "BGR",
             "mean": [0, 0, 0],
             "std": [255.0, 255.0, 255.0],
             "is_yolo":false
@@ -694,90 +694,89 @@ TS.Knight工具链第二层命令行支持两种使用方式：一是配置文�
 .. code-block:: json
 
 	{
-		//可选，默认和--default-chip一致(默认为TX5368AV200)
-		"chip": <芯片型号>
-		"quant": {
+	//可选，默认和--default-chip一致(默认为TX5368AV200)
+	"chip": "<芯片型号>"
+	"quant": {
 		// 待量化模型所属框架类型。类型：string，可选，默认"onnx",取值范围[onnx, pytorch, caffe,paddle, tensorflow]
 		"framework": "onnx",
 		// 指定模型文件，若为ONNX格式则指ONNX模型文件。类型：string，必选
-        "model": "resnet18.onnx",
-        // 模型权重文件，类型：string，可选，默认None
-         "weight": None,
-         // 前向推理函数名称。类型：string，可选，默认"infer_auto"
-         "infer-func": "infer_auto",
-         //量化输入数据路径，类型：string，可选
-         "data": "path/data_dir",
-         //量化位宽，类型：int，可选，默认8，取值范围[8, 16
-         "bit-width": 8,
-         //量化时模型执行推理次数，类型：int，可选，默认1
-         "iteration": 200,
-         //量化模型时加载量化数据的batchsize大小。类型：int，可选，默认1
-         "batch-size": 16,
-         //设置量化后模型的batchsize。类型：int，可选，默认1
-         "ir-batch": 1,
-         //日志级别。类型：int，可选，默认3
-         "log-level": 3,
-         //计算激活系数方式。类型：string，可选，默认kl
-         "quant-mode": kl ,
-         //仅在quant-mode设置为percentile时生效，设定量化百分位。类型：string，可选，默认0.99999
-         "percent": 0.99999,
-         //量化模式。类型：string，可选，默认quant
-         "run-mode": quant,
-         //指定量化后模式输入数据类型。类型：string，可选，默认None
-         "quantize-input-dtype": None,
-         //存放量化scale信息的json文件路径。类型：string，可选，默认None
-         "load-scale-json": None,
-         //是否增加反量化。类型：bool，可选， 默认false
-         "output-dequant": false,
-         //指定Tensorflow模型量化开始节点名。类型：string，可选，默认None
-         "start-node-names": None
-         //指定Tensorflow模型量化结束节点名。类型：string，可选，默认None
-         "end-node-names": None,
-         //仅量化Tensorflow模型时使用，指定后当输入format为4维NHWC，转出的onnx模型从输入开始的format都为NCHW。类型：bool，可选，默认false
-         "convert2chw": false,
-         //输入数据shape,仅针对Paddle模型。类型：list，可选，默认None
-         "input-shapes": None,
-         //指定量化后模型保存路径。类型：string，可选，默认"/TS-KnightOutput/QuantOnnx/"
-         "save-dir": "/TS-KnightOutput/QuantOnnx/",
-         //设置生成模型对应的混合量化模板json配置文件。类型：string，可选，默认None
-         "generate-template":None,
-         //混合量化json文件路径。类型：string，可选，缺省None
-         "mix-config": None,
-         //指定输入后需要增加的BN算子的方差。类型：string，可选，缺省None
-         "std": 0，0，0,
-         //指定输入后需要增加的BN算子的均值。类型：string，可选，缺省None
-         "mean": 255.0，255.0，255.0,
-         //指定用户自定义的python脚本，用于加载推理函数、加载pytorch模型定义。类型：string，可选，缺省None
-         "user-defined-script": “path/model_define.py”,
-         //量化并行cpu数。类型：int，可选，默认5
-         "cpu-num": 5,
-         //scale统计直方图缓存文件路径，设置该参数，则会加载缓存文件，跳过scale计算前向推理过程。类型：string，可选，默认None
-         "cache-distribution": None,
-         //是否对Concat，Stack和ScatterND类型的算子进行系数统一。类型：bool，可选，缺省false
-         "unify-input-scale": false,
-         //设置lut表格长度。类型：int，可选，默认10, 取值范围[8, 9, 10, 11,12]
-         "lut-len": 10,
-         //生成混合量化模板时使用。类型：float，可选，默认0.5
-         "auto-mix-ratio":0.5,
-         //指定混合量化模板生成策略。类型：string，可选，默认initial，取值范围['HAWQ', 'IOhigh', ‘initial’]
-         "auto-mix-strategy": initial,
-         //数据预处理
-       "input-configs":[
-
-            {
-            // onnx模型输入名称，必选
-            "input_name": "input",
-            // 输入图像的路径，必选
-            "data_dir": "path/to/img_data",
-            // onnx模型需要的图像格式，取值范围[BGR,RGB,Gray]，可选，默认BGR
-            "color_space": "BGR",
-            //均值，可选
-            "mean": [0, 0, 0],
-            // 方差，可选
-            "std": [255.0, 255.0, 255.0],
-            //是否采用yolo的letterbox预处理，类型：bool，可选，默认false,
-            "is_yolo": false
-            }]}
+		"model": "resnet18.onnx",
+		// 模型权重文件，类型：string，可选，默认None
+		"weight": "None",
+		// 前向推理函数名称。类型：string，可选，默认"infer_auto"
+		"infer-func": "infer_auto",
+		//量化输入数据路径，类型：string，可选
+		"data": "path/data_dir",
+		//量化位宽，类型：int，可选，默认8，取值范围[8, 16
+		"bit-width": 8,
+		//量化时模型执行推理次数，类型：int，可选，默认1
+		"iteration": 200,
+		//量化模型时加载量化数据的batchsize大小。类型：int，可选，默认1
+		"batch-size": 16,
+		//设置量化后模型的batchsize。类型：int，可选，默认1
+		"ir-batch": 1,
+		//日志级别。类型：int，可选，默认3
+		"log-level": 3,
+		//计算激活系数方式。类型：string，可选，默认kl
+		"quant-mode": "kl" ,
+		//仅在quant-mode设置为percentile时生效，设定量化百分位。类型：string，可选，默认0.99999
+		"percent": 0.99999,
+		//量化模式。类型：string，可选，默认quant
+		"run-mode": "quant",
+		//指定量化后模式输入数据类型。类型：string，可选，默认None
+		"quantize-input-dtype": "None",
+		//存放量化scale信息的json文件路径。类型：string，可选，默认None
+		"load-scale-json": "None",
+		//是否增加反量化。类型：bool，可选， 默认false
+		"output-dequant": false,
+		//指定Tensorflow模型量化开始节点名。类型：string，可选，默认None
+		"start-node-names": "None",
+		//指定Tensorflow模型量化结束节点名。类型：string，可选，默认None
+		"end-node-names": "None",
+		//仅量化Tensorflow模型时使用，指定后当输入format为4维NHWC，转出的onnx模型从输入开始的format都为NCHW。类型：bool，可选，默认false
+		"convert2chw": false,
+		//输入数据shape,仅针对Paddle模型。类型：list，可选，默认None
+		"input-shapes": "None",
+		//指定量化后模型保存路径。类型：string，可选，默认"/TS-KnightOutput/QuantOnnx/"
+		"save-dir": "/TS-KnightOutput/QuantOnnx/",
+		//设置生成模型对应的混合量化模板json配置文件。类型：string，可选，默认None
+		"generate-template":"None",
+		//混合量化json文件路径。类型：string，可选，缺省None
+		"mix-config": "None",
+		//指定输入后需要增加的BN算子的方差。类型：string，可选，缺省None
+		"std": 0, 0, 0,
+		//指定输入后需要增加的BN算子的均值。类型：string，可选，缺省None
+		"mean": 255.0, 255.0, 255.0,
+		//指定用户自定义的python脚本，用于加载推理函数、加载pytorch模型定义。类型：string，可选，缺省None
+		"user-defined-script": "path/model_define.py",
+		//量化并行cpu数。类型：int，可选，默认5
+		"cpu-num": 5,
+		//scale统计直方图缓存文件路径，设置该参数，则会加载缓存文件，跳过scale计算前向推理过程。类型：string，可选，默认None
+		"cache-distribution": "None",
+		//是否对Concat，Stack和ScatterND类型的算子进行系数统一。类型：bool，可选，缺省false
+		"unify-input-scale": false,
+		//设置lut表格长度。类型：int，可选，默认10, 取值范围[8, 9, 10, 11,12]
+		"lut-len": 10,
+		//生成混合量化模板时使用。类型：float，可选，默认0.5
+		"auto-mix-ratio":0.5,
+		//指定混合量化模板生成策略。类型：string，可选，默认initial，取值范围['HAWQ', 'IOhigh', ‘initial’]
+		"auto-mix-strategy": "initial",
+		//数据预处理
+		"input-configs":[
+			{
+			// onnx模型输入名称，必选
+			"input_name": "input",
+			// 输入图像的路径，必选
+			"data_dir": "path/to/img_data",
+			// onnx模型需要的图像格式，取值范围[BGR,RGB,Gray]，可选，默认BGR
+			"color_space": "BGR",
+			//均值，可选
+			"mean": [0, 0, 0],
+			// 方差，可选
+			"std": [255.0, 255.0, 255.0],
+			//是否采用yolo的letterbox预处理，类型：bool，可选，默认false,
+			"is_yolo": false
+			}]}
 
 
 配置文件加载数据集
@@ -806,8 +805,8 @@ TS.Knight工具链第二层命令行支持两种使用方式：一是配置文�
         "data_dir": "path/to/img_data",
         "color_space": "BGR",
         "is_yolo": "false"
-
-        }]}
+        }]
+    }
 
 Knight demo介绍
 ===============

@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. 使用指南综述 &mdash; Knight_doc V3.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
@@ -756,50 +756,50 @@ Knight<span class="w"> </span>compare<span class="w"> </span>--run-config<span c
 <p>在 <code class="docutils literal notranslate"><span class="pre">json</span></code> 配置文件中可定义 <code class="docutils literal notranslate"><span class="pre">quant</span></code> ,  <code class="docutils literal notranslate"><span class="pre">compile</span></code> ,  <code class="docutils literal notranslate"><span class="pre">run</span></code> ,  <code class="docutils literal notranslate"><span class="pre">profiling</span></code> ,  <code class="docutils literal notranslate"><span class="pre">compare</span></code>
 字段，不要求包含所有的字段，根据需要执行的流程进行配置即可。</p>
 <p>仅包含4个字段的配置文件，示例如下</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 
-   &quot;chip&quot;: TX5336AV200,
-   &quot;quant&quot;: {
-      &quot;model&quot;: &quot;resnet18.onnx&quot;,
-      &quot;infer-func&quot;: &quot; infer_resnet18&quot;,
-      &quot;data&quot;: &quot;path/data_dir&quot;,
-      &quot;bit-width&quot;: 8,
-      &quot;iteration&quot;: 50,
-      &quot;batch-size&quot;: 1,
-      &quot;ir-batch&quot;: 1,
-      &quot;log-level&quot;: 3,
-      &quot;quant-mode&quot;: kl,
-      &quot;run-mode&quot;: quant,
-      &quot;output-dequant&quot;: ”false”,
-      &quot;save-dir&quot;: &quot;output&quot;,
-      &quot;user-defined-script&quot;: &quot;model_define.py&quot;,
-      input-configs:[
-         {
-         &quot;input_name&quot;: &quot;input1&quot;,
-         &quot;data_dir&quot;: &quot;path/to/img_data&quot;,
-         &quot;color_space&quot;: BGR,
-         &quot;mean&quot;: [0, 0, 0],
-         &quot;std&quot;: [255.0, 255.0, 255.0],
-         &quot;is_yolo&quot;:false
-      }]
-   &quot;compile&quot;: {
-      &quot;onnx&quot;: &quot;output/resnet18_quantized.onnx&quot;,
-      &quot;save-dir&quot;: &quot;output/&quot;,
-      &quot;hardware-resource-mode&quot;: &quot;big&quot;
-      },
+<span class="w">   </span><span class="nt">&quot;chip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TX5336AV200&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;quant&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;resnet18.onnx&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;infer-func&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;infer_resnet18&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;path/data_dir&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;bit-width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;iteration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;batch-size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ir-batch&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;log-level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;quant-mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kl&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;run-mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quant&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;output-dequant&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;save-dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;output&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;user-defined-script&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;model_define.py&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;input-configs&quot;</span><span class="p">:[</span>
+<span class="w">         </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;input_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;input1&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;data_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;path/to/img_data&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;color_space&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BGR&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;mean&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;std&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">255.0</span><span class="p">,</span><span class="w"> </span><span class="mf">255.0</span><span class="p">,</span><span class="w"> </span><span class="mf">255.0</span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;is_yolo&quot;</span><span class="p">:</span><span class="kc">false</span>
+<span class="w">      </span><span class="p">}]</span>
+<span class="w">   </span><span class="nt">&quot;compile&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;onnx&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;output/resnet18_quantized.onnx&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;save-dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;output/&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;hardware-resource-mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;big&quot;</span>
+<span class="w">      </span><span class="p">},</span>
 
-   &quot;run&quot;: {
-      &quot;input&quot;: &quot;output/resnet18_quantized_r.onnx&quot;,
-      &quot;format&quot;: &quot;nchw&quot;,
-      &quot;weight&quot;: &quot;output/resnet18_quantized_r.weight&quot;,
-      &quot;config&quot;: &quot;output/resnet18_quantized_r.cfg&quot;,
-      &quot;save-dir&quot;: &quot;output&quot;
-      },
+<span class="w">   </span><span class="nt">&quot;run&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;output/resnet18_quantized_r.onnx&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nchw&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;weight&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;output/resnet18_quantized_r.weight&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;output/resnet18_quantized_r.cfg&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;save-dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;output&quot;</span>
+<span class="w">      </span><span class="p">},</span>
 
-   &quot;profiling&quot;: {
-      &quot;config&quot;: &quot;output/resnet18_quantized_r.cfg&quot;,
-      &quot;save-dir&quot;: &quot;output&quot;
-   }}
+<span class="w">   </span><span class="nt">&quot;profiling&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;output/resnet18_quantized_r.cfg&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;save-dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;output&quot;</span>
+<span class="w">   </span><span class="p">}}</span>
 </pre></div>
 </div>
 <p>当执行如下命令时，则仅读取 <code class="docutils literal notranslate"><span class="pre">quant</span></code> 字段信息，并执行量化操作。</p>
@@ -819,91 +819,90 @@ Knight<span class="w"> </span>compare<span class="w"> </span>--run-config<span c
 <section id="json">
 <h4><span class="section-number">2.4.3.1. </span>量化json配置参考<a class="headerlink" href="#json" title="Permalink to this heading"></a></h4>
 <p>下面是包含 <cite>quant</cite> 字段的完整json配置文件参考，详细信息请参考  <a class="reference internal" href="../user_guides_base/quant.html"><span class="doc">量化使用指南</span></a> 。</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span> {
-         //可选，默认和--default-chip一致(默认为TX5368AV200)
-         &quot;chip&quot;: &lt;芯片型号&gt;
-         &quot;quant&quot;: {
-         // 待量化模型所属框架类型。类型：string，可选，默认&quot;onnx&quot;,取值范围[onnx, pytorch, caffe,paddle, tensorflow]
-         &quot;framework&quot;: &quot;onnx&quot;,
-         // 指定模型文件，若为ONNX格式则指ONNX模型文件。类型：string，必选
- &quot;model&quot;: &quot;resnet18.onnx&quot;,
- // 模型权重文件，类型：string，可选，默认None
-  &quot;weight&quot;: None,
-  // 前向推理函数名称。类型：string，可选，默认&quot;infer_auto&quot;
-  &quot;infer-func&quot;: &quot;infer_auto&quot;,
-  //量化输入数据路径，类型：string，可选
-  &quot;data&quot;: &quot;path/data_dir&quot;,
-  //量化位宽，类型：int，可选，默认8，取值范围[8, 16
-  &quot;bit-width&quot;: 8,
-  //量化时模型执行推理次数，类型：int，可选，默认1
-  &quot;iteration&quot;: 200,
-  //量化模型时加载量化数据的batchsize大小。类型：int，可选，默认1
-  &quot;batch-size&quot;: 16,
-  //设置量化后模型的batchsize。类型：int，可选，默认1
-  &quot;ir-batch&quot;: 1,
-  //日志级别。类型：int，可选，默认3
-  &quot;log-level&quot;: 3,
-  //计算激活系数方式。类型：string，可选，默认kl
-  &quot;quant-mode&quot;: kl ,
-  //仅在quant-mode设置为percentile时生效，设定量化百分位。类型：string，可选，默认0.99999
-  &quot;percent&quot;: 0.99999,
-  //量化模式。类型：string，可选，默认quant
-  &quot;run-mode&quot;: quant,
-  //指定量化后模式输入数据类型。类型：string，可选，默认None
-  &quot;quantize-input-dtype&quot;: None,
-  //存放量化scale信息的json文件路径。类型：string，可选，默认None
-  &quot;load-scale-json&quot;: None,
-  //是否增加反量化。类型：bool，可选， 默认false
-  &quot;output-dequant&quot;: false,
-  //指定Tensorflow模型量化开始节点名。类型：string，可选，默认None
-  &quot;start-node-names&quot;: None
-  //指定Tensorflow模型量化结束节点名。类型：string，可选，默认None
-  &quot;end-node-names&quot;: None,
-  //仅量化Tensorflow模型时使用，指定后当输入format为4维NHWC，转出的onnx模型从输入开始的format都为NCHW。类型：bool，可选，默认false
-  &quot;convert2chw&quot;: false,
-  //输入数据shape,仅针对Paddle模型。类型：list，可选，默认None
-  &quot;input-shapes&quot;: None,
-  //指定量化后模型保存路径。类型：string，可选，默认&quot;/TS-KnightOutput/QuantOnnx/&quot;
-  &quot;save-dir&quot;: &quot;/TS-KnightOutput/QuantOnnx/&quot;,
-  //设置生成模型对应的混合量化模板json配置文件。类型：string，可选，默认None
-  &quot;generate-template&quot;:None,
-  //混合量化json文件路径。类型：string，可选，缺省None
-  &quot;mix-config&quot;: None,
-  //指定输入后需要增加的BN算子的方差。类型：string，可选，缺省None
-  &quot;std&quot;: 0，0，0,
-  //指定输入后需要增加的BN算子的均值。类型：string，可选，缺省None
-  &quot;mean&quot;: 255.0，255.0，255.0,
-  //指定用户自定义的python脚本，用于加载推理函数、加载pytorch模型定义。类型：string，可选，缺省None
-  &quot;user-defined-script&quot;: “path/model_define.py”,
-  //量化并行cpu数。类型：int，可选，默认5
-  &quot;cpu-num&quot;: 5,
-  //scale统计直方图缓存文件路径，设置该参数，则会加载缓存文件，跳过scale计算前向推理过程。类型：string，可选，默认None
-  &quot;cache-distribution&quot;: None,
-  //是否对Concat，Stack和ScatterND类型的算子进行系数统一。类型：bool，可选，缺省false
-  &quot;unify-input-scale&quot;: false,
-  //设置lut表格长度。类型：int，可选，默认10, 取值范围[8, 9, 10, 11,12]
-  &quot;lut-len&quot;: 10,
-  //生成混合量化模板时使用。类型：float，可选，默认0.5
-  &quot;auto-mix-ratio&quot;:0.5,
-  //指定混合量化模板生成策略。类型：string，可选，默认initial，取值范围[&#39;HAWQ&#39;, &#39;IOhigh&#39;, ‘initial’]
-  &quot;auto-mix-strategy&quot;: initial,
-  //数据预处理
-&quot;input-configs&quot;:[
-
-     {
-     // onnx模型输入名称，必选
-     &quot;input_name&quot;: &quot;input&quot;,
-     // 输入图像的路径，必选
-     &quot;data_dir&quot;: &quot;path/to/img_data&quot;,
-     // onnx模型需要的图像格式，取值范围[BGR,RGB,Gray]，可选，默认BGR
-     &quot;color_space&quot;: &quot;BGR&quot;,
-     //均值，可选
-     &quot;mean&quot;: [0, 0, 0],
-     // 方差，可选
-     &quot;std&quot;: [255.0, 255.0, 255.0],
-     //是否采用yolo的letterbox预处理，类型：bool，可选，默认false,
-     &quot;is_yolo&quot;: false
-     }]}
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="c1">//可选，默认和--default-chip一致(默认为TX5368AV200)</span>
+<span class="nt">&quot;chip&quot;</span><span class="p">:</span><span class="w"> </span><span class="nt">&quot;&lt;芯片型号&gt;&quot;</span>
+<span class="nt">&quot;quant&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 待量化模型所属框架类型。类型：string，可选，默认&quot;onnx&quot;,取值范围[onnx, pytorch, caffe,paddle, tensorflow]</span>
+<span class="w">        </span><span class="nt">&quot;framework&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onnx&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">// 指定模型文件，若为ONNX格式则指ONNX模型文件。类型：string，必选</span>
+<span class="w">        </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;resnet18.onnx&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">// 模型权重文件，类型：string，可选，默认None</span>
+<span class="w">        </span><span class="nt">&quot;weight&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">// 前向推理函数名称。类型：string，可选，默认&quot;infer_auto&quot;</span>
+<span class="w">        </span><span class="nt">&quot;infer-func&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;infer_auto&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//量化输入数据路径，类型：string，可选</span>
+<span class="w">        </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;path/data_dir&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//量化位宽，类型：int，可选，默认8，取值范围[8, 16</span>
+<span class="w">        </span><span class="nt">&quot;bit-width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//量化时模型执行推理次数，类型：int，可选，默认1</span>
+<span class="w">        </span><span class="nt">&quot;iteration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//量化模型时加载量化数据的batchsize大小。类型：int，可选，默认1</span>
+<span class="w">        </span><span class="nt">&quot;batch-size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//设置量化后模型的batchsize。类型：int，可选，默认1</span>
+<span class="w">        </span><span class="nt">&quot;ir-batch&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//日志级别。类型：int，可选，默认3</span>
+<span class="w">        </span><span class="nt">&quot;log-level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//计算激活系数方式。类型：string，可选，默认kl</span>
+<span class="w">        </span><span class="nt">&quot;quant-mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kl&quot;</span><span class="w"> </span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//仅在quant-mode设置为percentile时生效，设定量化百分位。类型：string，可选，默认0.99999</span>
+<span class="w">        </span><span class="nt">&quot;percent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.99999</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//量化模式。类型：string，可选，默认quant</span>
+<span class="w">        </span><span class="nt">&quot;run-mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quant&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//指定量化后模式输入数据类型。类型：string，可选，默认None</span>
+<span class="w">        </span><span class="nt">&quot;quantize-input-dtype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//存放量化scale信息的json文件路径。类型：string，可选，默认None</span>
+<span class="w">        </span><span class="nt">&quot;load-scale-json&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//是否增加反量化。类型：bool，可选， 默认false</span>
+<span class="w">        </span><span class="nt">&quot;output-dequant&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//指定Tensorflow模型量化开始节点名。类型：string，可选，默认None</span>
+<span class="w">        </span><span class="nt">&quot;start-node-names&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//指定Tensorflow模型量化结束节点名。类型：string，可选，默认None</span>
+<span class="w">        </span><span class="nt">&quot;end-node-names&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//仅量化Tensorflow模型时使用，指定后当输入format为4维NHWC，转出的onnx模型从输入开始的format都为NCHW。类型：bool，可选，默认false</span>
+<span class="w">        </span><span class="nt">&quot;convert2chw&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//输入数据shape,仅针对Paddle模型。类型：list，可选，默认None</span>
+<span class="w">        </span><span class="nt">&quot;input-shapes&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//指定量化后模型保存路径。类型：string，可选，默认&quot;/TS-KnightOutput/QuantOnnx/&quot;</span>
+<span class="w">        </span><span class="nt">&quot;save-dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/TS-KnightOutput/QuantOnnx/&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//设置生成模型对应的混合量化模板json配置文件。类型：string，可选，默认None</span>
+<span class="w">        </span><span class="nt">&quot;generate-template&quot;</span><span class="p">:</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//混合量化json文件路径。类型：string，可选，缺省None</span>
+<span class="w">        </span><span class="nt">&quot;mix-config&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//指定输入后需要增加的BN算子的方差。类型：string，可选，缺省None</span>
+<span class="w">        </span><span class="nt">&quot;std&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//指定输入后需要增加的BN算子的均值。类型：string，可选，缺省None</span>
+<span class="w">        </span><span class="nt">&quot;mean&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">255.0</span><span class="p">,</span><span class="w"> </span><span class="mf">255.0</span><span class="p">,</span><span class="w"> </span><span class="mf">255.0</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//指定用户自定义的python脚本，用于加载推理函数、加载pytorch模型定义。类型：string，可选，缺省None</span>
+<span class="w">        </span><span class="nt">&quot;user-defined-script&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;path/model_define.py&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//量化并行cpu数。类型：int，可选，默认5</span>
+<span class="w">        </span><span class="nt">&quot;cpu-num&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//scale统计直方图缓存文件路径，设置该参数，则会加载缓存文件，跳过scale计算前向推理过程。类型：string，可选，默认None</span>
+<span class="w">        </span><span class="nt">&quot;cache-distribution&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//是否对Concat，Stack和ScatterND类型的算子进行系数统一。类型：bool，可选，缺省false</span>
+<span class="w">        </span><span class="nt">&quot;unify-input-scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//设置lut表格长度。类型：int，可选，默认10, 取值范围[8, 9, 10, 11,12]</span>
+<span class="w">        </span><span class="nt">&quot;lut-len&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//生成混合量化模板时使用。类型：float，可选，默认0.5</span>
+<span class="w">        </span><span class="nt">&quot;auto-mix-ratio&quot;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//指定混合量化模板生成策略。类型：string，可选，默认initial，取值范围[&#39;HAWQ&#39;, &#39;IOhigh&#39;, ‘initial’]</span>
+<span class="w">        </span><span class="nt">&quot;auto-mix-strategy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;initial&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">//数据预处理</span>
+<span class="w">        </span><span class="nt">&quot;input-configs&quot;</span><span class="p">:[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// onnx模型输入名称，必选</span>
+<span class="w">                </span><span class="nt">&quot;input_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;input&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// 输入图像的路径，必选</span>
+<span class="w">                </span><span class="nt">&quot;data_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;path/to/img_data&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">// onnx模型需要的图像格式，取值范围[BGR,RGB,Gray]，可选，默认BGR</span>
+<span class="w">                </span><span class="nt">&quot;color_space&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BGR&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="c1">//均值，可选</span>
+<span class="w">                </span><span class="nt">&quot;mean&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span>
+<span class="w">                </span><span class="c1">// 方差，可选</span>
+<span class="w">                </span><span class="nt">&quot;std&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">255.0</span><span class="p">,</span><span class="w"> </span><span class="mf">255.0</span><span class="p">,</span><span class="w"> </span><span class="mf">255.0</span><span class="p">],</span>
+<span class="w">                </span><span class="c1">//是否采用yolo的letterbox预处理，类型：bool，可选，默认false,</span>
+<span class="w">                </span><span class="nt">&quot;is_yolo&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">                </span><span class="p">}]}</span>
 </pre></div>
 </div>
 </section>
@@ -929,8 +928,8 @@ Knight<span class="w"> </span>compare<span class="w"> </span>--run-config<span c
 <span class="w">    </span><span class="nt">&quot;data_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;path/to/img_data&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;color_space&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BGR&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;is_yolo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span>
-
-<span class="w">    </span><span class="p">}]}</span>
+<span class="w">    </span><span class="p">}]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>

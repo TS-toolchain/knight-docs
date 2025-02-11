@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Knight 工具链使用指南 &mdash; Knight_doc V3.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
@@ -354,8 +354,9 @@
 <li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#id7">5.3.3.1. 命令格式</a></li>
 <li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#id8">5.3.3.2. 参数说明</a></li>
 <li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#compile">5.3.3.3. compile部分参数详细说明</a></li>
-<li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#id9">5.3.3.4. 输出文件</a></li>
-<li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#errorcode">5.3.3.5. ErrorCode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#input-indep">5.3.3.4. –input-indep参数说明流程图</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#id9">5.3.3.5. 输出文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#errorcode">5.3.3.6. ErrorCode</a></li>
 </ul>
 </li>
 </ul>
@@ -370,33 +371,33 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="user_guides_base/compile.html#id30">5.5. Knight RNE性能分析器</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id31">5.5.1. 概述</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id33">5.5.2. 使用说明</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#id35">5.5.2.1. 命令格式</a></li>
-<li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#id37">5.5.2.2. 参数说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guides_base/compile.html#id29">5.5. Knight RNE性能分析器</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id30">5.5.1. 概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id31">5.5.2. 使用说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#id33">5.5.2.1. 命令格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#id35">5.5.2.2. 参数说明</a></li>
 <li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#profiling">5.5.2.3. profiling部分参数详细说明</a></li>
-<li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#id45">5.5.2.4. 输出文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guides_base/compile.html#id43">5.5.2.4. 输出文件</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="user_guides_base/compile.html#id46">5.6. 支持算子列表</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guides_base/compile.html#id47">5.7. 自定义算子</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id48">5.7.1. 自定义算子流程</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id49">5.7.2. 定义自定义算子</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id50">5.7.3. 自定义算子函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id51">5.7.4. 注册自定义算子函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id52">5.7.5. 读取传入参数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id53">5.7.6. 内部支持的通用算子层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guides_base/compile.html#id44">5.6. 支持算子列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guides_base/compile.html#id45">5.7. 自定义算子</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id46">5.7.1. 自定义算子流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id47">5.7.2. 定义自定义算子</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id48">5.7.3. 自定义算子函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id49">5.7.4. 注册自定义算子函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id50">5.7.5. 读取传入参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id51">5.7.6. 内部支持的通用算子层</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="user_guides_base/compile.html#ir">5.8. 编译器IR图优化说明</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guides_base/compile.html#faq">5.9. FAQ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#format">5.9.1. 模拟器仿真的两种format分别在什么时候使用？</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id54">5.9.2. 什么原因会导致编译时间长？</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id55">5.9.3. 模拟器仿真什么时候会处理时间长？</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id56">5.9.4. 模拟器仿真结果如何查看？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#format">5.9.1. 模拟器仿真的三种format分别在什么时候使用？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id52">5.9.2. 什么原因会导致编译时间长？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id53">5.9.3. 模拟器仿真什么时候会处理时间长？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#id54">5.9.4. 模拟器仿真结果如何查看？</a></li>
 <li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#bin">5.9.5. 模拟器输入的.bin资源如何生成？</a></li>
 <li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#output">5.9.6. 如何正确设置编译器–output参数值？</a></li>
 <li class="toctree-l3"><a class="reference internal" href="user_guides_base/compile.html#transformer-opt">5.9.7. 编译器–transformer-opt使用场景？</a></li>
@@ -659,29 +660,29 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="user_guides_advanced/mc.html#id14">2.3.4. Pruning自定义模型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="user_guides_advanced/mc.html#id17">2.3.4.1. Pruning配置文件说明</a></li>
-<li class="toctree-l4"><a class="reference internal" href="user_guides_advanced/mc.html#id21">2.3.4.2. 调用Pruning说明</a></li>
-<li class="toctree-l4"><a class="reference internal" href="user_guides_advanced/mc.html#id23">2.3.4.3. 结合Knight工具链</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guides_advanced/mc.html#id15">2.3.4.1. Pruning配置文件说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guides_advanced/mc.html#id19">2.3.4.2. 调用Pruning说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guides_advanced/mc.html#id21">2.3.4.3. 结合Knight工具链</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="user_guides_advanced/mc.html#sparsity">2.4. Sparsity工具</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_advanced/mc.html#id24">2.4.1. 工具简介</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_advanced/mc.html#id26">2.4.2. Sparsity工具应用场景</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_advanced/mc.html#id22">2.4.1. 工具简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_advanced/mc.html#id24">2.4.2. Sparsity工具应用场景</a></li>
 <li class="toctree-l3"><a class="reference internal" href="user_guides_advanced/mc.html#sparsity-demo">2.4.3. Sparsity Demo模型</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="user_guides_advanced/mc.html#resnet50-demo-1">2.4.3.1. resnet50 Demo</a></li>
 <li class="toctree-l4"><a class="reference internal" href="user_guides_advanced/mc.html#yolov5-demo-1">2.4.3.2. yolov5 Demo</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="user_guides_advanced/mc.html#id29">2.4.4. Sparsity自定义模型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="user_guides_advanced/mc.html#id30">2.4.4.1. 配置文件说明</a></li>
-<li class="toctree-l4"><a class="reference internal" href="user_guides_advanced/mc.html#id33">2.4.4.2. 调用Sparsity说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guides_advanced/mc.html#id27">2.4.4. Sparsity自定义模型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guides_advanced/mc.html#id28">2.4.4.1. 配置文件说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guides_advanced/mc.html#id31">2.4.4.2. 调用Sparsity说明</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="user_guides_advanced/mc.html#id36">2.5. KMC注意事项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guides_advanced/mc.html#id33">2.5. KMC注意事项</a></li>
 </ul>
 </li>
 </ul>

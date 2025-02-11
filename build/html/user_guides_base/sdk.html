@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>6. SDK使用指南 &mdash; Knight_doc V3.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
@@ -342,15 +342,15 @@
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_1.png" />
 </figure>
-<p>图 1‑1库结构图</p>
-</section>
+<p class="centered">
+<strong>库结构图</strong></p></section>
 <section id="rne-sim-lib">
 <h3><span class="section-number">6.1.2. </span>RNE-SIM-Lib<a class="headerlink" href="#rne-sim-lib" title="Permalink to this heading"></a></h3>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_2.png" />
 </figure>
-<p>图 1‑2 RNE-SIM-Lib目录结构</p>
-<p>如图
+<p class="centered">
+<strong>RNE-SIM-Lib目录结构</strong></p><p>如图
 1‑2所示，RNE-SIM-Lib由samples、open_source、include、bin和libs和文件夹构成，五个文件夹下对应的内容如下表所示：</p>
 <table class="docutils align-default">
 <thead>
@@ -379,8 +379,8 @@
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_3.png" />
 </figure>
-<p>图 1‑3 include和libs详细结构</p>
-<p>根据图
+<p class="centered">
+<strong>include和libs详细结构图</strong></p><p>根据图
 1‑3所示，模拟库（libs）共有librne_common.a、librne_pal_sim.a、librne_rt_g3.a和librne_vm.a四个库组成，include中是库对应的头文件，两者的对应关系描述如下表所示：</p>
 <table class="docutils align-default">
 <thead>
@@ -425,8 +425,8 @@
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_4.png" />
 </figure>
-<p>图 Samples详细结构</p>
-<p>如图所示，samples共有compiled_model、scripts和rne_simple_foward等文件夹构成，各个文件夹描述如下表所示：</p>
+<p class="centered">
+<strong>Samples详细结构图</strong></p><p>如图所示，samples共有compiled_model、scripts和rne_simple_foward等文件夹构成，各个文件夹描述如下表所示：</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>samples</p></th>
@@ -462,8 +462,8 @@ mple_forward</p></td>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_5.png" />
 </figure>
-<p>图 RNE-RT-Lib目录结构</p>
-<p>如图所示，RNE-RT-Lib由samples、open_source、include、bin和libs等文件夹构成，九个文件夹下对应的内容如下表所示：</p>
+<p class="centered">
+<strong>RNE-RT-Lib目录结构图</strong></p><p>如图所示，RNE-RT-Lib由samples、open_source、include、bin和libs等文件夹构成，九个文件夹下对应的内容如下表所示：</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>文件夹</p></th>
@@ -503,8 +503,8 @@ mple_forward</p></td>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_6.png" />
 </figure>
-<p>图 include和libs详细结构</p>
-<p>根据图所示，板端运行库（libs）共有librne_common.a、librne_pal_linux_a53.a和librne_rt_g3.a三个库组成，include中是库对应的头文件，两者的对应关系描述如下表所示：</p>
+<p class="centered">
+<strong>include和libs详细结构图</strong></p><p>根据图所示，板端运行库（libs）共有librne_common.a、librne_pal_linux_a53.a和librne_rt_g3.a三个库组成，include中是库对应的头文件，两者的对应关系描述如下表所示：</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>libs</p></th>
@@ -550,8 +550,8 @@ mple_forward</p></td>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_7.png" />
 </figure>
-<p>图 samples详细结构</p>
-<p>根据图所示，samples共有compiled_model、scripts和rne_simple_forward等文件夹构成，各个文件夹描述如下表所示：</p>
+<p class="centered">
+<strong>samples详细结构图</strong></p><p>根据图所示，samples共有compiled_model、scripts和rne_simple_forward等文件夹构成，各个文件夹描述如下表所示：</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>samples</p></th>
@@ -2133,11 +2133,10 @@ BLOBS_S*</p></td>
 </table>
 <p>【所在头文件】</p>
 <p>ts_rne_c_api.h</p>
-<p>【举例】
-.. code-block:: c</p>
-<blockquote>
-<div><p>TS_MPI_TRP_RNE_Info(“INFO\n”);</p>
-</div></blockquote>
+<p>【举例】</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">TS_MPI_TRP_RNE_Info</span><span class="p">(</span><span class="s">&quot;INFO</span><span class="se">\\</span><span class="s">n&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
 <section id="ts-mpi-trp-rne-warn">
 <h4><span class="section-number">6.2.3.5. </span>TS_MPI_TRP_RNE_Warn<a class="headerlink" href="#ts-mpi-trp-rne-warn" title="Permalink to this heading"></a></h4>
@@ -5034,8 +5033,8 @@ NE_NN_FORWARD_EXCEPTION</p></td>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_9.png" />
 </figure>
-<p>图 ‑1典型调用流程图</p>
-</section>
+<p class="centered">
+<strong>典型调用流程图</strong></p></section>
 <section id="id21">
 <h3><span class="section-number">6.4.2. </span>典型流程<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h3>
 <section id="id22">
@@ -5178,8 +5177,8 @@ NE_NN_FORWARD_EXCEPTION</p></td>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_10.png" />
 </figure>
-<p>图  BLOB_N_H_W_Cstride存储格式</p>
-<p>如图，假设输入shape为[N:H:W:C]，箭头1为C方向,
+<p class="centered">
+<strong>BLOB_N_H_W_Cstride存储格式</strong></p><p>如图，假设输入shape为[N:H:W:C]，箭头1为C方向,
 箭头2为W方向，箭头3为H方向，浅灰色表示pad补0。数据存储在c方向上做stride对齐，c_stride需要调用TS_MPI_TRP_RNE_CStride获得。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -5191,8 +5190,8 @@ NE_NN_FORWARD_EXCEPTION</p></td>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_11.png" />
 </figure>
-<p>图 BLOB_N_H_W_C存储格式</p>
-<p>如图，数据存储在n方向上做stride对齐，c_stride需要调用TS_MPI_TRP_RNE_CStride获得（c_stride=c+c_pad）。内存存储时先存放h*w*c的数据，
+<p class="centered">
+<strong>BLOB_N_H_W_C存储格式</strong></p><p>如图，数据存储在n方向上做stride对齐，c_stride需要调用TS_MPI_TRP_RNE_CStride获得（c_stride=c+c_pad）。内存存储时先存放h*w*c的数据，
 再存放h*w*c_pad， 即n = x时的地址偏移为 x * h * w * c_stride。</p>
 <p>假设输入shape为[N:H:W:C]，箭头1为C方向,
 箭头2为W方向，箭头3为H方向，浅灰色表示pad补0。</p>
@@ -5202,8 +5201,8 @@ NE_NN_FORWARD_EXCEPTION</p></td>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_12.png" />
 </figure>
-<p>图 INT_NHWC格式存储</p>
-<p>如图，数据存储在所有方向上无stride对齐，即n = x时的地址偏移为 x <a href="#id32"><span class="problematic" id="id33">*</span></a>h * w * c。</p>
+<p class="centered">
+<strong>INT_NHWC格式存储</strong></p><p>如图，数据存储在所有方向上无stride对齐，即n = x时的地址偏移为 x <a href="#id32"><span class="problematic" id="id33">*</span></a>h * w * c。</p>
 <p>假设输入shape为[N:H:W:C] [1:2:3:2]，箭头1为C方向,
 箭头2为W方向，箭头3为H方向，则NHWC：</p>
 <blockquote>
@@ -5229,8 +5228,8 @@ NE_NN_FORWARD_EXCEPTION</p></td>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_13.png" />
 </figure>
-<p>图  eInputType对应关系</p>
-<p>如果用户的图片是RGBA格式（定点数据），则SDK的RNE_NET_S结构体的eInputType设置为0RGB模式；</p>
+<p class="centered">
+<strong>eInputType对应关系</strong></p><p>如果用户的图片是RGBA格式（定点数据），则SDK的RNE_NET_S结构体的eInputType设置为0RGB模式；</p>
 <p>如果用户的图片是灰度图格式（定点数据），则SDK的RNE_NET_S结构体的eInputType设置为GREY模式；</p>
 <p>如果用户的图片是RGB格式或BGR格式（定点数据），则SDK的RNE_NET_S结构体的eInputType设置为INT_HWC/INT_CHW模式（由图片数据读入顺序来确定，参见下图）；</p>
 <p>如果用户的图片是RGB格式或BGR格式（浮点数据），则SDK的RNE_NET_S结构体的eInputType设置为FLOAT_HWC/FLOAT_CHW模式（由图片数据读入顺序来确定，参见下图）；</p>
@@ -5238,8 +5237,8 @@ NE_NN_FORWARD_EXCEPTION</p></td>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_14.png" />
 </figure>
-<p>图 NCHW和NHWC的差异</p>
-<p>由于硬件对浮点不友好，产品部署时，不推荐用户设置FLOAT_HWC/FLOAT_CHW模式，如果网络是浮点输入，可以在量化时，将减均值除方差作为BN层量化进网络，参考《TS.Knight-量化工具FAQ》。</p>
+<p class="centered">
+<strong>NCHW和NHWC的差异</strong></p><p>由于硬件对浮点不友好，产品部署时，不推荐用户设置FLOAT_HWC/FLOAT_CHW模式，如果网络是浮点输入，可以在量化时，将减均值除方差作为BN层量化进网络，参考《TS.Knight-量化工具FAQ》。</p>
 <p>由于ARGB格式和灰度图格式的图片是[N:H:W:C_stride]定点数据（浮点须先转换为定点）,
 推荐用户使用ARGB格式或者灰度图格式的图片。此时，SDK中设置为0RGB或者GREY模式，SDK只做memcpy操作，效率更高。</p>
 <p>FLOAT_HWC/FLOAT_CHW/INT_CHW
@@ -5258,8 +5257,8 @@ GREY模式。</p>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_15.png" />
 </figure>
-<p>图  eOutputType对应关系</p>
-<p>如果用户期望的输出是定点NCHW格式的数据，则用户在量化时无需指定“-od”参数，则SDK的RNE_NET_S结构体的eOutputType设置为FORMAT_HWC_TO_CHW模式；</p>
+<p class="centered">
+<strong>eOutputType对应关系图</strong></p><p>如果用户期望的输出是定点NCHW格式的数据，则用户在量化时无需指定“-od”参数，则SDK的RNE_NET_S结构体的eOutputType设置为FORMAT_HWC_TO_CHW模式；</p>
 <p>如果用户期望的输出是定点NHWC格式的数据，则用户在量化时无需指定“-od”参数，则SDK的RNE_NET_S结构体的eOutputType设置为FORMAT_NONE模式；</p>
 <p>如果用户期望的输出是浮点NCHW格式的数据，则用户在量化时需要指定“-od”参数，SDK的RNE_NET_S结构体的eOutputType设置为FORMAT_HWC_TO_CHW模式；</p>
 <p>如果用户期望的输出是浮点NCHW格式的数据，则用户在量化时需要指定“-od”参数，SDK的RNE_NET_S结构体的eOutputType设置为FORMAT_NONE模式。</p>
@@ -5273,8 +5272,8 @@ GREY模式。</p>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_16.png" />
 </figure>
-<p>图 数据流</p>
-<table class="docutils align-default">
+<p class="centered">
+<strong>数据流图</strong></p><table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"></th>
 <th class="head"><p><a href="#id78"><span class="problematic" id="id79">RNE_</span></a>
@@ -5422,14 +5421,14 @@ S的vpAddr指针赋值方式赋值</p>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_18.png" />
 </figure>
-<p></p>
-<p>图 设置输入blobs地址为物理地址</p>
+<p class="centered">
+<strong>设置输入blobs地址为物理地址</strong></p><p></p>
 <p>其中设置网络权重地址为物理地址时，SDK内部将不对<a class="reference external" href="#网络权重对齐方式">权重对齐</a>做保证，需要用户自行保证。</p>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_19.png" />
 </figure>
-<p>图 设置输入权重地址为物理地址</p>
-</section>
+<p class="centered">
+<strong>设置输入权重地址为物理地址</strong></p></section>
 <section id="onceload">
 <h3><span class="section-number">6.5.7. </span>onceload网络推理的注意点<a class="headerlink" href="#onceload" title="Permalink to this heading"></a></h3>
 <p>onceload网络是在网络初始化时，一次性将网络权重或者网络量化系数导入到RNE内部存储空间，由于在推理时不需要导入，会节省推理时间。</p>
@@ -5786,8 +5785,8 @@ tx5103_a2_ddrinit_CPU266_AIE204_2f5c31a5.elf名称可能不同，以发布包的
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_32.png" />
 </figure>
-<p>图 bin2header提示帮助信息</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp"># bin2header bin_file header_file</span>
+<p class="centered">
+<strong>bin2header提示帮助信息</strong></p><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp"># bin2header bin_file header_file</span>
 </pre></div>
 </div>
 <p>bin_file为需要转换成头文件的二进制文件，header_file为被转换成的头文件。</p>
@@ -5799,16 +5798,16 @@ tx5103_a2_ddrinit_CPU266_AIE204_2f5c31a5.elf名称可能不同，以发布包的
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_33.png" />
 </figure>
-<p>图 带首行和尾行的头文件</p>
-<figure class="align-center">
+<p class="centered">
+<strong>带首行和尾行的头文件</strong></p><figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_34.png" />
 </figure>
-<p>图 去掉首行和尾行的头文件</p>
-<figure class="align-center">
+<p class="centered">
+<strong>去掉首行和尾行的头文件</strong></p><figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_35.png" />
 </figure>
-<p>图  bin2header转换示例</p>
-</section>
+<p class="centered">
+<strong>bin2header转换示例</strong></p></section>
 <section id="rne-driver-ko">
 <h3><span class="section-number">6.8.2. </span>驱动rne_driver.ko如何加载？<a class="headerlink" href="#rne-driver-ko" title="Permalink to this heading"></a></h3>
 <p>rne_driver.ko目前只适用TX5368x_TX5339x_TX5335x、TX5215x_TX5239x200_TX5239x220_TX5239x300和TX5112x_TX5239x201系列。</p>
@@ -5839,13 +5838,13 @@ tx5103_a2_ddrinit_CPU266_AIE204_2f5c31a5.elf名称可能不同，以发布包的
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_36.png" />
 </figure>
-<p>图 Makefile注意事项</p>
-<p>CMakeList:</p>
+<p class="centered">
+<strong>Makefile注意事项</strong></p><p>CMakeList:</p>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_37.png" />
 </figure>
-<p>图 CmakeList.txt注意事项</p>
-</section>
+<p class="centered">
+<strong>CmakeList.txt注意事项</strong></p></section>
 <section id="id54">
 <h3><span class="section-number">6.8.5. </span>SDK接口调用性能优化建议？<a class="headerlink" href="#id54" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
@@ -5866,33 +5865,33 @@ data按HWCStride格式直接放入此内存，此时可以提高整个应用的�
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_38.png" />
 </figure>
-<p>图 板端内存不够</p>
-<p>上述问题需要放大rne_driver.ko的空间。</p>
+<p class="centered">
+<strong>板端内存不够</strong></p><p>上述问题需要放大rne_driver.ko的空间。</p>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_39.png" />
 </figure>
-<p>图 未注册RNE驱动</p>
-<p>上述问题需要注册RNE驱动。</p>
+<p class="centered">
+<strong>未注册RNE驱动</strong></p><p>上述问题需要注册RNE驱动。</p>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_40.png" />
 </figure>
-<p>图 交叉编译工具链与板端不对应</p>
-<p>上述问题需要确认SDK与板端是否对应。</p>
+<p class="centered">
+<strong>交叉编译工具链与板端不对应</strong></p><p>上述问题需要确认SDK与板端是否对应。</p>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_41.png" />
 </figure>
-<p>图 存在未注册的软件层</p>
-<p>上述问题需要确认软件层是否存在，或者是否注册。</p>
+<p class="centered">
+<strong>存在未注册的软件层</strong></p><p>上述问题需要确认软件层是否存在，或者是否注册。</p>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_42.png" />
 </figure>
-<p>图 芯片型号与cfg资源中的型号类型不一致</p>
-<p>上述问题需要确认SDK目标型号与编译后的资源的型号是否正确。</p>
+<p class="centered">
+<strong>芯片型号与cfg资源中的型号类型不一致</strong></p><p>上述问题需要确认SDK目标型号与编译后的资源的型号是否正确。</p>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_43.png" />
 </figure>
-<p>图 驱动与内核不匹配</p>
-<p>上述问题需要确认RNE的SDK与底层包是否匹配。</p>
+<p class="centered">
+<strong>驱动与内核不匹配</strong></p><p>上述问题需要确认RNE的SDK与底层包是否匹配。</p>
 </section>
 <section id="id56">
 <h3><span class="section-number">6.8.7. </span>RNE运行时内存查看工具？<a class="headerlink" href="#id56" title="Permalink to this heading"></a></h3>
@@ -5904,8 +5903,8 @@ data按HWCStride格式直接放入此内存，此时可以提高整个应用的�
 <figure class="align-center">
 <img alt="pipeline" src="../_images/sdk_44.png" />
 </figure>
-<p>图 输出信息</p>
-<p>此小工具是sdk维护内存申请释放计数，为了解决中途意外退出导致内存申请释放计数错乱的问题，建议在程序启动时检查特定文件（例如 <code class="docutils literal notranslate"><span class="pre">/tmp/ts_npu_mem_ipc</span></code> ）的存在。如果文件存在，可以执行相应的处理操作，比如重启板子或者删除文件，以恢复内存申请释放计数的正确状态。</p>
+<p class="centered">
+<strong>输出信息</strong></p><p>此小工具是sdk维护内存申请释放计数，为了解决中途意外退出导致内存申请释放计数错乱的问题，建议在程序启动时检查特定文件（例如 <code class="docutils literal notranslate"><span class="pre">/tmp/ts_npu_mem_ipc</span></code> ）的存在。如果文件存在，可以执行相应的处理操作，比如重启板子或者删除文件，以恢复内存申请释放计数的正确状态。</p>
 </section>
 <section id="id57">
 <h3><span class="section-number">6.8.8. </span>SDK使用注意事项？<a class="headerlink" href="#id57" title="Permalink to this heading"></a></h3>

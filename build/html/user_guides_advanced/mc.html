@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. 模型压缩使用指南 &mdash; Knight_doc V3.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
@@ -85,29 +85,29 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id14">2.3.4. Pruning自定义模型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id17">2.3.4.1. Pruning配置文件说明</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id21">2.3.4.2. 调用Pruning说明</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id23">2.3.4.3. 结合Knight工具链</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">2.3.4.1. Pruning配置文件说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">2.3.4.2. 调用Pruning说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21">2.3.4.3. 结合Knight工具链</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#sparsity">2.4. Sparsity工具</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id24">2.4.1. 工具简介</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id26">2.4.2. Sparsity工具应用场景</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">2.4.1. 工具简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">2.4.2. Sparsity工具应用场景</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sparsity-demo">2.4.3. Sparsity Demo模型</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#resnet50-demo-1">2.4.3.1. resnet50 Demo</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#yolov5-demo-1">2.4.3.2. yolov5 Demo</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id29">2.4.4. Sparsity自定义模型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id30">2.4.4.1. 配置文件说明</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id33">2.4.4.2. 调用Sparsity说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">2.4.4. Sparsity自定义模型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id28">2.4.4.1. 配置文件说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">2.4.4.2. 调用Sparsity说明</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id36">2.5. KMC注意事项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id33">2.5. KMC注意事项</a></li>
 </ul>
 </li>
 </ul>
@@ -180,20 +180,18 @@ Compression)是一个专注于深度学习模型压缩的软硬件协同优化�
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>kmc-3
-.0.0.x-py3-none-any.whl</p></td>
-<td><p>封
-闭</p></td>
+<tr class="row-even"><td><p>kmc-3.0.0.x-py3-none-any.whl</p></td>
+<td><p>封闭</p></td>
 <td><p>通过pip install
 可安装在用户本地环境中</p></td>
 </tr>
 <tr class="row-odd"><td><p>config/</p></td>
 <td><p>开源</p></td>
 <td><p>配置文件模板</p>
-<p>pruning_templ
-ate.yaml：Pruning工具的配置文件模板</p>
-<p>sparsity_templa
-te.yaml：Sparsity工具的配置文件模板</p>
+<p>pruning_template.yaml：
+Pruning工具的配置文件模板</p>
+<p>sparsity_template.yaml：
+Sparsity工具的配置文件模板</p>
 </td>
 </tr>
 <tr class="row-even"><td><p>examples/</p></td>
@@ -202,9 +200,8 @@ te.yaml：Sparsity工具的配置文件模板</p>
 </tr>
 <tr class="row-odd"><td><p>requirements.txt</p></td>
 <td><p>开源</p></td>
-<td><p>提供运行
-工具必须的python软件包，未注明版本
-号的软件包对于版本并没有严格的要求</p></td>
+<td><p>提供运行工具必须的python软件包，
+未注明版本号的软件包对于版本并没有严格的要求。</p></td>
 </tr>
 </tbody>
 </table>
@@ -222,23 +219,21 @@ te.yaml：Sparsity工具的配置文件模板</p>
 <td><p>开源</p></td>
 <td><p>存放图像分类的训练数据和测试数据</p></td>
 </tr>
-<tr class="row-odd"><td><p>examples/cls/pretrain
-ed_model</p></td>
+<tr class="row-odd"><td><p>examples/cls/pretrained_model</p></td>
 <td><p>开源</p></td>
 <td><p>存放预训练的图像分类模型</p></td>
 </tr>
-<tr class="row-even"><td><p>examples/cls/resnet50
-_cifar</p></td>
+<tr class="row-even"><td><p>examples/cls/resnet50_cifar</p></td>
 <td><p>开源</p></td>
 <td><p>resnet50图像分类模型压缩示例</p>
-<p>pruning
-_config.yaml：Pruning工具配置文件示例</p>
-<p><a href="#id37"><span class="problematic" id="id38">sparsity_</span></a>
-config.yaml：Sparsity工具配置文件示例</p>
-<p>pru
-ning_demo.py：调用Pruning工具代码示例</p>
-<p>spars
-ity_demo.py：调用Sparsity工具代码示例</p>
+<p>pruning_config.yaml：
+Pruning工具配置文件示例</p>
+<p>sparsity_config.yaml：
+Sparsity工具配置文件示例</p>
+<p>pruning_demo.py：
+调用Pruning工具代码示例</p>
+<p>sparsity_demo.py：
+调用Sparsity工具代码示例</p>
 <p>resnet_cifar.py: resnet模型结构定义</p>
 <p>train_val.py:
 训练模型代码，包含数据加载处理代码</p>
@@ -248,26 +243,23 @@ ity_demo.py：调用Sparsity工具代码示例</p>
 <td><p>开源</p></td>
 <td><p>存放目标检测所需的训练数据和测试数据</p></td>
 </tr>
-<tr class="row-even"><td><p>examples/det/pretrain
-d_model</p></td>
+<tr class="row-even"><td><p>examples/det/pretrained_model</p></td>
 <td><p>开源</p></td>
 <td><p>存放预训练的目标检测模型</p></td>
 </tr>
 <tr class="row-odd"><td><p>examples/det/yolov5</p></td>
 <td><p>开源</p></td>
 <td><p>Yolov5目标检测模型压缩示例</p>
-<p>pruning
-_config.yaml：Pruning工具配置文件示例</p>
-<p><a href="#id39"><span class="problematic" id="id40">sparsity_</span></a>
-config.yaml：Sparsity工具配置文件示例</p>
-<p>pru
-ning_demo.py：调用Pruning工具代码示例</p>
-<p>spars
-ity_demo.py：调用Sparsity工具代码示例</p>
-<blockquote>
-<div><p>其他文件data, models,
+<p>pruning_config.yaml：
+Pruning工具配置文件示例</p>
+<p>sparsity_config.yaml：
+Sparsity工具配置文件示例</p>
+<p>pruning_demo.py：
+调用Pruning工具代码示例</p>
+<p>sparsity_demo.py：
+调用Sparsity工具代码示例</p>
+<p>其他文件data, models,
 utils等均和yolov5模型构建代码相关</p>
-</div></blockquote>
 </td>
 </tr>
 </tbody>
@@ -343,7 +335,7 @@ bash<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>kmc-3.0.0.x-py3-none-any.whl
 </pre></div>
 </div>
-<p>注意需要保证 <a class="reference internal" href="#id7">基础环境准备</a> 中的环境都满足，才可成功安装并使用kmc软件包。</p>
+<p>注意需要保证  <a class="reference internal" href="#id7">基础环境准备</a>  中的环境都满足，才可成功安装并使用kmc软件包。</p>
 </section>
 <section id="knight">
 <h3><span class="section-number">2.2.3. </span>Knight镜像包准备<a class="headerlink" href="#knight" title="Permalink to this heading"></a></h3>
@@ -396,7 +388,7 @@ python<span class="w"> </span>pruning_demo.py
 <blockquote>
 <div><p>episode对应保存的模型id；</p>
 <p>ckpt_name对应模型名称；</p>
-<p>ind1和ind2表示模型评估结果，参见 <a class="reference internal" href="#id36">KMC注意事项</a> 第三点；</p>
+<p>ind1和ind2表示模型评估结果，参见 <a class="reference internal" href="#id33">KMC注意事项</a> 第3点；</p>
 <p>infer_time表示模型推理时间(若未使用Knight镜像，则为none)；</p>
 <p>op_num表示总计算数(若未使用Knight镜像，则为none)；</p>
 <p>total_macs表示剪枝后模型计算量；</p>
@@ -406,26 +398,17 @@ python<span class="w"> </span>pruning_demo.py
 </section>
 <section id="id11">
 <h5><span class="section-number">2.3.3.1.2. </span>结合Knight工具链<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h5>
-<p>首先将examples/cls/resnet50_cifar/pruning_config.yaml配置文件中docker_cfg字段进行如下配置，详情参见 <a class="reference internal" href="#id20">knight相关配置</a></p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>docker_cfg:
-
-run_latency: True
-
-chip: TX5368AV200
-
-image_path: ${Knight_image_dir}
-
-localhost_dir: ${host_dir} /examples/
-
-container_dir: /example
-
-workspace_dir: / example
-
-container_name: resnet50_demo
-
-bit_width: 8
-
-is_sparse: False
+<p>首先将examples/cls/resnet50_cifar/pruning_config.yaml配置文件中docker_cfg字段进行如下配置，详情参见 <a class="reference internal" href="#id18">knight相关配置</a></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">docker_cfg</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">run_latency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">   </span><span class="nt">chip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TX5368AV200</span>
+<span class="w">   </span><span class="nt">image_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${Knight_image_dir}</span>
+<span class="w">   </span><span class="nt">localhost_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${host_dir}/examples/</span>
+<span class="w">   </span><span class="nt">container_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/example</span>
+<span class="w">   </span><span class="nt">workspace_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/example</span>
+<span class="w">   </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resnet50_demo</span>
+<span class="w">   </span><span class="nt">bit_width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+<span class="w">   </span><span class="nt">is_sparse</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
 </pre></div>
 </div>
 <p>在cifar10数据集上，使用Pruning工具压缩resnet50模型示例如下：</p>
@@ -451,7 +434,7 @@ python<span class="w"> </span>pruning_demo.py
 <section id="yolov5-demo">
 <h4><span class="section-number">2.3.3.2. </span>yolov5 Demo<a class="headerlink" href="#yolov5-demo" title="Permalink to this heading"></a></h4>
 <section id="id12">
-<h5><span class="section-number">2.3.3.2.1. </span>不结合Knight工具链<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h5>
+<h5><span class="section-number">2.3.3.2.1. </span>不结合Knight工具链示例<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h5>
 <p>不结合Knight工具链执行剪枝操作时，examples/det/yolov5/pruning_config.yaml配置文件中docker_cfg字段run_latency设置为False。</p>
 <p>在coco数据集上，使用Pruning工具压缩Yolov5模型，示例如下：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>examples/det/yolov5
@@ -466,37 +449,26 @@ python<span class="w"> </span>pruning_demo.py
 <p></p>
 </section>
 <section id="id13">
-<h5><span class="section-number">2.3.3.2.2. </span>结合Knight工具链<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h5>
-<p>首先将examples/det/yolov5/pruning_config.yaml配置文件中docker_cfg字段进行如下配置，详情参见 <a class="reference internal" href="#id20">knight相关配置</a></p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>docker_cfg:
-
-run_latency: True
-
-chip: TX5368AV200
-
-image_path: ${Knight_image_dir}
-
-localhost_dir: ${host_dir}/examples
-
-container_dir: /example
-
-workspace_dir: /example
-
-container_name: yolov5_demo
-
-bit_width: 8
-
-is_sparse: False
+<h5><span class="section-number">2.3.3.2.2. </span>结合Knight工具链示例<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h5>
+<p>首先将examples/det/yolov5/pruning_config.yaml配置文件中docker_cfg字段进行如下配置，详情参见 <a class="reference internal" href="#id18">knight相关配置</a></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">docker_cfg</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">run_latency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">    </span><span class="nt">chip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TX5368AV200</span>
+<span class="w">    </span><span class="nt">image_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${Knight_image_dir}</span>
+<span class="w">    </span><span class="nt">localhost_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${host_dir}/examples</span>
+<span class="w">    </span><span class="nt">container_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/example</span>
+<span class="w">    </span><span class="nt">workspace_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/example</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yolov5_demo</span>
+<span class="w">    </span><span class="nt">bit_width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+<span class="w">    </span><span class="nt">is_sparse</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
 </pre></div>
 </div>
 <p>在coco数据集上，使用Pruning工具压缩yolov5模型示例如下：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>examples/det/yolov5
 python<span class="w"> </span>pruning_demo.py
-
-执行成功后，在output目录下输出剪枝后的模型,<span class="w"> </span>其中examples/det/
-yolov5/output/kmc-pruning.csv<span class="w"> </span>的文件内容如下图所示。
 </pre></div>
 </div>
+<p>执行成功后，在output目录下输出剪枝后的模型, 其中 examples/det/yolov5/output/kmc-pruning.csv 的文件内容如下图所示。</p>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/mc_11.png" />
 </figure>
@@ -510,115 +482,71 @@ yolov5/output/kmc-pruning.csv<span class="w"> </span>的文件内容如下图所
 <figure class="align-center">
 <img alt="pipeline" src="../_images/mc_12.png" />
 </figure>
-<p><strong>步骤一</strong>：基础环境准备，按照 <a href="#id15"><span class="problematic" id="id16">`</span></a>基础环境准备`_说明,
+<p><strong>步骤一</strong>：基础环境准备，按照 <a class="reference internal" href="#id7">基础环境准备</a> 说明,
 用户在自己训练环境的服务器上安装kmc所需的依赖包，准备kmc运行环境；</p>
 <p><strong>步骤二</strong>：安装kmc软件包，参见 <a class="reference internal" href="#kmc">安装kmc软件包</a> 说明；</p>
 <p><strong>步骤三（可选）</strong>：如果同时考虑模型准确率和清微芯片推理时间，则需要Knight工具链。用户需要准备Knight镜像，同时完成yaml文件中相应配置，
-详情请参见  <a class="reference internal" href="#id14">Pruning自定义模型</a> 。如果仅将模型准确率作为剪枝优化目标，则无需集成Knight工具链，可跳过该步骤；</p>
-<p><strong>步骤四</strong>：准备yaml配置文件，详情请参见 <a class="reference internal" href="#id17">Pruning配置文件说明</a> ；</p>
+详情请参见  <a class="reference internal" href="#id14">Pruning自定义模型</a>  中结合Knight工具链部分。如果仅将模型准确率作为剪枝优化目标，则无需集成Knight工具链，可跳过该步骤；</p>
+<p><strong>步骤四</strong>：准备yaml配置文件，详情请参见 <a class="reference internal" href="#id15">Pruning配置文件说明</a> ；</p>
 <p><strong>步骤五</strong>：用户在自己的训练代码中调用kmc
-Pruning，详情请参见 <a class="reference internal" href="#id21">调用pruning说明</a> ；</p>
+Pruning，详情请参见 <a class="reference internal" href="#id19">调用pruning说明</a> ；</p>
 <p><strong>步骤六</strong>：执行剪枝脚本得到剪枝后的模型。</p>
-<section id="id17">
-<h4><span class="section-number">2.3.4.1. </span>Pruning配置文件说明<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h4>
+<section id="id15">
+<h4><span class="section-number">2.3.4.1. </span>Pruning配置文件说明<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h4>
 <p>Pruning工具的配置文件模板为config/pruning_template.yaml，用户可根据自身需求对模板中参数值修改。配置文件中共包含3个部分的参数配置：基础配置（app_args,
 network），Pruning策略配置（amc_cfg）以及Knight相关配置(docker_cfg)</p>
 <p>Pruning resnet50 Demo中的yaml文件示例如下：</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>app_args:
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">app_args</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resnet50_cifar</span>
+<span class="w">    </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cifar10</span>
+<span class="w">    </span><span class="nt">input_shape</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">32</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">32</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">output_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./output</span>
+<span class="nt">amc_cfg</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">agent_algo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DDPG</span>
+<span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mac-constrained</span>
+<span class="w">    </span><span class="nt">pruning_pattern</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">channels</span>
+<span class="w">    </span><span class="nt">pruning_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">l1-rank</span>
+<span class="w">    </span><span class="nt">target_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">    </span><span class="nt">n_points_per_fm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">    </span><span class="nt">group_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">action_range</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.95</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">ddpg_cfg</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">bsize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256</span><span class="w"> </span><span class="c1"># batch size</span>
+<span class="w">        </span><span class="nt">tau</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
+<span class="w">        </span><span class="nt">discount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">        </span><span class="nt">epsilon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50000</span>
+<span class="w">        </span><span class="nt">init_delta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">        </span><span class="nt">delta_decay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.95</span>
+<span class="w">        </span><span class="nt">hidden1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span>
+<span class="w">        </span><span class="nt">hidden2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span>
+<span class="w">        </span><span class="nt">window_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">        </span><span class="nt">heatup_noise</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">        </span><span class="nt">initial_training_noise</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">        </span><span class="nt">training_noise_decay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.95</span>
+<span class="w">        </span><span class="nt">warmup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span><span class="w"> </span><span class="c1"># num_heatup_episodes</span>
+<span class="w">        </span><span class="nt">num_training_episodes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span>
+<span class="w">        </span><span class="nt">lr_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0001</span><span class="w"> </span><span class="c1"># actor_lr</span>
+<span class="w">        </span><span class="nt">lr_c</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.001</span><span class="w"> </span><span class="c1"># critic_lr</span>
 
-arch: resnet50_cifar
+<span class="nt">network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">resnet50_cifar</span><span class="p">:</span>
+<span class="w">         </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">layer1.0.conv2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">layer1.0.conv3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">layer1.1.conv2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">layer1.1.conv3 … …</span><span class="p p-Indicator">]</span>
 
-dataset: cifar10
-
-input_shape: [1, 3, 32, 32]
-
-device: 0
-
-output_dir: ./output
-
-amc_cfg:
-
-agent_algo: DDPG
-
-protocol: mac-constrained
-
-pruning_pattern: channels
-
-pruning_method: l1-rank
-
-target_density: 0.5
-
-n_points_per_fm: 10
-
-group_size: 1
-
-action_range: [0.05, 0.95]
-
-ddpg_cfg:
-
-bsize: 256 # batch size
-
-tau: 0.01
-
-discount: 1.0
-
-epsilon: 50000
-
-init_delta: 0.5
-
-delta_decay: 0.95
-
-hidden1: 300
-
-hidden2: 300
-
-window_length: 1
-
-heatup_noise: 0.5
-
-initial_training_noise: 0.5
-
-training_noise_decay: 0.95
-
-warmup: 100 # num_heatup_episodes
-
-num_training_episodes: 300
-
-lr_a: 0.0001 # actor_lr
-
-lr_c: 0.001 # critic_lr
-
-network:
-
-resnet50_cifar:
-
-[ layer1.0.conv2, layer1.0.conv3, layer1.1.conv2, layer1.1.conv3
-
-… …]
-
-docker_cfg:
-
-run_latency: False
-
-chip: TX5368AV200
-
-image_path: ${Knight_image_dir}
-
-localhost_dir: ${host_dir} /examples
-
-container_dir: /example
-
-workspace_dir: /example
-
-container_name: kmc \_demo
-
-bit_width: 8
-
-is_sparse: False
+<span class="nt">docker_cfg</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">run_latency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+<span class="w">    </span><span class="nt">chip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TX5368AV200</span>
+<span class="w">    </span><span class="nt">image_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${Knight_image_dir}</span>
+<span class="w">    </span><span class="nt">localhost_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${host_dir}/examples</span>
+<span class="w">    </span><span class="nt">container_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/example</span>
+<span class="w">    </span><span class="nt">workspace_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/example</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kmc_demo</span>
+<span class="w">    </span><span class="nt">bit_width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+<span class="w">    </span><span class="nt">is_sparse</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
 </pre></div>
 </div>
-<section id="id18">
-<h5><span class="section-number">2.3.4.1.1. </span>基础配置<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h5>
+<section id="id16">
+<h5><span class="section-number">2.3.4.1.1. </span>基础配置<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h5>
 <p>app_args中为基础配置参数，network中则配置模型中要剪枝的层，各参数含义如下所示：</p>
 <table class="docutils align-default">
 <thead>
@@ -634,21 +562,20 @@ is_sparse: False
 <tbody>
 <tr class="row-even"><td><p>arch</p></td>
 <td><p>模型结构名称，
-和模型定义中的名称一致，同时需
-要和network参数中模型名称一致。</p></td>
+和模型定义中的名称一致，
+同时需要和network参数中模型名称一致。</p></td>
 <td><p>无</p></td>
 <td><p>必选</p></td>
 <td><p>无</p></td>
 </tr>
 <tr class="row-odd"><td><p>dataset</p></td>
-<td><p>数据加载名
-称，和数据加载定义中的名称一致</p></td>
+<td><p>数据加载名称，
+和数据加载定义中的名称一致</p></td>
 <td><p>无</p></td>
 <td><p>必选</p></td>
 <td><p>无</p></td>
 </tr>
-<tr class="row-even"><td><p>inpu
-t_shape</p></td>
+<tr class="row-even"><td><p>input_shape</p></td>
 <td><p>模型输入shape</p></td>
 <td><p>无</p></td>
 <td><p>必选</p></td>
@@ -661,8 +588,7 @@ id，仅支持使用一个gpu</p></td>
 <td><p>必选</p></td>
 <td><p>int</p></td>
 </tr>
-<tr class="row-even"><td><p>out
-put_dir</p></td>
+<tr class="row-even"><td><p>output_dir</p></td>
 <td><p>压缩后模型输出路径</p></td>
 <td><p>无</p></td>
 <td><p>可选</p></td>
@@ -677,8 +603,8 @@ put_dir</p></td>
 </tbody>
 </table>
 </section>
-<section id="id19">
-<h5><span class="section-number">2.3.4.1.2. </span>Pruning策略配置<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h5>
+<section id="id17">
+<h5><span class="section-number">2.3.4.1.2. </span>Pruning策略配置<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h5>
 <p>amc_cfg中配置自动剪枝算法相关的参数，一般情况下用户无需关注，仅适合剪枝算法调优场景。</p>
 <p>各参数含义如下所示：</p>
 <table class="docutils align-default">
@@ -686,104 +612,68 @@ put_dir</p></td>
 <tr class="row-odd"><th class="head"><p><strong>参数</strong></p></th>
 <th class="head"><p><strong>说明</strong></p></th>
 <th class="head"><p>默认值</p></th>
-<th class="head"><p>必选
-/可</p>
-<blockquote>
-<div><p>选</p>
-</div></blockquote>
-</th>
-<th class="head"><p>参数
-类型</p></th>
+<th class="head"><p>必选/可选</p></th>
+<th class="head"><p>参数类型</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>agent_algo</p></td>
-<td><p>强
-化学习算法名称，当前仅支持DDPG</p></td>
+<td><p>强化学习算法名称，当前仅支持DDPG</p></td>
 <td><p>DDPG</p></td>
-<td><p>可
-选</p></td>
-<td><p>st
-ri
-ng</p></td>
+<td><p>可选</p></td>
+<td><p>string</p></td>
 </tr>
 <tr class="row-odd"><td><p>protocol</p></td>
-<td><p>压
-缩策略检索方法，取值范围如下：</p>
+<td><p>压缩策略检索方法，取值范围如下：</p>
 <p>mac-constrained,</p>
-<p>accuracy- guaranteed,</p>
+<p>accuracy-guaranteed,</p>
 <p>mac-constrained-experimental,</p>
 <p>punish-agent</p>
 </td>
-<td><p>mac-c
-onstrained</p></td>
-<td><p>可
-选</p></td>
-<td><p>st
-ri
-ng</p></td>
+<td><p>mac-constrained</p></td>
+<td><p>可选</p></td>
+<td><p>string</p></td>
 </tr>
-<tr class="row-even"><td><p>pruni
-ng_pattern</p></td>
+<tr class="row-even"><td><p>pruning_pattern</p></td>
 <td><p>剪枝方式，默认channel剪枝</p></td>
 <td><p>channels</p></td>
-<td><p>可
-选</p></td>
-<td><p>st
-ri
-ng</p></td>
+<td><p>可选</p></td>
+<td><p>string</p></td>
 </tr>
-<tr class="row-odd"><td><p>prun
-ing_method</p></td>
+<tr class="row-odd"><td><p>pruning_method</p></td>
 <td><p>剪枝方法， 可选范围如下：</p>
 <p>（”l1-rank”,”stochastic
 -l1-rank”,”fm-reconstruction”）</p>
 </td>
-<td><p>fm-reco
-nstruction</p></td>
-<td><p>可
-选</p></td>
-<td><p>st
-ri
-ng</p></td>
+<td><p>fm-reconstruction</p></td>
+<td><p>可选</p></td>
+<td><p>string</p></td>
 </tr>
-<tr class="row-even"><td><p>targ
-et_density</p></td>
+<tr class="row-even"><td><p>target_density</p></td>
 <td><p>目标稀疏
 率，全局的剪枝率,控制稀疏化程度</p></td>
 <td><p>0.5</p></td>
-<td><p>可
-选</p></td>
+<td><p>可选</p></td>
 <td><p>无</p></td>
 </tr>
-<tr class="row-odd"><td><p>n_poi
-nts_per_fm</p></td>
-<td><p>当pruning_method
-为fm
--reconstruction时，选择的特征点</p></td>
+<tr class="row-odd"><td><p>n_points_per_fm</p></td>
+<td><p>当pruning_method为
+fm-reconstruction时，选择的特征点</p></td>
 <td><p>10</p></td>
-<td><p>可
-选</p></td>
-<td><p>i
-nt</p></td>
+<td><p>可选</p></td>
+<td><p>int</p></td>
 </tr>
 <tr class="row-even"><td><p>group_size</p></td>
 <td><p>分组大小</p></td>
 <td><p>1</p></td>
-<td><p>可
-选</p></td>
-<td><p>i
-nt</p></td>
+<td><p>可选</p></td>
+<td><p>int</p></td>
 </tr>
-<tr class="row-odd"><td><p>ac
-tion_range</p></td>
+<tr class="row-odd"><td><p>action_range</p></td>
 <td><p>强化学习中action的范围</p></td>
-<td><p>[0.05,
-0.95]</p></td>
-<td><p>可
-选</p></td>
-<td><p>li
-st</p></td>
+<td><p>[0.05,0.95]</p></td>
+<td><p>可选</p></td>
+<td><p>list</p></td>
 </tr>
 <tr class="row-even"><td><p>ddpg_cfg</p></td>
 <td><p>DDPG 强化学习算法配置参数</p>
@@ -805,17 +695,15 @@ st</p></td>
 <p>lr_c: 0.001</p>
 </td>
 <td><p>无</p></td>
-<td><p>可
-选</p></td>
-<td><p>d
-ic</p></td>
+<td><p>可选</p></td>
+<td><p>dic</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="id20">
-<h5><span class="section-number">2.3.4.1.3. </span>Knight相关配置<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h5>
-<p>docker_cfg中为结合工具链相关的基础配置参数，适用于<a class="reference external" href="#pruning工具应用场景">章节3.2</a>中第二种适用场景。</p>
+<section id="id18">
+<h5><span class="section-number">2.3.4.1.3. </span>Knight相关配置<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h5>
+<p>docker_cfg中为结合工具链相关的基础配置参数，适用于 <a class="reference internal" href="#id9">pruning工具应用场景</a> 中第二种适用场景。</p>
 <p>各参数含义如下所示：</p>
 <table class="docutils align-default">
 <thead>
@@ -830,8 +718,7 @@ ic</p></td>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>r
-un_latency</p></td>
+<tr class="row-even"><td><p>run_latency</p></td>
 <td><p>是否将清微芯片
 推理时间作为剪枝优化目标。</p></td>
 <td><p>False</p></td>
@@ -850,30 +737,26 @@ un_latency</p></td>
 <td><p>必选</p></td>
 <td><p>string</p></td>
 </tr>
-<tr class="row-odd"><td><p>loc
-alhost_dir</p></td>
-<td><p>宿主机所在的工作
-目录，注意只能使用绝对路径</p></td>
+<tr class="row-odd"><td><p>localhost_dir</p></td>
+<td><p>宿主机所在的工作目录，
+注意只能使用绝对路径</p></td>
 <td><p>无</p></td>
 <td><p>必选</p></td>
 <td><p>string</p></td>
 </tr>
-<tr class="row-even"><td><p>con
-tainer_dir</p></td>
+<tr class="row-even"><td><p>container_dir</p></td>
 <td><p>映射到Knight 容器内的目录</p></td>
 <td><p>无</p></td>
 <td><p>必选</p></td>
 <td><p>string</p></td>
 </tr>
-<tr class="row-odd"><td><p>wor
-kspace_dir</p></td>
+<tr class="row-odd"><td><p>workspace_dir</p></td>
 <td><p>容器内工作目录</p></td>
 <td><p>无</p></td>
 <td><p>必选</p></td>
 <td><p>string</p></td>
 </tr>
-<tr class="row-even"><td><p>cont
-ainer_name</p></td>
+<tr class="row-even"><td><p>container_name</p></td>
 <td><p>启动镜像时的容器名称</p></td>
 <td><p>无</p></td>
 <td><p>必选</p></td>
@@ -895,8 +778,8 @@ ainer_name</p></td>
 </table>
 </section>
 </section>
-<section id="id21">
-<h4><span class="section-number">2.3.4.2. </span>调用Pruning说明<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h4>
+<section id="id19">
+<h4><span class="section-number">2.3.4.2. </span>调用Pruning说明<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h4>
 <section id="kmc-pruningapi">
 <h5><span class="section-number">2.3.4.2.1. </span>kmc Pruning的API接口<a class="headerlink" href="#kmc-pruningapi" title="Permalink to this heading"></a></h5>
 <table class="docutils align-default">
@@ -909,113 +792,96 @@ ainer_name</p></td>
 <tbody>
 <tr class="row-even"><td><p>MCPruning.prune_model</p></td>
 <td><p>剪枝模型</p></td>
-<td><p>need_ar
-gs：dict类型参数，包含如下字段：</p>
+<td><p>need_args：
+dict类型参数，包含如下字段：</p>
 <p>model_fn: 原始模型定义</p>
 <p>val_fn:
-模型评估函数，要求该函数
-返回模型评估指标，详情参见<a class="reference external" href="#kmc注意事项">章
-节5</a>第三点。</p>
+模型评估函数，
+要求该函数返回模型评估指标，
+详情参见
+<a class="reference internal" href="#id33">KMC注意事项</a> 第三点。</p>
 <p>config_file:
 Pruning工具配置文件路径</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>MCPruning.load_pruned
-_model</p></td>
-<td><p>加载剪
-枝后的模型</p></td>
-<td><p>model: 原始模型定义</p>
-<p>weight_file:
-剪枝后模型的权重文件</p>
-</td>
+<tr class="row-odd"><td><p>MCPruning.load_pruned_model</p></td>
+<td><p>加载剪枝后的模型</p></td>
+<td><p>model: 原始模型定义
+weight_file:
+剪枝后模型的权重文件</p></td>
 </tr>
-<tr class="row-even"><td><p>MCPruning.save_pruned
-_model</p></td>
+<tr class="row-even"><td><p>MCPruning.save_pruned_model</p></td>
 <td><p>保存模型文件</p></td>
-<td><p>model: 原始模型定义</p>
-<p>save_name: 保存模型的路径</p>
+<td><p>model: 原始模型定义
+save_name: 保存模型的路径</p>
 <p>extras:
-模型额外信息，dict类型，可包含精
-度，优化器，推理时间之类的信息。</p>
+模型额外信息，dict类型，可包含精度
+，优化器，推理时间之类的信息。</p>
 </td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="id22">
-<h5><span class="section-number">2.3.4.2.2. </span>使用步骤<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h5>
-<p>以resnet50为例说明如何压缩用户自己的模型，如下为examples/cls/resnet50_cifar/
-pruning _demo.py中的示例代码。</p>
-<p>模型训练相关的部分只需和浮点模型训练一致即可，标红的部分为相比原始模型新增的代码。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># 加载数据集，加载预训练好的模型路径
+<section id="id20">
+<h5><span class="section-number">2.3.4.2.2. </span>使用步骤<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h5>
+<p>以resnet50为例说明如何压缩用户自己的模型，如下为 <code class="docutils literal notranslate"><span class="pre">examples/cls/resnet50_cifar/pruning_demo.py</span></code> 中的示例代码。</p>
+<p>模型训练相关的部分只需和浮点模型训练一致即可。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 加载数据集，加载预训练好的模型路径</span>
 
-train_loader, test_loader = cifar10_loader(data_dir=data_dir)
+train_loader,<span class="w"> </span><span class="nv">test_loader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>cifar10_loader<span class="o">(</span><span class="nv">data_dir</span><span class="o">=</span>data_dir<span class="o">)</span>
+<span class="nv">ckpt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>torch.load<span class="o">(</span>…<span class="w"> </span>…<span class="o">)</span>
+model.load_state_dict<span class="o">(</span>ckpt<span class="o">[</span><span class="s1">&#39;state_dict&#39;</span><span class="o">])</span>
 
-ckpt = torch.load(… …)
+<span class="c1">#定义损失函数, 优化器和学习率</span>
 
-model.load_state_dict(ckpt[&#39;state_dict&#39;])
+<span class="nv">criterion</span><span class="w"> </span><span class="o">=</span>…
+<span class="nv">optimizer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>…
+<span class="nv">lr_scheduler</span><span class="w"> </span><span class="o">=</span>…
 
-#定义损失函数, 优化器和学习率
+<span class="c1">#定义所需参数</span>
 
-criterion =…
+<span class="nv">need_args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>
+<span class="s1">&#39;model_fn&#39;</span>:<span class="w"> </span>model,
+<span class="s1">&#39;val_fn&#39;</span>:<span class="w"> </span>partial<span class="o">(</span>validate,<span class="w"> </span><span class="nv">val_loader</span><span class="o">=</span>test_loader<span class="o">)</span>,
+<span class="s1">&#39;config_file&#39;</span>:<span class="w"> </span><span class="s1">&#39;pruning_config.yaml&#39;</span>
+<span class="o">}</span>
 
-optimizer = …
+from<span class="w"> </span>kmc.pruning<span class="w"> </span>import<span class="w"> </span>MCPruning
 
-lr_scheduler =…
+<span class="c1">#剪枝训练好的模型</span>
+MCPruning.prune_model<span class="o">(</span>need_args<span class="o">)</span>
 
-#定义所需参数
+<span class="c1">#重训练剪枝后的模型，加载最优的剪枝后模型</span>
+MCPruning.load_pruned_model<span class="o">(</span>model,<span class="w"> </span><span class="nv">weight_file</span><span class="o">=</span>best_pruning_weight<span class="o">)</span>
 
-need_args = {
+<span class="k">for</span><span class="w"> </span>epoch<span class="w"> </span><span class="k">in</span><span class="w"> </span>range<span class="o">(</span>epochs<span class="o">)</span>:
+<span class="w">    </span>train_acc1,<span class="w"> </span>_,<span class="w"> </span><span class="nv">train_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>train<span class="o">(</span>model,<span class="w"> </span>optimizer,<span class="w"> </span>criterion,train_loader,<span class="w"> </span>lr_scheduler
+<span class="w">    </span><span class="nv">result_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>validate<span class="o">(</span>model,<span class="w"> </span>test_loader<span class="o">)</span>
 
-&#39;model_fn&#39;: model,
+<span class="c1">#保存带有剪枝mask的模型</span>
 
-&#39;val_fn&#39;: partial(validate, val_loader=test_loader),
-
-&#39;config_file&#39;: &#39;pruning_config.yaml&#39;
-
-}
-
-from kmc.pruning import MCPruning
-
-#剪枝训练好的模型
-
-MCPruning.prune_model(need_args)
-
-#重训练剪枝后的模型，加载最优的剪枝后模型
-
-MCPruning.load_pruned_model(model, weight_file=best_pruning_weight)
-
-for epoch in range(epochs):
-
-train_acc1, \_, train_loss = train(model, optimizer, criterion,
-train_loader, lr_scheduler)
-
-result_info = validate(model, test_loader)
-
-#保存带有剪枝mask的模型
-
-MCPruning.save_pruned_model(…)
+MCPruning.save_pruned_model<span class="o">(</span>…<span class="o">)</span>
 </pre></div>
 </div>
 </section>
 </section>
-<section id="id23">
-<h4><span class="section-number">2.3.4.3. </span>结合Knight工具链<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h4>
+<section id="id21">
+<h4><span class="section-number">2.3.4.3. </span>结合Knight工具链<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h4>
 <p>该剪枝方案为自动模型剪枝，可将在清微芯片上的推理时间和模型精度作为优化目标，得到最优的剪枝模型。因此需要调用工具链量化，编译，Profiling
 各模块得到实际推理时间。还需以下两个步骤方可得到软硬一体的自动剪枝模型。</p>
 <p><strong>步骤一</strong>：Knight镜像准备，详情参见 <a class="reference internal" href="#knight">knight镜像包准备</a>；</p>
-<p><strong>步骤二</strong>：配置Knight相关参数，详情参见 <a class="reference internal" href="#id20">knight相关配置</a> 。</p>
+<p><strong>步骤二</strong>：配置Knight相关参数，详情参见 <a class="reference internal" href="#id18">knight相关配置</a> 。</p>
 </section>
 </section>
 </section>
 <section id="sparsity">
 <h2><span class="section-number">2.4. </span>Sparsity工具<a class="headerlink" href="#sparsity" title="Permalink to this heading"></a></h2>
-<section id="id24">
-<span id="id25"></span><h3><span class="section-number">2.4.1. </span>工具简介<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h3>
+<section id="id22">
+<span id="id23"></span><h3><span class="section-number">2.4.1. </span>工具简介<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h3>
 <p>Sparsity工具利用指定的稀疏策略对用户浮点模型进行稀疏，然后用户需要重训练以恢复模型精度，可减少模型部署在清微芯片上的推理时间。</p>
 </section>
-<section id="id26">
-<h3><span class="section-number">2.4.2. </span>Sparsity工具应用场景<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h3>
+<section id="id24">
+<h3><span class="section-number">2.4.2. </span>Sparsity工具应用场景<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h3>
 <p>Sparsity工具需要用户准备好经过充分训练的精度较好的模型，当前可支持两种稀疏方式：</p>
 <p>一是2:4稀疏，该方式稀疏后的模型, 在清微芯片上无加速效果。</p>
 <p>二是清微芯片定制稀疏Cin32Cout64，目前仅TX5368x_TX5339x_TX5335x系列和TX5336x_TX5256x芯片支持，清微其他系列芯片不支持编译。</p>
@@ -1025,7 +891,7 @@ MCPruning.save_pruned_model(…)
 <p>Sparsity工具提供了图像分类模型resnet50和目标检测模型Yolov5
 的模型压缩示例。</p>
 <section id="resnet50-demo-1">
-<span id="id27"></span><h4><span class="section-number">2.4.3.1. </span>resnet50 Demo<a class="headerlink" href="#resnet50-demo-1" title="Permalink to this heading"></a></h4>
+<span id="id25"></span><h4><span class="section-number">2.4.3.1. </span>resnet50 Demo<a class="headerlink" href="#resnet50-demo-1" title="Permalink to this heading"></a></h4>
 <p>在cifar10数据集上，使用Sparsity工具压缩resnet50模型示例如下：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>examples/cls/resnet50_cifar
 
@@ -1038,7 +904,7 @@ python<span class="w"> </span>sparsity_demo.py
 </figure>
 </section>
 <section id="yolov5-demo-1">
-<span id="id28"></span><h4><span class="section-number">2.4.3.2. </span>yolov5 Demo<a class="headerlink" href="#yolov5-demo-1" title="Permalink to this heading"></a></h4>
+<span id="id26"></span><h4><span class="section-number">2.4.3.2. </span>yolov5 Demo<a class="headerlink" href="#yolov5-demo-1" title="Permalink to this heading"></a></h4>
 <p>在coco数据集上，使用Sparsity工具压缩yolov5模型示例如下：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>examples/det/yolov5
 
@@ -1052,8 +918,8 @@ python<span class="w"> </span>sparsity_demo.py
 <p></p>
 </section>
 </section>
-<section id="id29">
-<h3><span class="section-number">2.4.4. </span>Sparsity自定义模型<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h3>
+<section id="id27">
+<h3><span class="section-number">2.4.4. </span>Sparsity自定义模型<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h3>
 <p>Sparsity自定义模型的操作步骤如下：</p>
 <figure class="align-center">
 <img alt="pipeline" src="../_images/mc_15.png" />
@@ -1061,48 +927,70 @@ python<span class="w"> </span>sparsity_demo.py
 <p><strong>步骤一</strong>：基础环境准备，按照 <a class="reference internal" href="#id7">基础环境准备</a> 说明,
 用户在自己训练环境的服务器上安装kmc所需的依赖包，准备kmc运行环境；</p>
 <p><strong>步骤二</strong>：安装kmc软件包，参见 <a class="reference internal" href="#kmc">安装kmc软件包</a> 说明；</p>
-<p><strong>步骤三</strong>：准备yaml配置文件，详情请参见 <a class="reference internal" href="#id30">配置文件说明</a> ；</p>
+<p><strong>步骤三</strong>：准备yaml配置文件，详情请参见 <a class="reference internal" href="#id28">配置文件说明</a> ；</p>
 <p><strong>步骤四</strong>：用户在自己的训练代码中调用kmc
-Sparsity，详情请参见 <a class="reference internal" href="#id33">调用sparsity说明</a> ；</p>
+Sparsity，详情请参见 <a class="reference internal" href="#id31">调用sparsity说明</a> ；</p>
 <p><strong>步骤五</strong>：执行稀疏脚本得到稀疏后的模型。</p>
-<section id="id30">
-<h4><span class="section-number">2.4.4.1. </span>配置文件说明<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h4>
+<section id="id28">
+<h4><span class="section-number">2.4.4.1. </span>配置文件说明<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h4>
 <p>Sparsity工具的配置文件模板为config/sparsity_template.yaml，用户可根据自身需求对模板中参数值修改。配置文件中共包含2个部分的参数配置：基础配置（app_args,
 network），Sparsity策略配置（asp_cfg）</p>
 <p>Sparsity resnet50 Demo中的yaml文件示例如下：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">app_args</span><span class="p">:</span>
-
-<span class="nt">arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resnet50_cifar</span>
-
-<span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cifar10</span>
-
-<span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resnet50_cifar</span>
+<span class="w">    </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cifar10</span>
+<span class="w">    </span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 
 <span class="nt">asp_cfg</span><span class="p">:</span>
-
-<span class="nt">sparsity_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CustomPruner</span><span class="w"> </span><span class="c1"># options: CustomPruner, Pruner2to4</span>
-
-<span class="nt">target_sparsity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">    </span><span class="nt">sparsity_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CustomPruner</span><span class="w"> </span><span class="c1"># options: CustomPruner, Pruner2to4</span>
+<span class="w">    </span><span class="nt">target_sparsity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
 
 <span class="nt">network</span><span class="p">:</span>
-
-<span class="nt">resnet50_cifar</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
-
-<span class="nv">layer1.0.conv2.weight</span><span class="p p-Indicator">,</span>
-
-<span class="nv">layer1.1.conv2.weight</span><span class="p p-Indicator">,</span>
-
-<span class="nv">layer1.2.conv2.weight</span><span class="p p-Indicator">,</span>
-
-<span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">resnet50_cifar</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">layer1.0.conv2.weight</span><span class="p p-Indicator">,</span><span class="nv">layer1.1.conv2.weight</span><span class="p p-Indicator">,</span><span class="nv">layer1.2.conv2.weight</span><span class="p p-Indicator">,]</span>
 </pre></div>
 </div>
-<section id="id31">
-<h5><span class="section-number">2.4.4.1.1. </span>基础配置<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h5>
+<section id="id29">
+<h5><span class="section-number">2.4.4.1.1. </span>基础配置<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h5>
 <p>app_args中为基础配置参数，network中则配置模型中要稀疏的层，各参数含义如下所示：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>说明</p></th>
+<th class="head"><p>默认值</p></th>
+<th class="head"><p>必选/可选</p></th>
+<th class="head"><p>参数类型</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>arch</p></td>
+<td><p>模型结构名称，和模型定义中的名称一致，同时需要和network参数中模型名称一致。</p></td>
+<td><p>无</p></td>
+<td><p>必选</p></td>
+<td><p>无</p></td>
+</tr>
+<tr class="row-odd"><td><p>dataset</p></td>
+<td><p>数据加载名称，和数据加载定义中的名称一致</p></td>
+<td><p>无</p></td>
+<td><p>必选</p></td>
+<td><p>无</p></td>
+</tr>
+<tr class="row-even"><td><p>device</p></td>
+<td><p>cpu 或 gpu id，仅支持使用一个gpu，仅指定控制稀疏时使用的gpu，重训练需在代码中根据需求自行配置gpu。</p></td>
+<td><p>0</p></td>
+<td><p>必选</p></td>
+<td><p>int</p></td>
+</tr>
+<tr class="row-odd"><td><p>network</p></td>
+<td><p>配置模型对应的稀疏层</p></td>
+<td><p>无</p></td>
+<td><p>必选</p></td>
+<td><p>无</p></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="id32">
-<h5><span class="section-number">2.4.4.1.2. </span>Sparsity策略配置<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h5>
+<section id="id30">
+<h5><span class="section-number">2.4.4.1.2. </span>Sparsity策略配置<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h5>
 <p>asp_cfg中配置稀疏算法相关的参数，各参数含义如下所示</p>
 <table class="docutils align-default">
 <thead>
@@ -1116,35 +1004,27 @@ network），Sparsity策略配置（asp_cfg）</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>spars
-ity_method</p></td>
+<tr class="row-even"><td><p>sparsity_method</p></td>
 <td><p>稀疏方法选择，可选值如下</p>
-<p>CustomP
-runer：清微稀疏Cin32Cout64;</p>
+<p>CustomPruner：清微稀疏Cin32Cout64;</p>
 <p>Pruner2to4：2比4稀疏;</p>
 </td>
-<td><p>C
-ustomPruner</p></td>
-<td><p>可
-选</p></td>
-<td><p>st
-ring</p></td>
+<td><p>CustomPruner</p></td>
+<td><p>可选</p></td>
+<td><p>string</p></td>
 </tr>
-<tr class="row-odd"><td><p>targe
-t_sparsity</p></td>
+<tr class="row-odd"><td><p>target_sparsity</p></td>
 <td><p>目标稀疏率</p></td>
 <td><p>0.5</p></td>
-<td><p>必
-选</p></td>
-<td><p>f
-loat</p></td>
+<td><p>必选</p></td>
+<td><p>float</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 </section>
-<section id="id33">
-<h4><span class="section-number">2.4.4.2. </span>调用Sparsity说明<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h4>
+<section id="id31">
+<h4><span class="section-number">2.4.4.2. </span>调用Sparsity说明<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h4>
 <section id="kmc-sparsityapi">
 <h5><span class="section-number">2.4.4.2.1. </span>kmc Sparsity的API接口<a class="headerlink" href="#kmc-sparsityapi" title="Permalink to this heading"></a></h5>
 <table class="docutils align-default">
@@ -1155,98 +1035,72 @@ loat</p></td>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>MCSp
-arsity.sparse_model</p></td>
+<tr class="row-even"><td><p>MCSparsity.sparse_model</p></td>
 <td><p>稀疏模型</p></td>
-<td><p>need_ar
-gs：dict类型参数，包含如下字段：</p>
-<p>model_fn: 原始模型定义；</p>
-<p>optimizer: 模型优化器；</p>
-<p>config_file:
-Sparsity工具配置文件路径。</p>
+<td><p>need_args：dict类型参数，包含如下字段：</p>
+<p>“model_fn”: 原始模型定义;</p>
+<p>“optimizer”: 模型优化器;</p>
+<p>“config_file”:Sparsity工具配置文件路径;</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>MCSparsit
-y.load_sparse_model</p></td>
-<td><p>加载
-稀疏后模型</p></td>
+<tr class="row-odd"><td><p>MCSparsity.load_sparse_model</p></td>
+<td><p>加载稀疏后模型</p></td>
 <td><p>model: 原始模型定义</p>
 <p>weight_file:
 稀疏后模型的权重文件</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>MCSparsit
-y.save_sparse_model</p></td>
-<td><p>保
-存模型文件</p></td>
+<tr class="row-even"><td><p>MCSparsity.save_sparse_model</p></td>
+<td><p>保存模型文件</p></td>
 <td><p>model: 原始模型定义</p>
 <p>save_name: 要保存的模型文件路径</p>
-<p>extras:
-模型额外信息，dict类型，可包含精
-度，优化器，推理时间之类的信息。</p>
+<p>extras:模型额外信息，dict类型，可包含精度，优化器，推理时间之类的信息。</p>
 </td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="id34">
-<span id="id35"></span><h5><span class="section-number">2.4.4.2.2. </span>使用步骤<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h5>
-<p>以resnet50为例说明如何压缩用户自己的模型，如下为examples/cls/resnet50_cifar/sparsity_demo.py中的示例代码。</p>
-<p>模型训练相关的部分只需和浮点模型训练一致即可，标红的部分为相比原始模型新增的代码。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># 加载数据集，加载预训练好的模型路径
+<section id="id32">
+<h5><span class="section-number">2.4.4.2.2. </span>使用步骤<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h5>
+<p>以resnet50为例说明如何压缩用户自己的模型，如下为 <code class="docutils literal notranslate"><span class="pre">examples/cls/resnet50_cifar/sparsity_demo.py</span></code> 中的示例代码。</p>
+<p>模型训练相关的部分只需和浮点模型训练一致即可。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 加载数据集，加载预训练好的模型路径</span>
+train_loader,<span class="w"> </span><span class="nv">test_loader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>cifar10_loader<span class="o">(</span><span class="nv">data_dir</span><span class="o">=</span>data_dir<span class="o">)</span>
+<span class="nv">ckpt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>torch.load<span class="o">(</span>…<span class="w"> </span>…<span class="o">)</span>
+model.load_state_dict<span class="o">(</span>ckpt<span class="o">[</span><span class="s1">&#39;state_dict&#39;</span><span class="o">])</span>
 
-train_loader, test_loader = cifar10_loader(data_dir=data_dir)
+<span class="c1">#定义损失函数, 优化器和学习率</span>
+<span class="nv">criterion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>…
+<span class="nv">optimizer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>…
+<span class="nv">lr_scheduler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>…
 
-ckpt = torch.load(… …)
+from<span class="w"> </span>kmc.sparsity<span class="w"> </span>import<span class="w"> </span>MCSparsity
 
-model.load_state_dict(ckpt[&#39;state_dict&#39;])
+<span class="c1">#定义所需参数</span>
+<span class="nv">need_args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>
+<span class="s1">&#39;model_fn&#39;</span>:<span class="w"> </span>model,
+<span class="s1">&#39;optimizer&#39;</span>:<span class="w"> </span>optimizer,
+<span class="s1">&#39;config_file&#39;</span>:<span class="w"> </span><span class="s1">&#39;sparsity_config.yaml&#39;</span><span class="o">}</span>
 
-#定义损失函数, 优化器和学习率
+<span class="c1">#稀疏训练好的模型</span>
 
-criterion =…
-
-optimizer = …
-
-lr_scheduler =…
-
-from kmc.sparsity import MCSparsity
-
-#定义所需参数
-
-need_args = {
-
-&#39;model_fn&#39;: model,
-
-&#39; optimizer&#39;: optimizer,
-
-&#39;config_file&#39;: &#39;sparsity_config.yaml&#39;
-
-}
-
-#稀疏训练好的模型
-
-MCSparsity.sparse_model(need_args)
-
-for epoch in range(epochs):
-
-train_acc1, \_, train_loss = train(model, optimizer, criterion,
-train_loader, lr_scheduler)
-
-result_info = validate(model, test_loader)
-#保存带有稀疏mask的模型
-
-MCSparsity.save_sparse_model(…)
-#重训练稀疏后的模型，加载稀疏后的模型
-
-MCSparsity.load_sparse_model(model, weight_file=best_sparse_weight)
+MCSparsity.sparse_model<span class="o">(</span>need_args<span class="o">)</span>
+<span class="k">for</span><span class="w"> </span>epoch<span class="w"> </span><span class="k">in</span><span class="w"> </span>range<span class="o">(</span>epochs<span class="o">)</span>:
+<span class="w">    </span>train_acc1,<span class="w"> </span>_,<span class="w"> </span><span class="nv">train_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>train<span class="o">(</span>model,<span class="w"> </span>optimizer,<span class="w"> </span>criterion,
+<span class="w">    </span>train_loader,<span class="w"> </span>lr_scheduler<span class="o">)</span>
+<span class="nv">result_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>validate<span class="o">(</span>model,<span class="w"> </span>test_loader<span class="o">)</span>
+<span class="c1">#保存带有稀疏mask的模型</span>
+MCSparsity.save_sparse_model<span class="o">(</span>…<span class="o">)</span>
+<span class="c1">#重训练稀疏后的模型，加载稀疏后的模型</span>
+MCSparsity.load_sparse_model<span class="o">(</span>model,<span class="w"> </span><span class="nv">weight_file</span><span class="o">=</span>best_sparse_weight<span class="o">)</span>
 </pre></div>
 </div>
 </section>
 </section>
 </section>
 </section>
-<section id="id36">
-<h2><span class="section-number">2.5. </span>KMC注意事项<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h2>
+<section id="id33">
+<h2><span class="section-number">2.5. </span>KMC注意事项<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h2>
 <p>用户需注意以下事项：</p>
 <ol class="arabic simple">
 <li><p>Pruning工具剪枝范围针对卷积层和全连接层进行剪枝，同时会影响上一层的剪枝。</p></li>
@@ -1269,16 +1123,16 @@ Filter中相应的卷积核。</p>
 <ol class="arabic simple" start="3">
 <li><p>Pruning工具和Sparsity工具模型评估函数(test_fn/val_fn)返回字典类型，需要增加ind1，ind2参数，作为剪枝优化的目标精度，应包含如下信息：</p></li>
 </ol>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>&#39;{&#39;ind1&#39;: 模型评估指标1(Acc@top1/mAP@0.5),
-
-&#39;ind2&#39;: 模型评估指标1(Acc@top5/mAP@0.5-0.95),
-
-&#39;vloss&#39;: 可选, ...} &#39;
+<div class="highlight-txt notranslate"><div class="highlight"><pre><span></span>{&#39;ind1&#39;: 模型评估指标1(Acc@top1/mAP@0.5),
+ &#39;ind2&#39;: 模型评估指标1(Acc@top5/mAP@0.5-0.95),
+ &#39;vloss&#39;: 可选, ...}
 </pre></div>
 </div>
-<p>其中，性能评估采取百分制。<code class="docutils literal notranslate"><span class="pre">examples/cls/resnet50_cifar/train_val.py</span></code> 中示例如下：</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{&#39;acc1&#39;: top1_acc_avg, &#39;ind1&#39;: top1_acc_avg, &#39;ind2&#39;: top5_acc_avg,
-&#39;vloss&#39;: None}
+<p>其中，性能评估采取百分制。examples/cls/resnet50_cifar/train_val.py 中示例如下：</p>
+<div class="highlight-txt notranslate"><div class="highlight"><pre><span></span>{&#39;acc1&#39;: top1_acc_avg,
+ &#39;ind1&#39;: top1_acc_avg,
+ &#39;ind2&#39;: top5_acc_avg,
+ &#39;vloss&#39;: None}
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">

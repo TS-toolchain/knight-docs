@@ -300,7 +300,7 @@ onnx模型：
 --start-layer-name或-sln
 	- 格式:--start-layer-name start_layer_name 或 -sln start_layer_name
 	- 可选
-	- 默认值：1.0
+	- 默认值：模型的起始节点
 	- 说明：支持编译ONNX模型的子网络，该参数指定子网络的起始layer。通常情况下，此参数与-eln同时使用。当原始的ONNX模型只有一个输入时，该参数可忽略，默认编译从原始模型的输入开始到-eln指定layer结束
   .. note::
 		1）不支持input或cast作为参数值

@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4. 量化使用指南 &mdash; Knight_doc V3.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
@@ -326,12 +326,14 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <li><p>说明：待量化模型所属框架类型：若为onnx模型，则直接量化，其它四种模型格式则需要转换再进行量化。取值范围：[onnx, pytorch, caffe,paddle, tensorflow]</p></li>
 </ul>
 </dd>
-<dt>-if或–infer-func</dt><dd><ul class="simple">
+<dt>-if或–infer-func</dt><dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: string</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：infer_auto</p></li>
 <li><p>说明：前向推理函数名称。</p></li>
 </ul>
+</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>infer_auto为量化工具内置的自动根据输入shape生成随机数据开展量化的infer函数，具体说明可参见FAQ文档。</p>
@@ -348,7 +350,7 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 </ul>
 </dd>
 </dl>
-<dl class="simple">
+<dl>
 <dt>-d或–data</dt><dd><ul class="simple">
 <li><p>参数类型: string</p></li>
 <li><p>可选</p></li>
@@ -356,26 +358,32 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <li><p>说明：量化输入数据路径，支持相对路径和绝对路径。</p></li>
 </ul>
 </dd>
-<dt>-gsj或–generate-scale-json</dt><dd><ul class="simple">
+<dt>-gsj或–generate-scale-json</dt><dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: action</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：无</p></li>
-<li><p>说明：若设置，量化过程中会生成存有量化scale信息的json文件，保存在{–save-dir}/目录下。注意：run-mode为quant时才生效，且该参数与-lsj互斥。</p></li>
+<li><p>说明：若设置，量化过程中会生成存有量化scale信息的json文件，保存在{–save-dir}/目录下。</p></li>
 </ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意：run-mode为quant时才生效，且该参数与-lsj互斥。</p>
+</div>
 </dd>
-<dt>-lsj或–load-scale-json</dt><dd><ul class="simple">
+<dt>-lsj或–load-scale-json</dt><dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: string</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：无</p></li>
 <li><p>说明：存放量化scale信息的json文件路径，支持相对路径和绝对路径。</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>该参数与-gsj/-mc互斥。</p>
 </div>
-<dl class="simple">
+</dd>
 <dt>-b或–bit-width</dt><dd><ul class="simple">
 <li><p>参数类型: int</p></li>
 <li><p>可选</p></li>
@@ -383,46 +391,46 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <li><p>说明：设置模型用8bit量化还是16bit量化。当设置16时，需要确保配套硬件是支持16bit量化的，否则量化出的模型无法在硬件上运行。</p></li>
 </ul>
 </dd>
-<dt>-i或–iteration</dt><dd><ul class="simple">
+<dt>-i或–iteration</dt><dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: int</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：1</p></li>
 <li><p>说明：量化时模型执行推理的次数。</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>需要选取合适的样本数量才能达到理想的量化模型精度。支持传入多值进行不同数据量化，多值输入时使用空格分割例如-i 1 10 此参数多值输入会分别按照每个值进行量化。</p>
 </div>
-<dl class="simple">
-<dt>-bs或–batch-size</dt><dd><ul class="simple">
+</dd>
+<dt>-bs或–batch-size</dt><dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: int</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：1</p></li>
-<li><p>说明：量化模型时加载量化数据的batchsize大小，量化过程实际用到的数据量是iteration* batch-size。</p></li>
+<li><p>说明：量化模型时加载量化数据的batchsize大小，量化过程实际用到的数据量是 <code class="docutils literal notranslate"><span class="pre">iteration*</span> <span class="pre">batch-size</span></code> 。</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>1）此参数仅在模型为动态图时可配置，且需要用户在infer函数里实现相应逻辑才能生效。</p>
 <p>2）量化后模型不支持动态图。若原始浮点模型为动态batch，则需设置此参数为与量化时数据相同的batch-size值，否则可能导致量化异常。</p>
 </div>
-<dl class="simple">
-<dt>-ib或–ir-batch</dt><dd><ul class="simple">
+</dd>
+<dt>-ib或–ir-batch</dt><dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: int</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：1</p></li>
 <li><p>说明：设置量化后模型的batch-size。</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>仅当原始浮点模型为动态batch时此参数方生效，若为固定输入模型此参数不生效。不支持多输入为动态batch且量化后对应输入的batch不一致的场景。</p>
 </div>
-<dl class="simple">
+</dd>
 <dt>-du或–dump</dt><dd><ul class="simple">
 <li><p>参数类型: action</p></li>
 <li><p>可选</p></li>
@@ -430,32 +438,32 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <li><p>说明：若设置，量化过程中会保存每个算子的输出到本地文件，供后面精度对比工具使用。数据结果保存在{–save-dir}/目录下。</p></li>
 </ul>
 </dd>
-<dt>-gt或–generate-template</dt><dd><ul class="simple">
+<dt>-gt或–generate-template</dt><dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: action</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：无</p></li>
 <li><p>说明：若设置，会生成模型对应的混合量化模板json配置文件，文件保存在{–save-dir}/目录下。</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>run-mode为quant时才生效</p>
 </div>
-<dl class="simple">
-<dt>-mc或–mix-config</dt><dd><ul class="simple">
+</dd>
+<dt>-mc或–mix-config</dt><dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: string</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：无</p></li>
 <li><p>说明：混合量化json文件路径，支持相对路径和绝对路径，需要确保配套硬件是支持混合量化。</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>该参数与-lsj互斥。</p>
 </div>
-<dl>
+</dd>
 <dt>-l或–log-level</dt><dd><ul>
 <li><p>参数类型: int</p></li>
 <li><p>可选</p></li>
@@ -472,12 +480,13 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 </li>
 </ul>
 </dd>
-<dt>-qm或–quant-mode</dt><dd><ul class="simple">
+<dt>-qm或–quant-mode</dt><dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: string</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：8bit量化时，默认值为kl;16bit量化时，默认值是min_max</p></li>
 <li><dl class="simple">
-<dt>说明：计算激活值的scale系数采用的方法，支持模式：</dt><dd><ul>
+<dt>说明：计算激活值的scale系数采用的方法，支持模式如下</dt><dd><ul>
 <li><p>kl： kl散度</p></li>
 <li><p>min_max：最大最小值</p></li>
 <li><p>mse：均方误差</p></li>
@@ -488,8 +497,7 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 </dl>
 </li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ol class="arabic simple">
@@ -497,7 +505,7 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <li><p>此参数多值输入会分别按照每个值进行量化。</p></li>
 </ol>
 </div>
-<dl>
+</dd>
 <dt>-per或–percent</dt><dd><ul class="simple">
 <li><p>参数类型: float</p></li>
 <li><p>可选</p></li>
@@ -521,19 +529,31 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 </li>
 </ul>
 </dd>
-<dt>-ll或–lut-len</dt><dd><ul class="simple">
+<dt>-ll或–lut-len</dt><dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: int</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：10</p></li>
-<li><p>说明：指定LUT表的长度，取值范围[8,9,10,11,12]. 注意： ①此参数仅在16bit量化时才生效</p></li>
+<li><p>说明：指定LUT表的长度，取值范围[8,9,10,11,12].</p></li>
 </ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>此参数仅在16bit量化时才生效</p>
+</div>
 </dd>
-<dt>-lt或–layer-threshold</dt><dd><ul class="simple">
+<dt>-lt或–layer-threshold</dt><dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: float</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：无</p></li>
-<li><p>说明：指定LayerNormalization的输入输出范围。注意： ①此参数仅在LayerNormalization层精度骤降时使用</p></li>
+<li><p>说明：指定LayerNormalization的输入输出范围。</p></li>
 </ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意： 此参数仅在LayerNormalization层精度骤降时使用</p>
+</div>
 </dd>
 <dt>-qid或–quantize-input-dtype</dt><dd><blockquote>
 <div><ul class="simple">
@@ -578,19 +598,20 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 </div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>1)run-mode为quant时才生效。
-2)需和–std同时使用。③mean的个数必须等于输入节点的channel(对应为各通道的均值)或者一个值(所有通道的均值)。</p>
+<p>1)run-mode为quant时才生效。</p>
+<p>2)需和–std同时使用。</p>
+<p>3)mean的个数必须等于输入节点的channel(对应为各通道的均值)或者一个值(所有通道的均值)。</p>
 </div>
 </dd>
 <dt><kbd><span class="option">--std</span></kbd></dt>
-<dd><ul class="simple">
+<dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: float</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：无</p></li>
 <li><p>说明：指定输入后需要增加的BN算子的方差，在输入后需要增加减均值除方差操作时使用。</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>1)run-mode为quant时才生效。</p>
@@ -598,7 +619,9 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <p>3)std的个数必须等于输入节点的channel(对应为各通道的方差)或者一个值(所有通道的方差)。</p>
 <p>4)仅支持一组mean/std，对于多输入网络仅作用于第一路输入。</p>
 </div>
-<dl class="simple">
+</dd>
+</dl>
+<dl>
 <dt>-w或–weight</dt><dd><ul class="simple">
 <li><p>参数类型: string</p></li>
 <li><p>可选</p></li>
@@ -628,14 +651,14 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <li><p>说明：指定Tensorflow模型量化结束节点名，仅在Tensorflow模型量化过程中使用。多输出使用空格分割，例如 -enn output1 output2。</p></li>
 </ul>
 </dd>
-<dt>-c2chw或–convert2chw</dt><dd><ul class="simple">
+<dt>-c2chw或–convert2chw</dt><dd><blockquote>
+<div><ul class="simple">
 <li><p>参数类型: action</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：无</p></li>
 <li><p>说明：Tensorflow模型输入的format为4维NHWC，可通过指定该参数使转出的onnx模型从输入开始的format都为NCHW。</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ol class="arabic simple">
@@ -648,7 +671,7 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <li><p>推理时用户需要输入数据的format转换为NCHW。</p></li>
 </ol>
 </div>
-<dl class="simple">
+</dd>
 <dt>-is或–input-shapes</dt><dd><ul class="simple">
 <li><p>参数类型: int</p></li>
 <li><p>可选</p></li>

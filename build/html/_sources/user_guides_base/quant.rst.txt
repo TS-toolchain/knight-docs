@@ -126,7 +126,7 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 默认值：infer_auto
     - 说明：前向推理函数名称。 
 	
-    .. note::
+  .. note::
         infer_auto为量化工具内置的自动根据输入shape生成随机数据开展量化的infer函数，具体说明可参见FAQ文档。
 
 --save-dir
@@ -145,7 +145,10 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 参数类型: action
     - 可选 
     - 默认值：无
-    - 说明：若设置，量化过程中会生成存有量化scale信息的json文件，保存在{--save-dir}/目录下。注意：run-mode为quant时才生效，且该参数与-lsj互斥。
+    - 说明：若设置，量化过程中会生成存有量化scale信息的json文件，保存在{--save-dir}/目录下。
+
+  .. note::
+	注意：run-mode为quant时才生效，且该参数与-lsj互斥。
 
    
 -lsj或--load-scale-json
@@ -154,7 +157,7 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 默认值：无
     - 说明：存放量化scale信息的json文件路径，支持相对路径和绝对路径。
 	
-.. note::
+  .. note::
 	该参数与-gsj/-mc互斥。
 	
 
@@ -170,16 +173,16 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 默认值：1
     - 说明：量化时模型执行推理的次数。
 	
-.. note::
+  .. note::
 	需要选取合适的样本数量才能达到理想的量化模型精度。支持传入多值进行不同数据量化，多值输入时使用空格分割例如-i 1 10 此参数多值输入会分别按照每个值进行量化。
 	
 -bs或--batch-size
     - 参数类型: int
     - 可选 
     - 默认值：1
-    - 说明：量化模型时加载量化数据的batchsize大小，量化过程实际用到的数据量是iteration* batch-size。
+    - 说明：量化模型时加载量化数据的batchsize大小，量化过程实际用到的数据量是 ``iteration* batch-size`` 。
 	  
-.. note::
+  .. note::
 	1）此参数仅在模型为动态图时可配置，且需要用户在infer函数里实现相应逻辑才能生效。
 	
 	2）量化后模型不支持动态图。若原始浮点模型为动态batch，则需设置此参数为与量化时数据相同的batch-size值，否则可能导致量化异常。
@@ -190,7 +193,7 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 默认值：1
     - 说明：设置量化后模型的batch-size。
 	
-.. note::
+  .. note::
 	仅当原始浮点模型为动态batch时此参数方生效，若为固定输入模型此参数不生效。不支持多输入为动态batch且量化后对应输入的batch不一致的场景。
 	
 -du或--dump
@@ -205,7 +208,7 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 默认值：无
     - 说明：若设置，会生成模型对应的混合量化模板json配置文件，文件保存在{--save-dir}/目录下。
 	
-.. note::
+  .. note::
 	run-mode为quant时才生效
 	
 -mc或--mix-config
@@ -214,7 +217,7 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 默认值：无
     - 说明：混合量化json文件路径，支持相对路径和绝对路径，需要确保配套硬件是支持混合量化。
 	
-.. note::
+  .. note::
 	该参数与-lsj互斥。
 	
 -l或--log-level
@@ -232,13 +235,13 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 参数类型: string
     - 可选 
     - 默认值：8bit量化时，默认值为kl;16bit量化时，默认值是min_max
-    - 说明：计算激活值的scale系数采用的方法，支持模式：
-		* kl： kl散度
-		* min_max：最大最小值 
-		* mse：均方误差
-		* percentile：保留指定百分比数据 kl_v2：修正特定情况的kl散度
-		* all：分别执行上述所有模式进行量化
-.. note::
+    - 说明：计算激活值的scale系数采用的方法，支持模式如下
+		  * kl： kl散度
+		  * min_max：最大最小值
+		  * mse：均方误差
+		  * percentile：保留指定百分比数据 kl_v2：修正特定情况的kl散度
+		  * all：分别执行上述所有模式进行量化
+  .. note::
 	1) 支持传入多值进行不同数据量化，多值输入时使用空格分割例如-qm kl mse
 	2) 此参数多值输入会分别按照每个值进行量化。
 	
@@ -262,20 +265,25 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 参数类型: int
     - 可选 
     - 默认值：10
-    - 说明：指定LUT表的长度，取值范围[8,9,10,11,12]. 注意： ①此参数仅在16bit量化时才生效
-	
+    - 说明：指定LUT表的长度，取值范围[8,9,10,11,12].
+  .. note::
+    此参数仅在16bit量化时才生效
+
 -lt或--layer-threshold
     - 参数类型: float
     - 可选 
     - 默认值：无
-    - 说明：指定LayerNormalization的输入输出范围。注意： ①此参数仅在LayerNormalization层精度骤降时使用
+    - 说明：指定LayerNormalization的输入输出范围。
+
+  .. note::
+    注意： 此参数仅在LayerNormalization层精度骤降时使用
 	
 -qid或--quantize-input-dtype
     - 参数类型: string
     - 可选 
     - 默认值：None
     - 说明：指定量化后模型输入数据类型：取值范围：[float32, int8,uint8, int16, None] 
- .. note::
+  .. note::
 	1)若某输入的下一个量化节点为8bit，则此输入不可指定为int16。
 	
 	2)可传入一个值或者与输入数量相同的值，传入一个值时会自动广播为与输入数量相同的值。
@@ -291,8 +299,7 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 可选 
     - 默认值：无
     - 说明：是否增加反量化，若设置，会在所有输出层算子前增加反量化算子。
-	
- .. note::	
+  .. note::
 	若某输出层的上方算子为ArgMax或者软件层，则对此输出层不生效不插入反量化算子。
 	
 --mean
@@ -302,14 +309,17 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 说明：指定输入后需要增加的BN算子的均值，在输入后需要增加减均值除方差操作时使用。
  .. note::
 	  1)run-mode为quant时才生效。
-	  2)需和--std同时使用。③mean的个数必须等于输入节点的channel(对应为各通道的均值)或者一个值(所有通道的均值)。
+
+	  2)需和--std同时使用。
+
+	  3)mean的个数必须等于输入节点的channel(对应为各通道的均值)或者一个值(所有通道的均值)。
 	
 --std
     - 参数类型: float
     - 可选 
     - 默认值：无
     - 说明：指定输入后需要增加的BN算子的方差，在输入后需要增加减均值除方差操作时使用。
-.. note::
+  .. note::
 	1)run-mode为quant时才生效。
 	
 	2)需和--mean同时使用。
@@ -344,7 +354,7 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 可选 
     - 默认值：无
     - 说明：Tensorflow模型输入的format为4维NHWC，可通过指定该参数使转出的onnx模型从输入开始的format都为NCHW。
-.. note::
+  .. note::
 	1. 适用场景：
 		1) Tensorflow 4维模型 
 		2)只对模型第一层算子为Conv、AveragePool、GlobalAveragePool、MaxPool、GlobalMaxPool、Resize等有效； 
@@ -394,9 +404,9 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 可选 
     - 默认值：initial
     - 说明：指定混合量化模板生成策略。支持['HAWQ', 'IOhigh', 'initial']。
-		* 'HAWQ'：根据神经网络损失函数的二阶海森矩阵配置比特位宽。
-		* 'IOhigh'：对输入、输出的多个层配置为高比特位宽，中间层配置为低比特位宽。
-		* 'initial': 默认策略，根据命令行入参--bit-width和--quant-mode生成相应配置。
+		  * 'HAWQ'：根据神经网络损失函数的二阶海森矩阵配置比特位宽。
+		  * 'IOhigh'：对输入、输出的多个层配置为高比特位宽，中间层配置为低比特位宽。
+		  * 'initial': 默认策略，根据命令行入参--bit-width和--quant-mode生成相应配置。
 	
 -rc或--run-config
     - 参数类型: string
