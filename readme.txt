@@ -6,7 +6,9 @@ make html
 sphinx-autobuild source build/html --open-browser
 
 3. 访问页面
+获取代码==================
 
+git clone git@github.com:TS-toolchain/knight-docs.git
 
 提交代码流程==================
 git add .
