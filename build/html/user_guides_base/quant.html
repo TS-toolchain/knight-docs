@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4. 量化使用指南 &mdash; Knight_doc V3.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
@@ -57,86 +57,84 @@
 <li class="toctree-l2"><a class="reference internal" href="#id5">4.4. 参数说明</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#onnx">4.5. ONNX模型量化</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#demo">4.5.1. demo示例</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id6">4.5.1.1. 示例一：量化demo模型</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">4.5.1.2. 示例二：量化时自动在输入后实现减均值除方差操作</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#qdq">4.5.1.3. 示例三：量化QDQ模型</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#iteration">4.5.1.4. 示例四：多量化模式和iteration进行量化</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#run-config">4.5.1.5. 示例五：–run-config的使用示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">4.5.1.1. 量化demo模型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">4.5.1.2. 数据预处理使用示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">4.5.1.3. 量化时自动在输入后实现减均值除方差操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qdq">4.5.1.4. 量化QDQ模型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iteration">4.5.1.5. 多量化模式和iteration进行量化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">4.5.1.6. 自动混合量化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">4.5.1.7. 多量化模式和iteration进行量化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-drop">4.5.1.8. ts-drop使用示例</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">4.5.2. 量化新模型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id11">4.5.2.1. ONNX定义前向推理函数</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id12">4.5.2.2. 注册前向推理函数</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id13">4.5.2.3. 执行量化命令进行量化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">4.5.2. 量化新模型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">4.5.2.1. ONNX定义前向推理函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">4.5.2.2. 注册前向推理函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">4.5.2.3. 执行量化命令进行量化</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">4.5.3. 混合量化</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">4.5.3. 混合量化</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#json">4.5.3.1. 生成混合量化模板json配置文件</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id15">4.5.3.2. 更新混合量化json配置文件</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id16">4.5.3.3. 指定混合量化配置文件开展混合量化</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id17">4.5.3.4. 自动生成混合量化配置文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">4.5.3.2. 更新混合量化json配置文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">4.5.3.3. 指定混合量化配置文件开展混合量化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">4.5.3.4. 自动生成混合量化配置文件</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#pytorch">4.6. Pytorch模型量化</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id18">4.6.1. demo量化</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">4.6.2. 量化新模型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id21">4.6.2.1. 模型转换</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id22">4.6.2.2. 定义前向推理函数</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id23">4.6.2.3. 执行量化命令进行量化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">4.6.1. demo量化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">4.6.2. 量化新模型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id22">4.6.2.1. 模型转换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">4.6.2.2. 定义前向推理函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">4.6.2.3. 执行量化命令进行量化</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#qat">4.6.3. 量化QAT模型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id24">4.6.3.1. 定义前向推理函数</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id25">4.6.3.2. 执行量化命令进行量化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">4.6.3.1. 定义前向推理函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id26">4.6.3.2. 执行量化命令进行量化</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id26">4.6.4. 约束条件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">4.6.4. 约束条件</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#caffe">4.7. Caffe模型量化</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#caffe-demo">4.7.1. caffe demo量化</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id27">4.7.2. 量化新模型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id28">4.7.2.1. 模型转换</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id29">4.7.2.2. 定义前向推理函数</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id30">4.7.2.3. 执行量化命令进行量化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">4.7.2. 量化新模型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id29">4.7.2.1. 模型转换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30">4.7.2.2. 定义前向推理函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">4.7.2.3. 执行量化命令进行量化</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#paddlepaddle">4.8. PaddlePaddle模型量化</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#demo-2">4.8.1. demo量化</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id32">4.8.2. 量化新模型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id33">4.8.2.1. 模型转换</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id34">4.8.2.2. 定义前向推理函数</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id35">4.8.2.3. 执行量化命令进行量化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">4.8.2. 量化新模型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id34">4.8.2.1. 模型转换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id35">4.8.2.2. 定义前向推理函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id36">4.8.2.3. 执行量化命令进行量化</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#tensorflow">4.9. Tensorflow模型量化</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id36">4.9.1. demo量化示例</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id37">4.9.2. 量化新模型</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id38">4.9.2.1. 模型转换</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id39">4.9.2.2. 定义前向推理函数</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id40">4.9.2.3. 执行量化命令进行量化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">4.9.1. demo量化示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id38">4.9.2. 量化新模型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id39">4.9.2.1. 模型转换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id40">4.9.2.2. 定义前向推理函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id41">4.9.2.3. 执行量化命令进行量化</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id41">4.10. 量化后模型路径</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id42">4.11. 测试量化后模型精度</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id43">4.12. 注意事项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id42">4.10. 量化后模型路径</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id43">4.11. 测试量化后模型精度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id44">4.12. 注意事项</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="compile.html">5. 编译仿真性能分析使用指南</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sdk.html">6. SDK使用指南</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">进阶指南</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../user_guides_advanced/qat.html">1. QAT使用说明</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user_guides_advanced/mc.html">2. 模型压缩使用指南</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">附录</span></p>
 <ul>
@@ -302,6 +300,13 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <li><p>说明：显示帮助信息。</p></li>
 </ul>
 </dd>
+<dt>-rc或–run-config</dt><dd><ul class="simple">
+<li><p>参数类型: string</p></li>
+<li><p>可选</p></li>
+<li><p>默认值：无</p></li>
+<li><p>说明：包含量化相关的参数配置。</p></li>
+</ul>
+</dd>
 <dt>-m或–model</dt><dd><ul class="simple">
 <li><p>参数类型: string</p></li>
 <li><p>必选</p></li>
@@ -360,9 +365,9 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 </dd>
 <dt>-gsj或–generate-scale-json</dt><dd><blockquote>
 <div><ul class="simple">
-<li><p>参数类型: action</p></li>
+<li><p>参数类型: bool</p></li>
 <li><p>可选</p></li>
-<li><p>默认值：无</p></li>
+<li><p>默认值：false</p></li>
 <li><p>说明：若设置，量化过程中会生成存有量化scale信息的json文件，保存在{–save-dir}/目录下。</p></li>
 </ul>
 </div></blockquote>
@@ -432,17 +437,21 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 </div>
 </dd>
 <dt>-du或–dump</dt><dd><ul class="simple">
-<li><p>参数类型: action</p></li>
+<li><p>参数类型: bool</p></li>
 <li><p>可选</p></li>
-<li><p>默认值：无</p></li>
+<li><p>默认值：false</p></li>
 <li><p>说明：若设置，量化过程中会保存每个算子的输出到本地文件，供后面精度对比工具使用。数据结果保存在{–save-dir}/目录下。</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意：当使用cache-distribution或load-scale-json时，dump不生效。</p>
+</div>
 </dd>
 <dt>-gt或–generate-template</dt><dd><blockquote>
 <div><ul class="simple">
-<li><p>参数类型: action</p></li>
+<li><p>参数类型: bool</p></li>
 <li><p>可选</p></li>
-<li><p>默认值：无</p></li>
+<li><p>默认值：false</p></li>
 <li><p>说明：若设置，会生成模型对应的混合量化模板json配置文件，文件保存在{–save-dir}/目录下。</p></li>
 </ul>
 </div></blockquote>
@@ -518,8 +527,9 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <li><p>可选</p></li>
 <li><p>默认值：quant</p></li>
 <li><dl class="simple">
-<dt>说明：量化模式选择：取值范围[quant,infer,convert, compare]</dt><dd><ul>
+<dt>说明：量化模式选择：取值范围[quant,auto_quant,infer,convert, compare]</dt><dd><ul>
 <li><p>quant：量化模式，对浮点模型做量化和定点。</p></li>
+<li><p>auto_quant：自动混合量化，需在quant执行完成后再次设置开启。</p></li>
 <li><p>infer：推理模式，可使用浮点或量化后模型进行推理。</p></li>
 <li><p>convert：转换模式，只进行模型转换不进行模型量化。</p></li>
 <li><p>compare: 数据对比模式，功能上等同于-du。</p></li>
@@ -574,9 +584,9 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 </dd>
 <dt>-od或–output-dequant</dt><dd><blockquote>
 <div><ul class="simple">
-<li><p>参数类型: action</p></li>
+<li><p>参数类型: bool</p></li>
 <li><p>可选</p></li>
-<li><p>默认值：无</p></li>
+<li><p>默认值：false</p></li>
 <li><p>说明：是否增加反量化，若设置，会在所有输出层算子前增加反量化算子。</p></li>
 </ul>
 </div></blockquote>
@@ -653,9 +663,9 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 </dd>
 <dt>-c2chw或–convert2chw</dt><dd><blockquote>
 <div><ul class="simple">
-<li><p>参数类型: action</p></li>
+<li><p>参数类型: bool</p></li>
 <li><p>可选</p></li>
-<li><p>默认值：无</p></li>
+<li><p>默认值：false</p></li>
 <li><p>说明：Tensorflow模型输入的format为4维NHWC，可通过指定该参数使转出的onnx模型从输入开始的format都为NCHW。</p></li>
 </ul>
 </div></blockquote>
@@ -701,9 +711,9 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 </ul>
 </dd>
 <dt>-uis或–unify-input-scale</dt><dd><ul class="simple">
-<li><p>参数类型: action</p></li>
+<li><p>参数类型: bool</p></li>
 <li><p>可选</p></li>
-<li><p>默认值：无</p></li>
+<li><p>默认值：false</p></li>
 <li><p>说明：是否对Concat，Stack和ScatterND类型的算子进行系数统一。默认关闭，若设置则将以上所述类别算子的输入系数统一为相同值。</p></li>
 </ul>
 </dd>
@@ -711,7 +721,7 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <li><p>参数类型: float</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：0.5</p></li>
-<li><p>说明：生成混合量化模板时，低比特比率。</p></li>
+<li><p>说明：生成混合量化模板时，高比特比率。</p></li>
 </ul>
 </dd>
 <dt>-ams 或–auto-mix-strategy</dt><dd><ul class="simple">
@@ -729,18 +739,64 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 </li>
 </ul>
 </dd>
-<dt>-rc或–run-config</dt><dd><ul class="simple">
-<li><p>参数类型: string</p></li>
-<li><p>可选</p></li>
-<li><p>默认值：无</p></li>
-<li><p>说明：包含量化相关的参数配置。</p></li>
-</ul>
-</dd>
 <dt>-on 或 –output-name</dt><dd><ul class="simple">
 <li><p>参数类型: string</p></li>
 <li><p>可选</p></li>
 <li><p>默认值：无</p></li>
 <li><p>说明：量化输出节点裁剪。设置输出节点名，会按输出名进行裁剪和量化。</p></li>
+</ul>
+</dd>
+<dt>-am 或 –accelerate-model</dt><dd><ul class="simple">
+<li><p>参数类型: bool</p></li>
+<li><p>可选</p></li>
+<li><p>默认值：false</p></li>
+<li><p>说明：
+- 1. 指定该参数会将量化模型的自定义算子PyOp替换为ONNX官方算子，以达到量化模型加速推理目的。
+- 2. 不支持RNN、LSTM、GRU等循环算子以及软件层加速。</p></li>
+</ul>
+</dd>
+<dt>-ov 或 –opset-version</dt><dd><ul class="simple">
+<li><p>参数类型: int</p></li>
+<li><p>可选</p></li>
+<li><p>默认值：无</p></li>
+<li><p>说明：可选值[13,14,15,16,17,18],设置后会先将ONNX浮点模型版本转为指定版本，再进行量化。</p></li>
+</ul>
+</dd>
+<dt>-sp 或 –spin-quant</dt><dd><ul class="simple">
+<li><p>参数类型: bool</p></li>
+<li><p>可选</p></li>
+<li><p>默认值：false</p></li>
+<li><p>说明：指定该参数会开启spin-quant精度优化。</p></li>
+</ul>
+</dd>
+<dt>-do 或 –disable-onnxsim</dt><dd><ul class="simple">
+<li><p>参数类型: bool</p></li>
+<li><p>可选</p></li>
+<li><p>默认值：false</p></li>
+<li><p>说明：指定该参数则跳过onnxsim优化，一般在onnxsim优化报错时使用。</p></li>
+</ul>
+</dd>
+<dt>-wm 或 –weight-mode</dt><dd><ul class="simple">
+<li><p>参数类型: str</p></li>
+<li><p>可选</p></li>
+<li><p>默认值：None</p></li>
+<li><dl class="simple">
+<dt>说明：</dt><dd><ol class="arabic simple">
+<li><p>仅支持TX5326x。</p></li>
+<li><p>参数值[“int4”]</p></li>
+<li><p>优先级高于—bit-width/-b参数。</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+<p>即：-wm int4 –b 8表示W4A8量化。缺省时使用–bit-width参数值。</p>
+</dd>
+<dt>-td 或 –ts-drop</dt><dd><ul class="simple">
+<li><p>参数类型: bool</p></li>
+<li><p>可选</p></li>
+<li><p>默认值：false</p></li>
+<li><p>说明：指定该参数会开启qdrop精度优化，同时量化耗时会增加。</p></li>
 </ul>
 </dd>
 </dl>
@@ -755,7 +811,7 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <section id="demo">
 <h3><span class="section-number">4.5.1. </span>demo示例<a class="headerlink" href="#demo" title="Permalink to this heading"></a></h3>
 <section id="id6">
-<h4><span class="section-number">4.5.1.1. </span>示例一：量化demo模型<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.5.1.1. </span>量化demo模型<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>--save-dir<span class="w"> </span>/tmp/resnet18
 -m<span class="w"> </span>/opt/Quantize/onnx_examples/model/resnet18_onnx/resnet18.onnx
 -if<span class="w"> </span>infer_cls_model<span class="w"> </span>-qm<span class="w"> </span>kl<span class="w"> </span>-bs<span class="w"> </span><span class="m">10</span><span class="w"> </span>-r<span class="w"> </span>quant<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-uds<span class="w"> </span>/opt/Quantize/onnx_examples/infer_demo.py
@@ -768,7 +824,133 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <p></p>
 </section>
 <section id="id7">
-<h4><span class="section-number">4.5.1.2. </span>示例二：量化时自动在输入后实现减均值除方差操作<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.5.1.2. </span>数据预处理使用示例<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h4>
+<p>input-configs中所有参数仅在指定user-defined-script为/opt/Quantize/onnx_examples/infer_common.py和infer-func为infer_common一致时生效。
+infer_common.py配套的input-config中常见参数说明如下：</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">预处理相关参数</span></span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><dl>
+<dt>input_name</dt><dd><ul class="simple">
+<li><p>参数类型: string</p></li>
+<li><p>必选</p></li>
+<li><p>默认值：None</p></li>
+<li><p>说明：ONNX模型的输入tensor名称。</p></li>
+</ul>
+</dd>
+<dt>quant_data_format</dt><dd><ul class="simple">
+<li><p>参数类型: string</p></li>
+<li><p>必选</p></li>
+<li><p>默认值：None</p></li>
+<li><p>说明：输入数据格式，可选区间[“Image”, “Numpy”, “Bin”]。</p></li>
+</ul>
+<p>值为Image, 则是图像数据；
+值为Numpy, 则是后缀为.npy的numpy数据；
+值为Bin, 则是后缀为.bin的bin数据。</p>
+</dd>
+<dt>data_dir</dt><dd><ul class="simple">
+<li><p>参数类型: string</p></li>
+<li><p>必选</p></li>
+<li><p>默认值：None</p></li>
+<li><p>说明：图片、numpy或bin文件存储目录。图片格式要求为jpg, jpeg, png。</p></li>
+</ul>
+</dd>
+<dt>color_space</dt><dd><ul class="simple">
+<li><p>参数类型: string</p></li>
+<li><p>可选</p></li>
+<li><p>默认值：BGR</p></li>
+<li><p>说明：图片数据颜色空间，可选区间[“BGR”,”RGB”,”GRAY”]。</p></li>
+</ul>
+</dd>
+<dt>mean</dt><dd><ul class="simple">
+<li><p>参数类型: list</p></li>
+<li><p>可选</p></li>
+<li><p>默认值：None</p></li>
+<li><p>说明：图片数据预处理均值。</p></li>
+</ul>
+</dd>
+<dt>std</dt><dd><ul class="simple">
+<li><p>参数类型: list</p></li>
+<li><p>可选</p></li>
+<li><p>默认值：None</p></li>
+<li><p>说明：图片数据预处理方差。</p></li>
+</ul>
+</dd>
+<dt>quantize_input_dtype</dt><dd><ul class="simple">
+<li><p>参数类型: string</p></li>
+<li><p>必选</p></li>
+<li><p>默认值：None</p></li>
+<li><p>说明：量化模型输入数据类型，取值区间[“float32”,”uint8”]，多输入时仅支持一个设置为”uint8”。</p></li>
+</ul>
+</dd>
+<dt>padding_constant_value</dt><dd><ul class="simple">
+<li><p>参数类型: int</p></li>
+<li><p>可选</p></li>
+<li><p>默认值：None</p></li>
+<li><p>说明：图片数据预处理补边时的padding值。</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>配置input-configs时注意事项：
+1)quant.data/ quant.batch-size 不再生效。
+2)必须按照示例中指定infer-func和user-defined-script。
+3)padding_constant_value/mean/std/color_space这些参数仅在quant_data_format为Image时生效。</p>
+</div>
+</dd></dl>
+
+<p>多输入模型命令示例：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>build<span class="w"> </span>--run-config<span class="w"> </span>/TS-KnightDemo/Samples/yoloworld/yoloworld_config.json
+</pre></div>
+</div>
+<p>json文件配置示例</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;chip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TX5336AV200&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;quant&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/TS-KnightDemo/Samples/yoloworld/models/yolo-world-v2-s-image.onnx&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;framework&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onnx&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;infer-func&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;infer_common&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;bit-width&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;quant-mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mse&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;run-mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quant&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;dump&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;save-dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/TS-KnightDemo/output/yoloworld/quant&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;user-defined-script&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/opt/Quantize/onnx_examples/infer_common.py&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;input-configs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;input_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;images&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;quant_data_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Image&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;data_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/TS-KnightDemo/Samples/yoloworld/data/images&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;color_space&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RGB&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;mean&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                    </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                    </span><span class="mi">0</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;std&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="mf">255.0</span><span class="p">,</span>
+<span class="w">                    </span><span class="mf">255.0</span><span class="p">,</span>
+<span class="w">                    </span><span class="mf">255.0</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;quantize_input_dtype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uint8&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;input_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;quant_data_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Numpy&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;data_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/TS-KnightDemo/Samples/yoloworld/data/texts&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;compile&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;onnx&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/TS-KnightDemo/output/yoloworld_v2s/quant/yolo-world-v2-s-image_quantize.onnx&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;save-dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/TS-KnightDemo/output/yoloworld/rne&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h4><span class="section-number">4.5.1.3. </span>量化时自动在输入后实现减均值除方差操作<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>--save-dir<span class="w"> </span>/tmp/resnet18<span class="w"> </span>-m<span class="w"> </span>/opt/Quantize/onnx_examples/model/resnet18_onnx/resnet18.onnx
 -if<span class="w"> </span>infer_cls_model<span class="w"> </span>-qm<span class="w"> </span>kl<span class="w"> </span>-bs<span class="w"> </span><span class="m">10</span><span class="w"> </span>-r<span class="w"> </span>quant<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-uds
 /opt/Quantize/onnx_examples/infer_demo.py<span class="w"> </span>--std<span class="w"> </span><span class="m">1</span>.2<span class="w"> </span><span class="m">1</span>.1<span class="w"> </span><span class="m">1</span>.3<span class="w"> </span>--mean<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span><span class="m">0</span>.2<span class="w"> </span><span class="m">0</span>.3
@@ -781,7 +963,7 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <p></p>
 </section>
 <section id="qdq">
-<h4><span class="section-number">4.5.1.3. </span>示例三：量化QDQ模型<a class="headerlink" href="#qdq" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.5.1.4. </span>量化QDQ模型<a class="headerlink" href="#qdq" title="Permalink to this heading"></a></h4>
 <p>ONNX量化工具可自动识别QDQ格式的模型并加载其中的系数开展后续量化，量化流程与普通浮点模型量化一致。示例如下：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>--save-dir<span class="w"> </span>/tmp/resnet18
 -m<span class="w"> </span>/opt/Quantize/onnx_examples/model/resnet18_qdq/resnet18_qdq.onnx
@@ -795,7 +977,7 @@ Lib和ONNX量化工具。其中ONNX量化工具还集成了pytorch2onnx转换模
 <p></p>
 </section>
 <section id="iteration">
-<h4><span class="section-number">4.5.1.4. </span>示例四：多量化模式和iteration进行量化<a class="headerlink" href="#iteration" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.5.1.5. </span>多量化模式和iteration进行量化<a class="headerlink" href="#iteration" title="Permalink to this heading"></a></h4>
 <p>ONNX量化工具支持同时指定多个quant-mode和iteration进行量化，自动识别和组合两者进行量化，并根据Quantization
 Loss进行升序排列，多策略量化时只显示每种策略的开始和结束，示例如下：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>--save-dir<span class="w"> </span>/tmp/resnet18
@@ -814,198 +996,53 @@ Loss进行升序排列，多策略量化时只显示每种策略的开始和结�
 <p>多模式量化执行默认会开启数据缓存，若-s目录下存在数据缓存文件需确认缓存的数据量是否与当前量化对应的数据量一致，推荐多模式量化时-s指定为空的新目录。</p>
 </div>
 </section>
-<section id="run-config">
-<h4><span class="section-number">4.5.1.5. </span>示例五：–run-config的使用示例<a class="headerlink" href="#run-config" title="Permalink to this heading"></a></h4>
-<p>input-configs参数说明：参数的必需/可选仅针对其生效任务；input-configs中所有参数仅在指定uds为infer_common.py以及infer_func为infer_default时生效。</p>
-<dl class="py data">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">数据相关参数</span></span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>data_dir</dt><dd><ul class="simple">
-<li><p>参数类型: string</p></li>
-<li><p>必选</p></li>
-<li><p>默认值：无</p></li>
-<li><p>生效任务：检测、分类</p></li>
-<li><p>说明：图片存储目录。图片格式要求为bmp, jpg, jpeg, png。</p></li>
-</ul>
-</dd>
-<dt>label_dir</dt><dd><ul class="simple">
-<li><p>参数类型: string</p></li>
-<li><p>必选</p></li>
-<li><p>默认值：无</p></li>
-<li><p>生效任务：检测、分类</p></li>
-<li><p>说明：标签存储目录。检测任务中支持yolo与coco格式标签；分类任务中标签文件为labels.txt，包含两列数据，第一列为图片名，第二列为图片类别号。</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="id8">
-<span class="sig-name descname"><span class="pre">预处理相关参数</span></span><a class="headerlink" href="#id8" title="Permalink to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>is_yolo</dt><dd><ul class="simple">
-<li><p>参数类型: bool</p></li>
-<li><p>必选</p></li>
-<li><p>默认值：false</p></li>
-<li><p>生效任务：检测、分类</p></li>
-<li><p>说明：是否进行检测任务相关的预处理，检测任务中为true，分类任务中为false</p></li>
-</ul>
-</dd>
-<dt>color_space</dt><dd><ul class="simple">
-<li><p>参数类型: string</p></li>
-<li><p>必选</p></li>
-<li><p>默认值：BGR</p></li>
-<li><p>生效任务：检测、分类</p></li>
-<li><p>说明：图片的目标色彩通道，可选项为RGB, BGR, GRAY</p></li>
-</ul>
-</dd>
-<dt>augment</dt><dd><ul class="simple">
-<li><p>参数类型: bool</p></li>
-<li><p>必选</p></li>
-<li><p>默认值：false</p></li>
-<li><p>生效任务：检测、分类</p></li>
-<li><p>说明：检测任务中是否对小型图片进行扩大，需要扩大为true，不需要为false</p></li>
-</ul>
-</dd>
-<dt>mean</dt><dd><ul class="simple">
-<li><p>参数类型: int</p></li>
-<li><p>可选</p></li>
-<li><p>默认值：无</p></li>
-<li><p>生效任务：检测、分类</p></li>
-<li><p>说明：均值，以list形式给出，必须与通道数量相同，与std同时提供时生效</p></li>
-</ul>
-</dd>
-<dt>std</dt><dd><ul class="simple">
-<li><p>参数类型: int</p></li>
-<li><p>必选</p></li>
-<li><p>默认值：无</p></li>
-<li><p>生效任务：检测、分类</p></li>
-<li><p>说明：标准差，以list形式给出，必须与通道数量相同，与mean同时提供时生效</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="id9">
-<span class="sig-name descname"><span class="pre">后处理相关参数</span></span><a class="headerlink" href="#id9" title="Permalink to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>calculate_acc</dt><dd><ul class="simple">
-<li><p>参数类型: bool</p></li>
-<li><p>必选</p></li>
-<li><p>默认值：false</p></li>
-<li><p>生效任务：检测、分类</p></li>
-<li><p>说明：是否计算精度，需要提供标签数据，当未提供label_dir时或label_dir为空时会将浮点模型的输出作为真实标签，并生成标签数据，
-存储位置为data_dir同级目录下的labels文件夹下或label_dir指定的目录</p></li>
-</ul>
-</dd>
-<dt>draw_box</dt><dd><ul class="simple">
-<li><p>参数类型: bool</p></li>
-<li><p>必选</p></li>
-<li><p>默认值：false</p></li>
-<li><p>生效任务：检测</p></li>
-<li><p>说明：检测任务中是否输出画框图片，该选项仅在infer模式下生效，画框图片存储在data_dir同级目录下的label_imgs文件夹下</p></li>
-</ul>
-</dd>
-<dt>max_det</dt><dd><ul class="simple">
-<li><p>参数类型: int</p></li>
-<li><p>必选</p></li>
-<li><p>默认值：300</p></li>
-<li><p>生效任务：检测</p></li>
-<li><p>说明：检测任务中的最大检测数量</p></li>
-</ul>
-</dd>
-<dt>anchors</dt><dd><ul class="simple">
-<li><p>必选</p></li>
-<li><p>生效任务：检测</p></li>
-<li><p>说明：检测任务的锚框，提供该选项时以list形式给出，以像素为单位</p></li>
-</ul>
-</dd>
-<dt>nc</dt><dd><ul class="simple">
-<li><p>参数类型: int</p></li>
-<li><p>必选</p></li>
-<li><p>生效任务：检测</p></li>
-<li><p>说明：检测任务的类别数量</p></li>
-</ul>
-</dd>
-<dt>conf_thres</dt><dd><ul class="simple">
-<li><p>参数类型: float</p></li>
-<li><p>必选</p></li>
-<li><p>默认值：0.001</p></li>
-<li><p>生效任务：检测</p></li>
-<li><p>说明：检测任务中nms的置信度阈值</p></li>
-</ul>
-</dd>
-<dt>iou_thres</dt><dd><ul class="simple">
-<li><p>参数类型: float</p></li>
-<li><p>必选</p></li>
-<li><p>默认值：0.6</p></li>
-<li><p>生效任务：检测</p></li>
-<li><p>说明：检测任务中nms的交并比阈值</p></li>
-</ul>
-</dd>
-<dt>names</dt><dd><ul class="simple">
-<li><p>参数类型: string</p></li>
-<li><p>可选</p></li>
-<li><p>生效任务：检测</p></li>
-<li><p>说明：检测任务中各类别对应名称，以list形式给出，提供时会在框体显示类别名称</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<ol class="arabic simple">
-<li><p>分类任务示例</p></li>
-</ol>
-<figure class="align-center">
-<img alt="pipeline" src="../_images/quant_7.png" />
-</figure>
-<p></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>quant<span class="w"> </span>--run-config<span class="w"> </span>/opt/Quantize/onnx_examples/config/run_config_cls.json<span class="w">                                                  </span><span class="p">|</span>
-</pre></div>
-</div>
-<p></p>
-<figure class="align-center">
-<img alt="pipeline" src="../_images/quant_8.png" />
-</figure>
-<p></p>
-<ol class="arabic simple" start="2">
-<li><p>检测任务示例</p></li>
-</ol>
-<p>量化示例</p>
-<figure class="align-center">
-<img alt="pipeline" src="../_images/quant_9.png" />
-</figure>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>quant<span class="w"> </span>--run-config<span class="w"> </span>/opt/Quantize/onnx_examples/config/run_config_detect.json
-</pre></div>
-</div>
-<figure class="align-center">
-<img alt="pipeline" src="../_images/quant_10.png" />
-</figure>
-<p></p>
-<p>画框示例</p>
-<figure class="align-center">
-<img alt="pipeline" src="../_images/quant_11.png" />
-</figure>
-<p></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>quant<span class="w"> </span>--run-config<span class="w"> </span>/opt/Quantize/onnx_examples/config/run_config_detect.json
-</pre></div>
-</div>
-<p></p>
-<figure class="align-center">
-<img alt="pipeline" src="../_images/quant_12.png" />
-</figure>
-<p></p>
-<figure class="align-center">
-<img alt="pipeline" src="../_images/quant_13.png" />
-</figure>
-</section>
+<section id="id9">
+<h4><span class="section-number">4.5.1.6. </span>自动混合量化<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h4>
+<p>首先进行8bit量化如示例一所示，当8bit各量化配置精度均无法满足要求时，可通过自动混合量化自动配置量化误差较大层为16bit从而实现混合量化，
+只需要在示例一执行完成后将-r设置为auto_quant即可开启，示例如下：</p>
 </section>
 <section id="id10">
-<h3><span class="section-number">4.5.2. </span>量化新模型<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<h4><span class="section-number">4.5.1.7. </span>多量化模式和iteration进行量化<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h4>
+<p>示例命令如下</p>
+</section>
+<section id="ts-drop">
+<h4><span class="section-number">4.5.1.8. </span>ts-drop使用示例<a class="headerlink" href="#ts-drop" title="Permalink to this heading"></a></h4>
+<p>ts-drop通过随机丢弃激活值量化，在校准和测试数据上优化模型的平坦度，进而改善低比特量化模型的性能。
+环境配置参考：
+- GPU：CUDA11.8/CUDA12.1</p>
+<blockquote>
+<div><p>适配显卡包括不限于：
+1.A100
+2.GeForce RTX 3090
+3.GeForce RTX 2080 Ti
+4.NVIDIA TITAN V
+5.Tesla V100S-PCIE-32GB</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>操作系统：Ubuntu 18.04</p></li>
+</ul>
+<p>该功能依赖需要在容器内安装torch-gpu版本。
+.. code-block:: bash</p>
+<blockquote>
+<div><p>pip uninstall torch torchvision torchaudio
+pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 –index-url <a class="reference external" href="https://download.pytorch.org/whl/cu121">https://download.pytorch.org/whl/cu121</a></p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意：torch-gpu版本要跟CUDA版本一致。</p>
+<p>W4A8量化需要加上参数”weight-mode”: “int4”和”ts-drop”: true以提升量化精度。其中示例数据集使用了coco128中10张图片，为了获得更好的量化精度，建议使用更多的数据如100张以上。</p>
+</div>
+<p>以下是yolov5s模型 W4A8量化使用 ts-drop示例：</p>
+<p>执行如下命令：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>build<span class="w"> </span>-rc<span class="w"> </span>/TS-KnightDemo/Samples/yolov5s/yolov5s_w4a8_config.json
+</pre></div>
+</div>
+</section>
+</section>
 <section id="id11">
-<h4><span class="section-number">4.5.2.1. </span>ONNX定义前向推理函数<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h4>
+<h3><span class="section-number">4.5.2. </span>量化新模型<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<section id="id12">
+<h4><span class="section-number">4.5.2.1. </span>ONNX定义前向推理函数<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h4>
 <p>量化过程中，需要前向推理函数加载数据并运行，通过数据统计来量化模型。
 推理函数中，需要用户完成：</p>
 <ol class="arabic simple">
@@ -1014,8 +1051,8 @@ Loss进行升序排列，多策略量化时只显示每种策略的开始和结�
 <li><p>打印每个迭代的精度指标和最后总的精度指标。</p></li>
 </ol>
 </section>
-<section id="id12">
-<h4><span class="section-number">4.5.2.2. </span>注册前向推理函数<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h4>
+<section id="id13">
+<h4><span class="section-number">4.5.2.2. </span>注册前向推理函数<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h4>
 <p>1.
 指定用户自定义脚本。使用命令行参数 <code class="docutils literal notranslate"><span class="pre">--user-defined-script</span></code> 指定用户自定义脚本的路径，并在该脚本中实现前向推理函数。</p>
 <p>2.
@@ -1103,8 +1140,8 @@ stop减少量化定点的迭代次数，提高量化速度。使用方法：在�
 == True，捕获循环break信号。</p></li>
 </ol>
 </section>
-<section id="id13">
-<h4><span class="section-number">4.5.2.3. </span>执行量化命令进行量化<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h4>
+<section id="id14">
+<h4><span class="section-number">4.5.2.3. </span>执行量化命令进行量化<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>--save-dir<span class="w"> </span>/tmp/resnet18
 -m<span class="w"> </span>/opt/Quantize/onnx_examples/model/resnet18_onnx/resnet18.onnx
 -if<span class="w"> </span>infer_cls_model<span class="w"> </span>-qm<span class="w"> </span>kl<span class="w"> </span>-bs<span class="w"> </span><span class="m">10</span><span class="w"> </span>-r<span class="w"> </span>quant<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>-uds<span class="w"> </span>/opt/Quantize/onnx_examples/infer_demo.py
@@ -1112,8 +1149,8 @@ stop减少量化定点的迭代次数，提高量化速度。使用方法：在�
 </div>
 </section>
 </section>
-<section id="id14">
-<h3><span class="section-number">4.5.3. </span>混合量化<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h3>
+<section id="id15">
+<h3><span class="section-number">4.5.3. </span>混合量化<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h3>
 <p>ONNX量化工具支持算子层级粒度的8与16bit混合及量化模式min_max/kl/kl_v2/percentile/mse混合，具体混合方式通过json文件的方式进行配置，配置完成后在量化时通过-mc指定此配置文件即可进行混合量化。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1139,13 +1176,13 @@ stop减少量化定点的迭代次数，提高量化速度。使用方法：在�
 </ol>
 </div>
 </section>
-<section id="id15">
-<h4><span class="section-number">4.5.3.2. </span>更新混合量化json配置文件<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h4>
+<section id="id16">
+<h4><span class="section-number">4.5.3.2. </span>更新混合量化json配置文件<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h4>
 <p>按照既定混合量化策略修改json配置文件即可。</p>
 <p>更新配置文件时需注意以下事项：</p>
 <ol class="arabic simple">
-<li><p>模板json配置文件中的key值均与待量化算子名称一致，不可更改。</p></li>
-<li><p>每个量化节点均必须设置bitwidth与mode, 两者缺一不可。</p></li>
+<li><p>模板json配置时op_names和op_types必须至少配置其中一个，两者均支持列表形式同时配置多个值，op_names的优先级高于op_types。</p></li>
+<li><p>模板json配置文件中配置的op_names值需与待量化算子名称一致，op_types需与量化节点类型一致。量化节点支持全部或者部分设置，未处于op_names和op_types中的量化节点配置默认与命令行参数配置一致。</p></li>
 <li><p>bitwidth只支持设置为8或者16。</p></li>
 <li><p>mode支持设置为min_max/kl/kl_v2/percentile/mse。</p></li>
 <li><p>循环类算子(RNN/LSTM/GRU/SRU/LSTMP)和LayerNormalization类型算子的前后量化算子的量化位宽即bitwidth必须与其一致。</p></li>
@@ -1155,8 +1192,8 @@ stop减少量化定点的迭代次数，提高量化速度。使用方法：在�
 其量化位宽必须不高于其余父子量化节点的量化位宽。</p></li>
 </ol>
 </section>
-<section id="id16">
-<h4><span class="section-number">4.5.3.3. </span>指定混合量化配置文件开展混合量化<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h4>
+<section id="id17">
+<h4><span class="section-number">4.5.3.3. </span>指定混合量化配置文件开展混合量化<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h4>
 <p>量化时通过-mc指定混合量化json配置文件即可开展混合量化，命令如下：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>--save-dir<span class="w"> </span>/tmp/resnet18
 -m<span class="w"> </span>/opt/Quantize/onnx_examples/model/resnet18_onnx/resnet18.onnx
@@ -1170,8 +1207,8 @@ stop减少量化定点的迭代次数，提高量化速度。使用方法：在�
 </figure>
 <p></p>
 </section>
-<section id="id17">
-<h4><span class="section-number">4.5.3.4. </span>自动生成混合量化配置文件<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h4>
+<section id="id18">
+<h4><span class="section-number">4.5.3.4. </span>自动生成混合量化配置文件<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h4>
 <p>在生成混合量化模板json配置文件时，可加上–auto-mix-ratio、
 –auto-mix-strategy命令行参数，自动生成性能较优的混合量化模板。命令如下：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>--save-dir<span class="w"> </span>/tmp/resnet18
@@ -1191,8 +1228,8 @@ stop减少量化定点的迭代次数，提高量化速度。使用方法：在�
 <img alt="pipeline" src="../_images/quant_16.png" />
 </figure>
 <p></p>
-<section id="id18">
-<h3><span class="section-number">4.6.1. </span>demo量化<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h3>
+<section id="id19">
+<h3><span class="section-number">4.6.1. </span>demo量化<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h3>
 <p>示例一，量化常规Pytorch模型，命令如下：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>–m<span class="w"> </span>resnet18<span class="w"> </span>-f<span class="w"> </span>pytorch
 --save-dir<span class="w"> </span>/tmp/result<span class="w"> </span>-bs<span class="w"> </span><span class="m">10</span><span class="w"> </span>-w<span class="w"> </span>/opt/Quantize/onnx_examples/model/resnet18_pytorch/resnet18-5c106cde.pth
@@ -1213,12 +1250,12 @@ stop减少量化定点的迭代次数，提高量化速度。使用方法：在�
 <figure class="align-center">
 <img alt="pipeline" src="../_images/quant_18.png" />
 </figure>
-<p id="id19"></p>
+<p id="id20"></p>
 </section>
-<section id="id20">
-<h3><span class="section-number">4.6.2. </span>量化新模型<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h3>
 <section id="id21">
-<h4><span class="section-number">4.6.2.1. </span>模型转换<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h4>
+<h3><span class="section-number">4.6.2. </span>量化新模型<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h3>
+<section id="id22">
+<h4><span class="section-number">4.6.2.1. </span>模型转换<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h4>
 <p>Pytorch模型转换有两种方式：1）使用ONNX量化工具自带的转换工具pytorch2onnx；2）Pytorch官方转换接口torch.onnx.export。以下就两种转换方式详细说明：</p>
 <ol class="arabic simple">
 <li><p><strong>pytorch2onnx转换</strong></p></li>
@@ -1264,12 +1301,12 @@ dynamic_axes_inputs:{‘input’:{0: ‘batch_size’}} 和 “dynamic_axes_outp
 </div>
 <p>这里面的model为原始模型定义，args是类型为torch.Tensor的模型输入，f指定要转出onnx模型的文件路径，opset_version指定要转出onnx的算子集版本，这里优先指定为14，若已转出的onnx算子集版本小于或大于14，可以使用官方提供的版本转换工具升级或降级到版本14；input_names/output_names分别为网络的输入输出名（可缺省）。官方接口和示例文档分别参见<a class="reference external" href="https://pytorch.org/docs/2.1/onnx_torchscript.html#torch.onnx.export">torch.onnx.export</a>和<a class="reference external" href="https://pytorch.org/docs/2.1/onnx_torchscript.html#example-alexnet-from-pytorch-to-onnx">tutorial</a>。</p>
 </section>
-<section id="id22">
-<h4><span class="section-number">4.6.2.2. </span>定义前向推理函数<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h4>
-<p><a class="reference internal" href="#id11">ONNX定义前向推理函数</a></p>
-</section>
 <section id="id23">
-<h4><span class="section-number">4.6.2.3. </span>执行量化命令进行量化<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.6.2.2. </span>定义前向推理函数<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h4>
+<p><a class="reference internal" href="#id12">ONNX定义前向推理函数</a></p>
+</section>
+<section id="id24">
+<h4><span class="section-number">4.6.2.3. </span>执行量化命令进行量化<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>-m<span class="w"> </span>resnet18<span class="w"> </span>-f<span class="w"> </span>pytorch<span class="w"> </span>-if<span class="w"> </span>infer_cls_model
 --save-dir<span class="w"> </span>result<span class="w"> </span>-bs<span class="w"> </span><span class="m">10</span><span class="w"> </span>-w<span class="w"> </span>/opt/Quantize/onnx_examples/model/resnet18_pytorch/resnet18-5c106cde.pth
 -uds<span class="w"> </span>/opt/Quantize/onnx_examples/infer_demo.py
@@ -1280,20 +1317,20 @@ dynamic_axes_inputs:{‘input’:{0: ‘batch_size’}} 和 “dynamic_axes_outp
 <section id="qat">
 <h3><span class="section-number">4.6.3. </span>量化QAT模型<a class="headerlink" href="#qat" title="Permalink to this heading"></a></h3>
 <p>量化由清微Finetune-Lib库训练得到的QAT模型，用户需提供训练得到的qdq模型，由ONNX量化工具加载并量化，以期获得精度更高的量化后模型。</p>
-<section id="id24">
-<h4><span class="section-number">4.6.3.1. </span>定义前向推理函数<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h4>
-<p><a class="reference internal" href="#id11">ONNX定义前向推理函数</a></p>
-</section>
 <section id="id25">
-<h4><span class="section-number">4.6.3.2. </span>执行量化命令进行量化<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.6.3.1. </span>定义前向推理函数<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h4>
+<p><a class="reference internal" href="#id12">ONNX定义前向推理函数</a></p>
+</section>
+<section id="id26">
+<h4><span class="section-number">4.6.3.2. </span>执行量化命令进行量化<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>-m<span class="w"> </span>/opt/Quantize/onnx_examples/model/resnet18_qdq/resnet18_qdq.onnx
 -if<span class="w"> </span>infer_cls_model<span class="w"> </span>-bs<span class="w"> </span><span class="m">10</span><span class="w"> </span>--save-dir<span class="w"> </span>result<span class="w"> </span>-uds<span class="w">  </span>/opt/Quantize/onnx_examples/infer_demo.py<span class="w">                             </span><span class="p">|</span>
 </pre></div>
 </div>
 </section>
 </section>
-<section id="id26">
-<h3><span class="section-number">4.6.4. </span>约束条件<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h3>
+<section id="id27">
+<h3><span class="section-number">4.6.4. </span>约束条件<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h3>
 <p>模型转化中有以下场景不支持：</p>
 <p>Pytorch到ONNX模型的转换基于torch.fx实现，如下几种情况不支持：</p>
 <p>1)前向函数定义含有动态控制流。例如循环、判断语句并且其条件执行依赖于输入数据。</p>
@@ -1350,10 +1387,10 @@ dynamic_axes_inputs:{‘input’:{0: ‘batch_size’}} 和 “dynamic_axes_outp
 </figure>
 <p></p>
 </section>
-<section id="id27">
-<h3><span class="section-number">4.7.2. </span>量化新模型<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h3>
 <section id="id28">
-<h4><span class="section-number">4.7.2.1. </span>模型转换<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h4>
+<h3><span class="section-number">4.7.2. </span>量化新模型<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h3>
+<section id="id29">
+<h4><span class="section-number">4.7.2.1. </span>模型转换<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h4>
 <p>首先，需要确认Caffe模型的算子符合 <a class="reference internal" href="../op/op.html"><span class="doc">算子支持列表</span></a> 。</p>
 <p>Caffe模型结构文件和模型权重文件，分别由传入参数–model和–weight指定。转出的ONNX模型保存在{–save-dir}/的目录下。转出的ONNX模型名称由原Caffe模型结构文件名和后缀.onnx组成。例如，demo实例中–model为resnet18.prototxt，则转出的模型命名为resnet18.onnx。当所转出的ONNX模型和Caffe原始模型浮点比对一致后，则转换成功，且在窗口打印提示信息。</p>
 <p>模型转换示例命令行：</p>
@@ -1369,12 +1406,12 @@ dynamic_axes_inputs:{‘input’:{0: ‘batch_size’}} 和 “dynamic_axes_outp
 </figure>
 <p></p>
 </section>
-<section id="id29">
-<h4><span class="section-number">4.7.2.2. </span>定义前向推理函数<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h4>
-<p><a class="reference internal" href="#id11">ONNX定义前向推理函数</a></p>
-</section>
 <section id="id30">
-<h4><span class="section-number">4.7.2.3. </span>执行量化命令进行量化<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.7.2.2. </span>定义前向推理函数<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h4>
+<p><a class="reference internal" href="#id12">ONNX定义前向推理函数</a></p>
+</section>
+<section id="id31">
+<h4><span class="section-number">4.7.2.3. </span>执行量化命令进行量化<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h4>
 <blockquote>
 <div><p><a class="reference internal" href="#caffe-demo">caffe demo量化</a></p>
 </div></blockquote>
@@ -1388,7 +1425,7 @@ dynamic_axes_inputs:{‘input’:{0: ‘batch_size’}} 和 “dynamic_axes_outp
 <img alt="pipeline" src="../_images/quant_22.png" />
 </figure>
 <section id="demo-2">
-<span id="id31"></span><h3><span class="section-number">4.8.1. </span>demo量化<a class="headerlink" href="#demo-2" title="Permalink to this heading"></a></h3>
+<span id="id32"></span><h3><span class="section-number">4.8.1. </span>demo量化<a class="headerlink" href="#demo-2" title="Permalink to this heading"></a></h3>
 <p>示例一：量化常规paddle模型</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>-f<span class="w"> </span>paddle<span class="w"> </span>-if<span class="w"> </span>infer_cls_model
 --save-dir<span class="w"> </span>result<span class="w"> </span>-bs<span class="w"> </span><span class="m">10</span><span class="w"> </span>-w<span class="w"> </span>/opt/Quantize/onnx_examples/model/resnet18_paddle/resnet18.pdiparams
@@ -1402,10 +1439,10 @@ dynamic_axes_inputs:{‘input’:{0: ‘batch_size’}} 和 “dynamic_axes_outp
 </figure>
 <p></p>
 </section>
-<section id="id32">
-<h3><span class="section-number">4.8.2. </span>量化新模型<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h3>
 <section id="id33">
-<h4><span class="section-number">4.8.2.1. </span>模型转换<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h4>
+<h3><span class="section-number">4.8.2. </span>量化新模型<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h3>
+<section id="id34">
+<h4><span class="section-number">4.8.2.1. </span>模型转换<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h4>
 <p>在对paddle模型量化之前，需要进行模型转换即将paddle模型转换为ONNX模型，组成paddle模型的算子集合须符合 <a class="reference internal" href="../op/op.html"><span class="doc">算子支持列表</span></a> 。</p>
 <p>目前该工具只支持加载静态的paddle模型进行转换。静态模型是paddle官方推荐的用于推理部署的形态，通常由paddle.jit.save()或paddle.static.save_inference_model()或paddle.fluid.io.save_inference_model()生成保存。生成结果一般包含3个文件，形如resnet18.pdmodel、resnet18.pdiparams、resnet18.pdiparams.info；其中带pdmodel后缀表示模型文件，带pdiparams后缀表示参数文件，带info后缀是对参数补充说明的文件，此处不需要用到该文件。在使用上述3个函数保存静态推理模型时，也可自定义模型或参数的保存文件名，如__model__、__params__，但是建议使用规范的“模型名+相应后缀”的命名方式
 。</p>
@@ -1436,12 +1473,12 @@ dynamic_axes_inputs:{‘input’:{0: ‘batch_size’}} 和 “dynamic_axes_outp
 </figure>
 <p></p>
 </section>
-<section id="id34">
-<h4><span class="section-number">4.8.2.2. </span>定义前向推理函数<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h4>
-<p><a class="reference internal" href="#id11">ONNX定义前向推理函数</a></p>
-</section>
 <section id="id35">
-<h4><span class="section-number">4.8.2.3. </span>执行量化命令进行量化<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.8.2.2. </span>定义前向推理函数<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h4>
+<p><a class="reference internal" href="#id12">ONNX定义前向推理函数</a></p>
+</section>
+<section id="id36">
+<h4><span class="section-number">4.8.2.3. </span>执行量化命令进行量化<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>-f<span class="w"> </span>paddle<span class="w"> </span>-if<span class="w"> </span>infer_cls_model
 --save-dir<span class="w"> </span>result<span class="w"> </span>-bs<span class="w"> </span><span class="m">10</span><span class="w"> </span>-w<span class="w"> </span>/opt/Quantize/onnx_examples/model/resnet18_paddle/resnet18.pdiparams
 -m<span class="w"> </span>/opt/Quantize/onnx_examples/model/resnet18_paddle/resnet18.pdmodel
@@ -1459,8 +1496,8 @@ dynamic_axes_inputs:{‘input’:{0: ‘batch_size’}} 和 “dynamic_axes_outp
 <img alt="pipeline" src="../_images/quant_25.png" />
 </figure>
 <p></p>
-<section id="id36">
-<h3><span class="section-number">4.9.1. </span>demo量化示例<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h3>
+<section id="id37">
+<h3><span class="section-number">4.9.1. </span>demo量化示例<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h3>
 <p>步骤一：量化模型</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>-m<span class="w"> </span>/opt/Quantize/onnx_examples/model/resnet18_tf/resnet18.pb
 -if<span class="w"> </span>infer_cls_model<span class="w"> </span>-f<span class="w"> </span>tensorflow<span class="w"> </span>-snn<span class="w"> </span>data_input:0<span class="w"> </span>-enn<span class="w"> </span>output:0
@@ -1473,10 +1510,10 @@ dynamic_axes_inputs:{‘input’:{0: ‘batch_size’}} 和 “dynamic_axes_outp
 </figure>
 <p></p>
 </section>
-<section id="id37">
-<h3><span class="section-number">4.9.2. </span>量化新模型<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h3>
 <section id="id38">
-<h4><span class="section-number">4.9.2.1. </span>模型转换<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h4>
+<h3><span class="section-number">4.9.2. </span>量化新模型<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h3>
+<section id="id39">
+<h4><span class="section-number">4.9.2.1. </span>模型转换<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h4>
 <p>Tensorflow模型需要首先转换为ONNX模型后才能进行量化。</p>
 <p>首先，需要确认Tensorflow模型的算子符合 <a class="reference internal" href="../op/op.html"><span class="doc">算子支持列表</span></a>  约束。</p>
 <p>Tensorflow模型由传入参数–model指定。转出的ONNX模型保存在{–save-dir}/目录下。转出的ONNX模型名称由原Tensorflow模型文件名和后缀.onnx组成。例如，demo实例中–model为resnet18.pb，则转出的模型命名为resnet18.onnx。当所转出的ONNX模型和Tensorflow原始模型浮点比对一致后，则转换成功。</p>
@@ -1492,12 +1529,12 @@ dynamic_axes_inputs:{‘input’:{0: ‘batch_size’}} 和 “dynamic_axes_outp
 </figure>
 <p></p>
 </section>
-<section id="id39">
-<h4><span class="section-number">4.9.2.2. </span>定义前向推理函数<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h4>
-<p><a class="reference internal" href="#id11">ONNX定义前向推理函数</a></p>
-</section>
 <section id="id40">
-<h4><span class="section-number">4.9.2.3. </span>执行量化命令进行量化<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.9.2.2. </span>定义前向推理函数<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h4>
+<p><a class="reference internal" href="#id12">ONNX定义前向推理函数</a></p>
+</section>
+<section id="id41">
+<h4><span class="section-number">4.9.2.3. </span>执行量化命令进行量化<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>-m
 /opt/Quantize/onnx_examples/model/resnet18_tf/resnet18.pb<span class="w"> </span>-if
 infer_cls_model<span class="w"> </span>-f<span class="w"> </span>tensorflow<span class="w"> </span>-snn<span class="w"> </span>data_input:0<span class="w"> </span>-enn<span class="w"> </span>output:0<span class="w"> </span>--save-dir
@@ -1507,8 +1544,8 @@ result<span class="w"> </span>-uds<span class="w"> </span>/opt/Quantize/onnx_exa
 </section>
 </section>
 </section>
-<section id="id41">
-<h2><span class="section-number">4.10. </span>量化后模型路径<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h2>
+<section id="id42">
+<h2><span class="section-number">4.10. </span>量化后模型路径<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h2>
 <p>存放位置：{–save-dir}/目录下</p>
 <p>文件名称：{原浮点模型名称}_quantize.&lt;扩展名&gt;</p>
 <p>例如：</p>
@@ -1521,8 +1558,8 @@ result<span class="w"> </span>-uds<span class="w"> </span>/opt/Quantize/onnx_exa
 <p>量化过程中生成的中间文件也放置在{–save-dir}/目录下，其中dump目录下存放模型各层输出结果文件，steps目录下存放量化过程中各阶段生成的中间模型。</p>
 </div>
 </section>
-<section id="id42">
-<h2><span class="section-number">4.11. </span>测试量化后模型精度<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h2>
+<section id="id43">
+<h2><span class="section-number">4.11. </span>测试量化后模型精度<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h2>
 <p>量化模型的精度测试需要在完整的测试数据集上进行。为了方便用户，我们也提供了该项功能，使用该功能时用户要在参数-if对应的infer-func函数里加载完整测试集，并根据模型预测结果计算相对应的精度，需要注意的是参数-i指定的数字需要能够覆盖整个测试集，参数-r设置为infer表示推理模式，参数–model需指定为量化后的模型，示例如下：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Knight<span class="w"> </span>--chip<span class="w"> </span>TX5368AV200<span class="w"> </span>quant<span class="w"> </span>--save-dir<span class="w"> </span>result<span class="w"> </span>-m
 /result/resnet18_quantize.onnx<span class="w"> </span>-if<span class="w"> </span>infer_cls_model<span class="w"> </span>-qm<span class="w"> </span>kl<span class="w"> </span>-bs<span class="w"> </span><span class="m">10</span><span class="w"> </span>-r
@@ -1535,8 +1572,8 @@ infer<span class="w"> </span>-i<span class="w"> </span><span class="m">100</span
 </figure>
 <p></p>
 </section>
-<section id="id43">
-<h2><span class="section-number">4.12. </span>注意事项<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h2>
+<section id="id44">
+<h2><span class="section-number">4.12. </span>注意事项<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h2>
 <p>用户需注意以下事项：</p>
 <ol class="arabic simple">
 <li><p>模型中需要量化的算子需要包含在 <a class="reference internal" href="../op/op.html"><span class="doc">算子支持列表</span></a> 中。</p></li>

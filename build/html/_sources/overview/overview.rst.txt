@@ -804,7 +804,7 @@ TS.Knight工具链第二层命令行支持两种使用方式：一是配置文�
         "input_name": "input",
         "data_dir": "path/to/img_data",
         "color_space": "BGR",
-        "is_yolo": "false"
+        "is_yolo": false
         }]
     }
 

@@ -100,7 +100,12 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 可选 
     - 默认值：无
     - 说明：显示帮助信息。
-	
+
+-rc或--run-config
+    - 参数类型: string
+    - 可选 
+    - 默认值：无
+    - 说明：包含量化相关的参数配置。	
 	
 -m或--model
     - 参数类型: string
@@ -142,9 +147,9 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 说明：量化输入数据路径，支持相对路径和绝对路径。
 	
 -gsj或--generate-scale-json
-    - 参数类型: action
+    - 参数类型: bool
     - 可选 
-    - 默认值：无
+    - 默认值：false
     - 说明：若设置，量化过程中会生成存有量化scale信息的json文件，保存在{--save-dir}/目录下。
 
   .. note::
@@ -197,15 +202,18 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
 	仅当原始浮点模型为动态batch时此参数方生效，若为固定输入模型此参数不生效。不支持多输入为动态batch且量化后对应输入的batch不一致的场景。
 	
 -du或--dump
-    - 参数类型: action
+    - 参数类型: bool
     - 可选 
-    - 默认值：无
+    - 默认值：false
     - 说明：若设置，量化过程中会保存每个算子的输出到本地文件，供后面精度对比工具使用。数据结果保存在{--save-dir}/目录下。
+  
+    .. note::
+      注意：当使用cache-distribution或load-scale-json时，dump不生效。
 	
 -gt或--generate-template
-    - 参数类型: action
+    - 参数类型: bool
     - 可选 
-    - 默认值：无
+    - 默认值：false
     - 说明：若设置，会生成模型对应的混合量化模板json配置文件，文件保存在{--save-dir}/目录下。
 	
   .. note::
@@ -255,8 +263,9 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 参数类型: string
     - 可选 
     - 默认值：quant
-    - 说明：量化模式选择：取值范围[quant,infer,convert, compare]
+    - 说明：量化模式选择：取值范围[quant,auto_quant,infer,convert, compare]
 		* quant：量化模式，对浮点模型做量化和定点。
+		* auto_quant：自动混合量化，需在quant执行完成后再次设置开启。
 		* infer：推理模式，可使用浮点或量化后模型进行推理。
 		* convert：转换模式，只进行模型转换不进行模型量化。
 		* compare: 数据对比模式，功能上等同于-du。
@@ -295,9 +304,9 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
 	5)量化后模型推理时需要指定与量化时相同的qid值。
 	
 -od或--output-dequant
-    - 参数类型: action
+    - 参数类型: bool
     - 可选 
-    - 默认值：无
+    - 默认值：false
     - 说明：是否增加反量化，若设置，会在所有输出层算子前增加反量化算子。
   .. note::
 	若某输出层的上方算子为ArgMax或者软件层，则对此输出层不生效不插入反量化算子。
@@ -350,9 +359,9 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 说明：指定Tensorflow模型量化结束节点名，仅在Tensorflow模型量化过程中使用。多输出使用空格分割，例如 -enn output1 output2。
 	
 -c2chw或--convert2chw
-    - 参数类型: action
+    - 参数类型: bool
     - 可选 
-    - 默认值：无
+    - 默认值：false
     - 说明：Tensorflow模型输入的format为4维NHWC，可通过指定该参数使转出的onnx模型从输入开始的format都为NCHW。
   .. note::
 	1. 适用场景：
@@ -388,16 +397,16 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
     - 说明：scale统计直方图缓存文件路径，设置该参数，则会加载缓存文件，跳过scale计算前向推理过程。如果该路径或路径下缓存文件不存在，则会在第一次设置该参数时生成缓存文件。若量化数据改变，则需要重新生成缓存文件。
 
 -uis或--unify-input-scale
-    - 参数类型: action
+    - 参数类型: bool
     - 可选 
-    - 默认值：无
+    - 默认值：false
     - 说明：是否对Concat，Stack和ScatterND类型的算子进行系数统一。默认关闭，若设置则将以上所述类别算子的输入系数统一为相同值。
 	
 -amr 或--auto-mix-ratio
     - 参数类型: float
     - 可选 
     - 默认值：0.5
-    - 说明：生成混合量化模板时，低比特比率。
+    - 说明：生成混合量化模板时，高比特比率。
 	
 -ams 或--auto-mix-strategy
     - 参数类型: string
@@ -408,18 +417,55 @@ ONNX量化工具根据提供的量化数据集和浮点模型（支持ONNX, Caff
 		  * 'IOhigh'：对输入、输出的多个层配置为高比特位宽，中间层配置为低比特位宽。
 		  * 'initial': 默认策略，根据命令行入参--bit-width和--quant-mode生成相应配置。
 	
--rc或--run-config
-    - 参数类型: string
-    - 可选 
-    - 默认值：无
-    - 说明：包含量化相关的参数配置。
-	
 -on 或 --output-name
     - 参数类型: string
     - 可选 
     - 默认值：无
     - 说明：量化输出节点裁剪。设置输出节点名，会按输出名进行裁剪和量化。
-	
+  
+-am 或 --accelerate-model
+    - 参数类型: bool
+    - 可选 
+    - 默认值：false
+    - 说明：
+      - 1. 指定该参数会将量化模型的自定义算子PyOp替换为ONNX官方算子，以达到量化模型加速推理目的。
+      - 2. 不支持RNN、LSTM、GRU等循环算子以及软件层加速。
+  
+-ov 或 --opset-version
+    - 参数类型: int
+    - 可选 
+    - 默认值：无
+    - 说明：可选值[13,14,15,16,17,18],设置后会先将ONNX浮点模型版本转为指定版本，再进行量化。
+
+-sp 或 --spin-quant
+    - 参数类型: bool
+    - 可选 
+    - 默认值：false
+    - 说明：指定该参数会开启spin-quant精度优化。
+  
+
+-do 或 --disable-onnxsim
+    - 参数类型: bool
+    - 可选 
+    - 默认值：false
+    - 说明：指定该参数则跳过onnxsim优化，一般在onnxsim优化报错时使用。
+  
+-wm 或 --weight-mode
+    - 参数类型: str
+    - 可选 
+    - 默认值：None
+    - 说明：
+       1. 仅支持TX5326x。
+       2. 参数值[“int4”]
+       3. 优先级高于—bit-width/-b参数。
+    即：-wm int4 –b 8表示W4A8量化。缺省时使用--bit-width参数值。
+  
+-td 或 --ts-drop
+    - 参数类型: bool
+    - 可选 
+    - 默认值：false
+    - 说明：指定该参数会开启qdrop精度优化，同时量化耗时会增加。
+
 ONNX模型量化
 ============
 
@@ -434,7 +480,7 @@ ONNX模型量化主体流程如下图所示：
 demo示例
 --------
 
-示例一：量化demo模型
+量化demo模型
 ~~~~~~~~~~~~~~~~~~
 .. code-block:: bash
 
@@ -451,7 +497,125 @@ demo示例
 
 \
 
-示例二：量化时自动在输入后实现减均值除方差操作
+数据预处理使用示例 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+input-configs中所有参数仅在指定user-defined-script为/opt/Quantize/onnx_examples/infer_common.py和infer-func为infer_common一致时生效。
+infer_common.py配套的input-config中常见参数说明如下：
+
+.. data:: 预处理相关参数
+
+    input_name
+        - 参数类型: string
+        - 必选
+        - 默认值：None
+        - 说明：ONNX模型的输入tensor名称。
+
+    quant_data_format
+        - 参数类型: string
+        - 必选
+        - 默认值：None
+        - 说明：输入数据格式，可选区间[“Image”, “Numpy”, “Bin”]。
+        值为Image, 则是图像数据；
+        值为Numpy, 则是后缀为.npy的numpy数据；
+        值为Bin, 则是后缀为.bin的bin数据。
+    
+    data_dir
+        - 参数类型: string
+        - 必选
+        - 默认值：None
+        - 说明：图片、numpy或bin文件存储目录。图片格式要求为jpg, jpeg, png。
+    
+    color_space
+        - 参数类型: string
+        - 可选
+        - 默认值：BGR
+        - 说明：图片数据颜色空间，可选区间[“BGR”,”RGB”,”GRAY”]。
+
+    mean
+        - 参数类型: list
+        - 可选
+        - 默认值：None
+        - 说明：图片数据预处理均值。
+    
+    std
+        - 参数类型: list
+        - 可选
+        - 默认值：None
+        - 说明：图片数据预处理方差。
+
+    quantize_input_dtype
+        - 参数类型: string
+        - 必选
+        - 默认值：None
+        - 说明：量化模型输入数据类型，取值区间[“float32”,”uint8”]，多输入时仅支持一个设置为”uint8”。
+
+    padding_constant_value
+        - 参数类型: int
+        - 可选
+        - 默认值：None
+        - 说明：图片数据预处理补边时的padding值。
+
+    .. note::
+
+        配置input-configs时注意事项：
+        1)quant.data/ quant.batch-size 不再生效。
+        2)必须按照示例中指定infer-func和user-defined-script。
+        3)padding_constant_value/mean/std/color_space这些参数仅在quant_data_format为Image时生效。
+
+多输入模型命令示例：
+
+.. code-block:: bash
+
+    Knight build --run-config /TS-KnightDemo/Samples/yoloworld/yoloworld_config.json
+
+json文件配置示例
+
+.. code-block:: json
+    
+    {
+        "chip": "TX5336AV200",
+        "quant": {
+            "model": "/TS-KnightDemo/Samples/yoloworld/models/yolo-world-v2-s-image.onnx",
+            "framework": "onnx",
+            "infer-func": "infer_common",
+            "bit-width": "8",
+            "quant-mode": "mse",
+            "run-mode": "quant",
+            "dump": true,
+            "save-dir": "/TS-KnightDemo/output/yoloworld/quant",
+            "user-defined-script": "/opt/Quantize/onnx_examples/infer_common.py",
+            "input-configs": [
+                {
+                    "input_name": "images",
+                    "quant_data_format": "Image",
+                    "data_dir": "/TS-KnightDemo/Samples/yoloworld/data/images",
+                    "color_space": "RGB",
+                    "mean": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "std": [
+                        255.0,
+                        255.0,
+                        255.0
+                    ],
+                    "quantize_input_dtype": "uint8"
+                },
+                {
+                    "input_name": "text",
+                    "quant_data_format": "Numpy",
+                    "data_dir": "/TS-KnightDemo/Samples/yoloworld/data/texts"
+                }
+            ]
+        },
+        "compile": {
+            "onnx": "/TS-KnightDemo/output/yoloworld_v2s/quant/yolo-world-v2-s-image_quantize.onnx",
+            "save-dir": "/TS-KnightDemo/output/yoloworld/rne"
+        }
+
+
+量化时自动在输入后实现减均值除方差操作
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: bash
 
@@ -467,7 +631,7 @@ demo示例
 
 \
 
-示例三：量化QDQ模型
+量化QDQ模型
 ~~~~~~~~~~~~~~~~
 
 ONNX量化工具可自动识别QDQ格式的模型并加载其中的系数开展后续量化，量化流程与普通浮点模型量化一致。示例如下：
@@ -486,7 +650,7 @@ ONNX量化工具可自动识别QDQ格式的模型并加载其中的系数开展�
 
 \
 
-示例四：多量化模式和iteration进行量化
+多量化模式和iteration进行量化
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ONNX量化工具支持同时指定多个quant-mode和iteration进行量化，自动识别和组合两者进行量化，并根据Quantization
@@ -511,182 +675,105 @@ Loss进行升序排列，多策略量化时只显示每种策略的开始和结�
 .. note::
 	多模式量化执行默认会开启数据缓存，若-s目录下存在数据缓存文件需确认缓存的数据量是否与当前量化对应的数据量一致，推荐多模式量化时-s指定为空的新目录。
 
-示例五：--run-config的使用示例 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+自动混合量化
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+首先进行8bit量化如示例一所示，当8bit各量化配置精度均无法满足要求时，可通过自动混合量化自动配置量化误差较大层为16bit从而实现混合量化，
+只需要在示例一执行完成后将-r设置为auto_quant即可开启，示例如下：
 
-input-configs参数说明：参数的必需/可选仅针对其生效任务；input-configs中所有参数仅在指定uds为infer_common.py以及infer_func为infer_default时生效。
-
-.. data:: 数据相关参数
-
-	data_dir
-		- 参数类型: string
-		- 必选 
-		- 默认值：无
-		- 生效任务：检测、分类
-		- 说明：图片存储目录。图片格式要求为bmp, jpg, jpeg, png。
-
-	label_dir
-		- 参数类型: string
-		- 必选 
-		- 默认值：无
-		- 生效任务：检测、分类
-		- 说明：标签存储目录。检测任务中支持yolo与coco格式标签；分类任务中标签文件为labels.txt，包含两列数据，第一列为图片名，第二列为图片类别号。
-
-.. data:: 预处理相关参数
-
-	is_yolo
-		- 参数类型: bool
-		- 必选 
-		- 默认值：false
-		- 生效任务：检测、分类
-		- 说明：是否进行检测任务相关的预处理，检测任务中为true，分类任务中为false
-	
-	color_space
-		- 参数类型: string
-		- 必选 
-		- 默认值：BGR
-		- 生效任务：检测、分类
-		- 说明：图片的目标色彩通道，可选项为RGB, BGR, GRAY
-		
-	augment
-		- 参数类型: bool
-		- 必选 
-		- 默认值：false
-		- 生效任务：检测、分类
-		- 说明：检测任务中是否对小型图片进行扩大，需要扩大为true，不需要为false
-		
-	mean
-		- 参数类型: int
-		- 可选 
-		- 默认值：无
-		- 生效任务：检测、分类
-		- 说明：均值，以list形式给出，必须与通道数量相同，与std同时提供时生效
-		
-	std
-		- 参数类型: int
-		- 必选 
-		- 默认值：无
-		- 生效任务：检测、分类
-		- 说明：标准差，以list形式给出，必须与通道数量相同，与mean同时提供时生效
-
-.. data:: 后处理相关参数
-
-	calculate_acc
-		- 参数类型: bool
-		- 必选 
-		- 默认值：false
-		- 生效任务：检测、分类
-		- 说明：是否计算精度，需要提供标签数据，当未提供label_dir时或label_dir为空时会将浮点模型的输出作为真实标签，并生成标签数据，
-		  存储位置为data_dir同级目录下的labels文件夹下或label_dir指定的目录
-
-	draw_box
-		- 参数类型: bool
-		- 必选 
-		- 默认值：false
-		- 生效任务：检测
-		- 说明：检测任务中是否输出画框图片，该选项仅在infer模式下生效，画框图片存储在data_dir同级目录下的label_imgs文件夹下
-		
-	max_det
-		- 参数类型: int
-		- 必选 
-		- 默认值：300
-		- 生效任务：检测
-		- 说明：检测任务中的最大检测数量
-
-	anchors
-		- 必选 
-		- 生效任务：检测
-		- 说明：检测任务的锚框，提供该选项时以list形式给出，以像素为单位
-		
-	nc
-		- 参数类型: int
-		- 必选 
-		- 生效任务：检测
-		- 说明：检测任务的类别数量
-	
-	conf_thres
-		- 参数类型: float
-		- 必选 
-		- 默认值：0.001
-		- 生效任务：检测
-		- 说明：检测任务中nms的置信度阈值
-		
-	iou_thres
-		- 参数类型: float
-		- 必选 
-		- 默认值：0.6
-		- 生效任务：检测
-		- 说明：检测任务中nms的交并比阈值
-		
-	names
-		- 参数类型: string
-		- 可选 
-		- 生效任务：检测
-		- 说明：检测任务中各类别对应名称，以list形式给出，提供时会在框体显示类别名称
+.. code-block:: bash
+    Knight --chip TX5368AV200 quant --save-dir /tmp/resnet18 \
+    -m /opt/Quantize/onnx_examples/model/resnet18_onnx/resnet18.onnx -if infer_cls_model -qm kl -bs 10 \
+    -r auto_quant -i 1 -uds /opt/Quantize/onnx_examples/infer_demo.py
 
 
-1. 分类任务示例
+多量化模式和iteration进行量化
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. figure:: ../media/quant_7.png
-    :alt: pipeline
-    :align: center
+示例命令如下
 
-\
+.. code-block:: bash
+    Knight build -rc /TS-KnightDemo/Samples/resnet18/resnet18_config.json --quant.accelerate-model
+
+
+ts-drop使用示例
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ts-drop通过随机丢弃激活值量化，在校准和测试数据上优化模型的平坦度，进而改善低比特量化模型的性能。
+环境配置参考：
+- GPU：CUDA11.8/CUDA12.1 
+    适配显卡包括不限于：
+    1.A100
+    2.GeForce RTX 3090
+    3.GeForce RTX 2080 Ti
+    4.NVIDIA TITAN V
+    5.Tesla V100S-PCIE-32GB
+- 操作系统：Ubuntu 18.04
+  
+该功能依赖需要在容器内安装torch-gpu版本。
+.. code-block:: bash
+
+    pip uninstall torch torchvision torchaudio
+    pip install torch==2.1.0 torchvision==0.16.0 \
+    torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+
+.. note::
+    
+    注意：torch-gpu版本要跟CUDA版本一致。
+
+    W4A8量化需要加上参数”weight-mode”: “int4”和”ts-drop”: true以提升量化精度。其中示例数据集使用了coco128中10张图片，为了获得更好的量化精度，建议使用更多的数据如100张以上。
+以下是yolov5s模型 W4A8量化使用 ts-drop示例：
+
+.. code-block:: json
+    {
+    "chip": "TX5326DV500",
+    "quant": {
+        "model": "/TS-KnightDemo/Samples/yolov5s/models/yolov5s.onnx",
+        "framework": "onnx",
+        "infer-func": "infer_common",
+        "bit-width": 8,
+        "weight-mode": "int4",
+        "quant-mode": "mse",
+        "batch-size": 1,
+        "run-mode": "quant",
+        "iteration": 10,
+        "output-dequant": false,
+        "dump": true,
+        "ts-drop": true,
+        "gpu":0,
+        "output-name": "/model.24/m.0/Conv_output_0 /model.24/m.1/Conv_output_0 /model.24/m.2/Conv_output_0",
+        "save-dir": "/TS-KnightDemo/output/yolov5s/quant",
+        "log-level": 3,
+        "user-defined-script": "/opt/Quantize/onnx_examples/infer_common.py",
+        "input-configs": [
+            {
+                "input_name": "images",
+                "quant_data_format": "Image",
+                "data_dir": "/TS-KnightDemo/Samples/yolov5s/data/quant_data/coco/images/val2017",
+                "color_space": "RGB",
+                "mean": [
+                    0,
+                    0,
+                    0
+                ],
+                "std": [
+                    255.0,
+                    255.0,
+                    255.0
+                ],
+                "quantize_input_dtype": "uint8",
+                "padding_constant_value": 0
+            }
+        ]
+    },
+    "compile": {
+        "save-dir": "/TS-KnightDemo/output/yolov5s/rne"
+    }
+
+
+执行如下命令：
 
 .. code-block:: bash
 
-    Knight quant --run-config /opt/Quantize/onnx_examples/config/run_config_cls.json                                                  |
-\
-
-
-.. figure:: ../media/quant_8.png
-    :alt: pipeline
-    :align: center
-
-\
-
-2. 检测任务示例
-
-量化示例
-
-.. figure:: ../media/quant_9.png
-    :alt: pipeline
-    :align: center
-
-.. code-block:: bash
-
-    Knight quant --run-config /opt/Quantize/onnx_examples/config/run_config_detect.json
-
-.. figure:: ../media/quant_10.png
-    :alt: pipeline
-    :align: center
-
-\
-
-画框示例
-
-.. figure:: ../media/quant_11.png
-    :alt: pipeline
-    :align: center
-
-\
-
-.. code-block:: bash
-
-    Knight quant --run-config /opt/Quantize/onnx_examples/config/run_config_detect.json
-
-\
-
-.. figure:: ../media/quant_12.png
-    :alt: pipeline
-    :align: center
-
-\
-
-.. figure:: ../media/quant_13.png
-    :alt: pipeline
-    :align: center
-
+    Knight build -rc /TS-KnightDemo/Samples/yolov5s/yolov5s_w4a8_config.json
 
 量化新模型
 ---------
@@ -836,9 +923,9 @@ ONNX量化工具支持算子层级粒度的8与16bit混合及量化模式min_max
 
 更新配置文件时需注意以下事项：
 
-1. 模板json配置文件中的key值均与待量化算子名称一致，不可更改。
+1. 模板json配置时op_names和op_types必须至少配置其中一个，两者均支持列表形式同时配置多个值，op_names的优先级高于op_types。
 
-2. 每个量化节点均必须设置bitwidth与mode, 两者缺一不可。
+2. 模板json配置文件中配置的op_names值需与待量化算子名称一致，op_types需与量化节点类型一致。量化节点支持全部或者部分设置，未处于op_names和op_types中的量化节点配置默认与命令行参数配置一致。
 
 3. bitwidth只支持设置为8或者16。
 

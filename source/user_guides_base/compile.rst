@@ -128,7 +128,14 @@ onnx模型：
 参数说明
 ~~~~~~~~
 
-
+-h或--help
+    - 可选 
+    - 默认值：无
+    - 说明：显示帮助信息
+  
+--run-config或-rc
+	- 可选
+	- 说明：命令行配置文件路径。命令行参数的优先级高于配置文件中的对应项。请参考 :doc:`使用指南综述<../overview/overview>` 的--run-config参数说明。
 
 --net
 	- 格式: --net net_file
@@ -145,13 +152,12 @@ onnx模型：
 	- 说明：设置输出文件路径，默认为 ``/TS-KnightOutput/RneCompile`` 路径。
 	
 --log-level或 -l
-	- 格式: --log-level {0,1,2,3} 或 -l {0,1,2,3}
 	- 可选
+	- 取值范围： {0,1,2,3}
 	- 默认值：3
 	- 说明：设定log输出等级，默认为3。0=DEBUG 1=INFO 2=WARNING 3=ERROR
 	
 --onceload-m
-	- 格式: --onceload-m mspm_offs
 	- 可选
 	- 默认值：-1，不使用onceload-m。
 	- 说明：按照一次性载入权重的网络格式编译芯片配置文件时，量化参数的偏移值。
@@ -159,7 +165,6 @@ onnx模型：
 	  不同芯片类型，参数的取值范围也不同，详见 `compile部分参数详细说明`_ 。
 
 --onceload-w
-	- 格式: --onceload-w wspm_offs
 	- 可选
 	- 默认值：-1，不使用onceload-w。
 	- 说明：按照一次性载入权重的网络格式编译芯片配置文件时，权重的偏移值。
@@ -167,9 +172,8 @@ onnx模型：
 	  不同芯片类型，参数的取值范围也不同，详见 `compile部分参数详细说明`_  。
 	
 --output
-	- 格式: --output blob_name
 	- 可选
-	- 默认值：NULL 
+	- 默认值：无 
 	- 说明：指明需要导出的blob_name。参数blob_name是在模拟器仿真d版本的cfg和weight配置时输出的blob_name。
 
   .. note::
@@ -191,8 +195,8 @@ onnx模型：
 	不识别的算子，是指除了规格表中定义的算子（包含高效类型算子和通用类型算子）之外的算子
 	  
 --opt-ddr
-	- 格式: --opt-ddr {0,1,2}
 	- 可选
+	- 取值范围：{0,1,2}
 	- 默认值：1
 	- 说明：可选参数。指示是否对ddr做优化。
 
@@ -208,9 +212,8 @@ onnx模型：
 
 
 --debug
-	- 格式: --debug
 	- 可选
-	- 默认值：关闭。
+	- 默认值：false
 	- 说明：设置该参数时，打开编译输出xxx_d.tsmodel文件的开关。
 
 		关闭状态时：编译不输出xxx_d. tsmodel文件。
@@ -218,9 +221,8 @@ onnx模型：
 		打开状态时：编译输出xxx_d. tsmodel文件。
 
 --unfixloop
-	- 格式: --unfixloop
 	- 可选
-	- 默认值：关闭。
+	- 默认值：false
 	- 说明：设置该参数时，编译循环神经网络为不定循环次数的网络。
 
 		1. 此参数控制是否编译循环神经网络为不定循环次数的网络。如果设置该参数，开启不定循环次数编译，编译器会做相应处理，对应保存的数据的中间数据缓存在执行时不会被清零。
@@ -228,33 +230,29 @@ onnx模型：
 	  
 	  
 --sparse
-	- 格式: --sparse
 	- 可选
-	- 默认值：关闭。
+	- 默认值：false
 	- 说明：设置该参数时，打开权重稀疏化压缩的开关。部分芯片支持，详见 `compile部分参数详细说明`_
  
 --res-version
-	- 格式: --res-version ver_string
 	- 可选
 	- 默认值：1.0
 	- 说明：配置资源版本号。配置的资源版本号编译到cfg文件中，用于模拟库和板端部署模型查询。最多支持配置16个字符。
 	
 --onnx
-	- 格式: --onnx onnx_file
 	- 可选
 	- 说明：编译onnx模型的必选参数。设定onnx神经网络模型文件路径。
 	
 
 --res-version
-	- 格式: --res-version ver_string
 	- 可选
 	- 默认值：1.0
 	- 说明：配置资源版本号。配置的资源版本号编译到cfg文件中，用于模拟库和板端部署模型查询。最多支持配置16个字符。
 	
 
 --opt-group
-	- 格式: --opt-group {0,1,2}
 	- 可选
+	- 取值范围: {0,1,2}
 	- 默认值：0
 	- 说明：此参数设置网络组优化策略。
 
@@ -267,9 +265,8 @@ onnx模型：
 		不支持循环网络
 	
 --input-indep
-	- 格式: --input-indep
 	- 可选
-	- 默认值：关闭
+	- 默认值：false
 	- 说明：设置该参数时，打开input blobs mem是否独立于blobs mem的开关。后续推理流程支持SDK与模拟器。
 	
 		关闭状态时：input blobs mem 在blobs mem 里面，由SDK分配控制。
@@ -281,8 +278,8 @@ onnx模型：
 	Input后接通用算子时，不支持该参数。
 	
 --hardware-resource-mode或-hrm
-	- 格式: --hardware-resource-mode {"little","middle", "big", "super"} 或  -hrm {"little","middle",  "big", "super"}
-	- 可选
+    - 可选
+	- 取值范围： {"little","middle", "big", "super"} 
 	- 默认值：super
 	- 说明：此参数控制用户可使用的硬件资源大小，包括FSPM，MSPM，WSPM等。指定为little模式编译不过时，可使用big或super模式。
 
@@ -298,7 +295,6 @@ onnx模型：
 	目前只有TX5336x_TX5256x芯片支持该参数。
 	
 --start-layer-name或-sln
-	- 格式:--start-layer-name start_layer_name 或 -sln start_layer_name
 	- 可选
 	- 默认值：模型的起始节点
 	- 说明：支持编译ONNX模型的子网络，该参数指定子网络的起始layer。通常情况下，此参数与-eln同时使用。当原始的ONNX模型只有一个输入时，该参数可忽略，默认编译从原始模型的输入开始到-eln指定layer结束
@@ -315,7 +311,6 @@ onnx模型：
 		
 		
 --end-layer-name或-eln
-	- 格式:--end-layer-name end_layer_name 或 -eln end_layer_name
 	- 可选
 	- 默认值：编译从-sln指定layer开始到模型结束
 	- 说明：支持编译ONNX模型的子网络，该参数指定子网络的结束layer。通常情况下，此参数与-sln同时使用。
@@ -331,15 +326,14 @@ onnx模型：
 		
 
 --input-order
-	- 格式:--input-order {nchw,nhwc}
 	- 可选
+	- 取值范围: {nchw,nhwc}
 	- 默认值：nchw
-	- 说明：指定模型输入节点数据排布顺序，部分网络由于数据排布顺序问题导致编译失败问题，使用该参数指定不同的输入数据排布顺序，可正常编译通过。
+	- 说明：指定模型输入节点数据排布顺序，仅在编译模型Blip, Clip, Swin Transformer 时，必需指定--input-order nhwc , 此时会带来性能优化；模拟器和板端部署时需要指定输入数据format 为nhwc 。
 
 --output-indep
-	- 格式:--output-indep
 	- 可选
-	- 默认值：关闭
+	- 默认值：false
 	- 说明：设置该参数时，打开output blobs mem是否独立于blobs mem的开关。后续推理流程支持SDK与模拟器。
 		
 		关闭状态时：output blobs mem 在blobs mem 里面，由SDK分配控制。
@@ -349,9 +343,8 @@ onnx模型：
 		详见 `--input-indep参数说明流程图`_
 		
 --transformer-opt
-	- 格式:--transformer-opt
 	- 可选
-	- 默认值：关闭
+	- 默认值：false
 	- 说明：
 	  设置该参数时，将连续多个reshape、permute或连续多个reshape或连续多个permute算子合并为算子（gather或move）。
 
@@ -362,41 +355,49 @@ onnx模型：
 	  参数使用场景见 `编译器--transformer-opt使用场景？`_
 		
 --rgb
-	- 格式:--rgb
 	- 可选
-	- 默认值：关闭
-	- 说明：设置该参数时，编译的模型接受RGB 3通道数据输入。该选项打开后，输入文件大小受芯片FSPM存储大小限制。	
+	- 默认值：false
+	- 说明：TX5336x_TX5256x芯片3通道输入推荐使用。设置该参数时，编译的模型接受RGB 3/6/9通道数据输入。该参数用于硬件直接载入定点输入数据，无需软件层预处理。
+	- 注意：
+       TX5112x_TX5239x201系列芯片受硬件限制不支持9通道输入；
+       多batch或者无法一次全部装填到fspm的输入，h*w*c必须是4的倍数；
+       该参数只处理4维输入的模型。	
 	
---run-config或-rc
-	- 格式:--run-config config_file
+
+-sr或-serial-run
 	- 可选
-	- 说明：命令行配置文件路径。将上述命令行选项写到一个json文件中传给compile工具。命令行参数的优先级高于配置文件中的对应项。请参考 :doc:`使用指南综述<../overview/overview>` 的--run-config参数说明。
-	
+	- 取值范围:{0,1}
+	- 默认值：0
+	- 说明：编译运行指令串行。
+       0: 不打开。
+       1: 打开。 
+       仅TX5336x支持。
+
 compile部分参数详细说明
 ~~~~~~~~~~~~~~~~~~~~~~
 
 部分参数只支持特定芯片，详情见下表(Y：支持 N：不支持)
 
 +---------------------------+---------+--------------------------+------------------------------------------+---------------------+------------------+
-| 参数                      | TX510x  | TX5368x_TX5339x_TX5335x  | TX5215x_TX5239x200_TX5239x220_TX5239x300 | TX5112x_TX5239x201  | TX5336x_TX5256x  |
+| 参数                      | TX5326x | TX5368x_TX5339x_TX5335x  | TX5215x_TX5239x200_TX5239x220_TX5239x300 | TX5112x_TX5239x201  | TX5336x_TX5256x  |
 +===========================+=========+==========================+==========================================+=====================+==================+
-| --unfixloop               | N       | Y                        | Y                                        | Y                   | Y                |
+| --unfixloop               | Y       | Y                        | Y                                        | Y                   | Y                |
 +---------------------------+---------+--------------------------+------------------------------------------+---------------------+------------------+
 | --sparse                  | N       | Y                        | N                                        | N                   | Y                |
 +---------------------------+---------+--------------------------+------------------------------------------+---------------------+------------------+
-| --input-indep             | N       | Y                        | Y                                        | Y                   | Y                |
+| --input-indep             | Y       | Y                        | Y                                        | Y                   | Y                |
 +---------------------------+---------+--------------------------+------------------------------------------+---------------------+------------------+
-| --hardware-resource-mode  | N       | N                        | N                                        | N                   | Y                |
+| --hardware-resource-mode  | Y       | N                        | N                                        | N                   | Y                |
 +---------------------------+---------+--------------------------+------------------------------------------+---------------------+------------------+
-| --start-layer-name        | N       | Y                        | Y                                        | Y                   | Y                |
+| --start-layer-name        | Y       | Y                        | Y                                        | Y                   | Y                |
 +---------------------------+---------+--------------------------+------------------------------------------+---------------------+------------------+
-| --end-layer-name          | N       | Y                        | Y                                        | Y                   | Y                |
+| --end-layer-name          | Y       | Y                        | Y                                        | Y                   | Y                |
 +---------------------------+---------+--------------------------+------------------------------------------+---------------------+------------------+
-| ---input-order            | N       | Y                        | N                                        | N                   | Y                |
+| ---input-order            | Y       | Y                        | N                                        | N                   | Y                |
 +---------------------------+---------+--------------------------+------------------------------------------+---------------------+------------------+
-| --output-indep            | N       | N                        | N                                        | N                   | Y                |
+| --output-indep            | Y       | N                        | N                                        | N                   | Y                |
 +---------------------------+---------+--------------------------+------------------------------------------+---------------------+------------------+
-| --transformer-opt         | N       | Y                        | N                                        | N                   | Y                |
+| --transformer-opt         | Y       | Y                        | N                                        | N                   | Y                |
 +---------------------------+---------+--------------------------+------------------------------------------+---------------------+------------------+
 
 
@@ -411,14 +412,13 @@ compile部分参数详细说明
 		
 		2.如果输入的mspm_offs值不是128字节对齐，编译器会将mspm_offs对齐到128字节。
 		
-		3.参数取值范围为：0 <= (mspm_offs + 127)/128*128 <= 8KB-mweight size。由于LUT层在TX510系列芯片硬件上必须占用MSPM的最后一个bank，所以网络里面有LUT层时暂时不能支持mspm_offs > 0。
-
+		
 	--onceload-w
 		1.wspm end值计算：(wspm_offs + 255)/256*256 + wweight大小。
 		
 		2.如果输入的wspm_offs值不是256字节对齐，编译器会将wspm_offs对齐到256字节。
 		
-		3.参数的取值范围为：0 <= (wspm_offs + 255)/256*256 <= 144KB-wweight size
+	
 
 
 .. data:: TX5368x_TX5339x_TX5335x芯片
@@ -430,16 +430,13 @@ compile部分参数详细说明
 		2.如果输入的mspm_offs值不是256字节对齐，编译器会将mspm_offs对齐到256字节。
 		
 		3.编译输出的mweight文件为256字节对齐。
-		
-		4.参数取值范围为：0<= (mspm_offs + 255)/256*256 <= 16KB-mweight size
+
 
 --onceload-w
 		1.wspm end值计算：(wspm_offs + 511)/ 512*512+ wweight大小。
 		2.如果输入的wspm_offs值不是512字节对齐，编译器会将wspm_offs对齐到512字节。
 		
 		3.编译输出的wweight文件为256字节对齐。
-		
-		4.参数的取值范围为：0<= (wspm_offs + 511)/ 512*512<= 288KB-wweight size
 
 --sparse
 	权重稀疏化压缩生效的条件：
@@ -466,19 +463,11 @@ compile部分参数详细说明
 		
 		2.如果输入的mspm_offs值不是128字节对齐，编译器会将mspm_offs对齐到128字节。
 		
-		3.编译输出的mweight文件为128字节对齐。
-		
-		4.参数取值范围为0 <= (mspm_offs + 127)/128*128 <= 8KB-mweight size
 
 --onceload-w
 		1.wspm end值计算：(wspm_offs + 127)/128*128+ wweight大小。
 		
 		2.如果输入的wspm_offs值不是128字节对齐，编译器会将wspm_offs对齐到128字节。
-		
-		3.编译输出的wweight文件为64字节对齐。
-		
-		4.参数取值范围为：0 <= (wspm_offs + 127)/128*128<= 72KB-wweight size。
-
 
 
 .. data:: TX5112x_TX5239x201芯片
@@ -488,19 +477,13 @@ compile部分参数详细说明
 		
 		2.如果输入的mspm_offs值不是128字节对齐，编译器会将mspm_offs对齐到128字节。
 		
-		3.编译输出的mweight文件为128字节对齐。
 		
-		4.参数取值范围为：0 <= (mspm_offs + 127)/128*128 <= 8KB-mweight size。
 
 --onceload-w
 		1.wspm end值计算：(wspm_offs + 63)/64*64 + wweight大小。
 		
 		2.如果输入的wspm_offs值不是64字节对齐，编译器会将wspm_offs对齐到64字节。
 		
-		3.编译输出的wweight文件为64字节对齐。
-		
-		4.参数取值范围为：0 <= (wspm_offs + 63)/64*64 <= 36KB-wweight size。
-
 
 .. data:: TX5336x_TX5256x芯片
 
@@ -508,19 +491,12 @@ compile部分参数详细说明
 		1.mspm end值计算：(mspm_offs + 255)/ 256*256+ mweight大小。
 		
 		2.如果输入的mspm_offs值不是256字节对齐，编译器会将mspm_offs对齐到256字节。
-		
-		3.编译输出的mweight文件为256字节对齐。
-		
-		4.参数取值范围为：0<= (mspm_offs + 255)/256*256 <= 16KB-mweight size
+
 
 --onceload-w
 		1.wspm end值计算：(wspm_offs + 511)/ 512*512+ wweight大小。
 		
 		2.如果输入的wspm_offs值不是512字节对齐，编译器会将wspm_offs对齐到512字节。
-		
-		3.编译输出的wweight文件为256字节对齐。
-		
-		4.参数的取值范围为：0<= (wspm_offs + 511)/ 512*512<= 288KB-wweight size
 
 --sparse
 	权重稀疏化压缩生效的条件：
@@ -547,6 +523,18 @@ compile部分参数详细说明
 
 	2)16bit：Co方向满足连续32个filter有相同的稀疏化块。Co小于32，实际Co满足即可。
 		
+
+.. data:: TX5326x芯片
+
+--onceload-m
+		1.mspm end值计算：(mspm_offs + 255)/ 256*256+ mweight大小。
+		2.如果输入的mspm_offs值不是256字节对齐，编译器会将mspm_offs对齐到256字节。
+
+
+--onceload-w
+		1.wspm end值计算：(wspm_offs + 255)/ 256*256+ wweight大小。
+		2.如果输入的wspm_offs值不是256字节对齐，编译器会将wspm_offs对齐到256字节。
+
 
 --input-indep参数说明流程图
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -649,21 +637,23 @@ PC软件模拟硬件的运行情况，根据编译器生成的网络指令部署
 参数说明
 ~~~~~~~~
 
-		
---help或-h
-	- 格式:--help或 -h
+-h 或 --help
 	- 可选
 	- 说明：显示帮助信息。
-	
---input或-i
-	- 格式:--input input_file或-i input_file
+
+-rc 或 --run-config
+	- 可选
+	- 说明：命令行配置文件路径。命令行参数的优先级高于配置文件中的对应项。
+	  
+
+-i 或 --input 
 	- 可选
 	- 说明：网络输入数据，数据格式是整型或浮点类型bit流格式。对于有多个输入的网络模型，把输入数据按照网络输入顺序合并放入一个总二进制文件中，或者按顺序放入多个二进制文件中，格式为"input_file1:input_file2:..."或"input_file1,input_file2,..."。
 
 
---format或 -fmt
-	- 格式:--format {nchw,nhwc,nhwcstride}或-fmt {nchw,nhwc,nhwcstride}
+-fmt 或 --format 
 	- 可选
+	- 取值范围：{nchw,nhwc,nhwcstride}
 	- 默认值：nhwc
 	- 说明：
 	  取值范围：nchw|nhwc|nhwcstride
@@ -672,24 +662,23 @@ PC软件模拟硬件的运行情况，根据编译器生成的网络指令部署
 	  输入数据为(n,h,w,cstride)格式时需要指定参数：--format nhwcstride，cstride通过编译器指定-l = 1获取，
 	  info级别日志会打印”The cstride value of input{idx}:  {cstride_value}”。
 	  
---model或-m
-	- 格式:--model model_file或 -m model_file
+-m 或 --model
+	- 可选
 	- 说明：模拟器指令权重合一部署文件，编译工具Knight RNE编译器输出（*_r.tsmodel或*_d.tsmodel）
 	
---weight或 -w
-	- 格式:--weight weight_file或 -w weight_file
+-w 或 --weight 
+	- 可选
 	- 说明：模拟器权重部署文件，编译工具Knight RNE编译器输出（*_r.weight或*_d.weight）。	
 	
 
---config 或 -cfg
-	- 格式:--config config_file或 -cfg config_file
+-cfg 或 --config  
+	- 可选
 	- 说明：模拟器指令部署文件，编译工具Knight RNE编译器输出（*_r.cfg或*_d.cfg）。
 	  
 	  
---debug 或 -d
-	- 格式:--debug layer_name 或 -d layer_name或--debug xxx.json 或 -d xxx.json
+-d 或 --debug  
 	- 可选
-	- 默认值：null
+	- 默认值：无
 	- 说明：layer_name: 网络层名字，可以在编译器指定log为0生成的npu_compile_xxx.log文件中查看所有layer_name。指定layer_name后运行模拟器，会输出该层的结果文件。
 	xxx.json: 量化生成的json文件，该文件中包含一个或多个由算子类型、算子名称和算子输出组成的信息，格式如下所示：
 	
@@ -713,21 +702,20 @@ op_name同layer_name。
 调试层为没有量化的层时，该层的结果文件类型由下一层的输入类型决定。
 	  
 	  
---log-level 或 -l
-	- 格式:--log-level {0,1,2,3} 或 -l {0,1,2,3}
+-l 或 --log-level  
 	- 可选
+	- 取值范围：{0,1,2,3}
+	- 默认值：3
 	- 说明：默认值设定log输出等级. 0=DEBUG 1=INFO 2=WARNING 3=ERROR
 	  
 	  
 --save-dir
-	- 格式:--save-dir output_path
 	- 可选
 	- 默认值：/TS-KnightOutput/RneSim
 	- 说明：设置输出文件路径。
 	  
 
---frame-step 或 -fs
-	- 格式:--frame-step frame_step 或 -fs frame_step
+-fs 或 --frame-step  
 	- 可选
 	- 默认值：0
 	- 说明：帧移。只有在fc>1的情况下，该值才有实际意义（即帧移在第二帧开始生效）。
@@ -736,15 +724,13 @@ op_name同layer_name。
 	
 		在有多个网络输入数据的网络中，允许多网络输入数据有不同帧移，以“帧移1:帧移2:...”或“帧移1,帧移2,...”格式输入，输入帧移个数可以为1个或者与网络需要输入个数相同，其他均为错误输入。
 
---frame-count或 -fc
-	- 格式:--frame-count frame_count 或 -fc frame_count
+ -fc或--frame-count 
 	- 可选
 	- 默认值：1（单帧）
 	- 说明：帧数。多帧模式有效（fc>1）, 表示多帧模式下计算的帧数。设置该值时，程序会自动计算至输入数据的帧移数，剩余数据不足一帧的情况则舍弃计算。实际运行的帧数为最大可运行帧数和输入帧数的最小值。
 	  
 
---intofile 或 -if
-	- 格式:--intofile size 或 -if size
+-if 或--intofile  
 	- 可选
 	- 默认值：0
 	- 说明：类型为 int 将网络输入数据按照各路输入顺序存储到文本文件(intofile.txt)。
@@ -756,11 +742,7 @@ op_name同layer_name。
 		>=1：存储指定帧数组数据，每组数据包含各路输入m个数据，m为 size 和一帧数据大小的最小值。
 	  
 
---run-config或-rc
-	- 格式:--run-config <config文件路径> 或者 -rc <config文件路径>
-	- 可选
-	- 说明：命令行配置文件路径。将上述命令行选项写到一个json文件中传给simulator工具。命令行参数的优先级高于配置文件中的对应项。
-	  
+
 
 
 
@@ -841,53 +823,44 @@ RNE性能分析器的原理是模拟硬件算子的处理，根据指令数据�
 参数说明
 ~~~~~~~~
 
---help或-h
-	- 格式:--help或 -h
+-h 或 --help
 	- 可选
 	- 说明：显示帮助信息。
 
---model或-m
-	- 格式:--model model_file或 -m model_file
+-m 或 --model
+	- 可选
 	- 说明：模拟器指令权重合一部署文件，编译工具Knight RNE编译器输出（*_r.tsmodel或*_d.tsmodel）.
 	  TX510X不使用此参数，weight和cfg是必选，其他芯片使用cfg/weight或者tsmodel。
 	
---weight或 -w
-	- 格式:--weight weight_file或 -w weight_file
+-w 或 --weight
+	- 可选
 	- 说明：模拟器权重部署文件，编译工具Knight RNE编译器输出（*_r.weight或*_d.weight）。TX510X为必选参数，其他芯片不需要此参数。	
 	
 
---config 或 -cfg
-	- 格式:--config config_file或 -cfg config_file
+ -cfg 或 --config 
+	- 可选
 	- 说明：模拟器指令部署文件，编译工具Knight RNE编译器输出（*_r.cfg或*_d.cfg）。
 
---log-level 或 -l
-	- 格式:--log-level {0,1,2,3} 或 -l {0,1,2,3}
+-l 或 --log-level  
 	- 可选
+	- 取值范围：{0,1,2,3}
+	- 默认值：3
 	- 默认值设定log输出等级. 0=DEBUG 1=INFO 2=WARNING 3=ERROR
 	
---max-storage-bandwidth 或 -mbw
-	- 格式:--max-storage-bandwidth mbw_value 或 -mbw mbw_value
+-mbw 或 --max-storage-bandwidth 
 	- 可选
-	- 说明：设置最大存储带宽，单位GB/s。当设置为0时，按默认值处理。不同芯片类型，默认值及取值范围也不同，详见  `profiling部分参数详细说明`_ 。
+	- 默认值：不同芯片类型，默认值及取值范围也不同，详见  `profiling部分参数详细说明`_ 。
+	- 说明：设置最大存储带宽，单位GB/s。当设置为0时，按默认值处理。
 		
---bandwidth-utilization 或 -bu
-	- 格式:--bandwidth-utilization bu_value 或 -bu bu_value
+-bu 或  --bandwidth-utilization 
 	- 可选
 	- 默认值：1.00
 	- 说明：设置带宽占用率，取值范围：0~1.00。
 
 --save-dir
-	- 格式:--save-dir output_path
 	- 可选
 	- 默认值：/TS-KnightOutput/RneProfiling
 	- 说明：设置输出文件路径。
-
---run-config或-rc
-	- 格式:--run-config <config文件路径> 或者 -rc <config文件路径>
-	- 可选
-	- 说明：命令行配置文件路径。将上述命令行选项写到一个json文件中传给profiling工具。命令行参数的优先级高于配置文件中的对应项。
-	
-
 
 
 profiling部分参数详细说明
@@ -936,26 +909,16 @@ profiling部分参数详细说明
 
 \
 
-+-----------------------+----------------------------------------------+
-| **字段**              | **说明**                                     |
-+=======================+==============================================+
-| Total RDMA byte       | 从DMA读数据总字节数。                        |
-+-----------------------+----------------------------------------------+
-| Total WDMA byte       | 向DMA写数据总字节数。                        |
-+-----------------------+----------------------------------------------+
-| Cost (ms)             | 预估的运行时间，单位：ms。                   |
-+-----------------------+----------------------------------------------+
-| Total calculation     | 总计算数。                                   |
-| amout                 |                                              |
-+-----------------------+----------------------------------------------+
-| Storage bandwidths    | 片上缓存最大带宽，单位：GB/s。               |
-| (GB/s)                |                                              |
-+-----------------------+----------------------------------------------+
-| Storage bandwidths    | 片上缓存带宽利用率。真实缓存带宽为Storage    |
-| use rate              | bandwidths*Storage bandwidths use rate。     |
-+-----------------------+----------------------------------------------+
-| NPU freq (MHZ)        | NPU频率，单位：MHZ。                         |
-+-----------------------+----------------------------------------------+
+
+.. data:: Profiling显示字段说明
+	- Total RDMA byte:从DMA读数据总字节数。
+	- Total WDMA byte: 向DMA写数据总字节数。 
+	- Cost (ms) : 预估的运行时间，单位：ms。   
+	- Total calculation amout: 总计算数。 
+	- RCCN utilization:mac利用率。
+	- Storage bandwidths (GB/s):片上缓存最大带宽，单位：GB/s。
+	- Storage bandwidths use rate:片上缓存带宽利用率。真实缓存带宽为Storage bandwidths*Storage bandwidths use rate。
+	- NPU freq (MHZ) NPU频率，单位：MHZ。
 
 性能分析器运行_d资源时，会在layer_cycles_NPU_0.txt中打印出每一层的运行时间，如下图所示：
 
@@ -1287,18 +1250,16 @@ FAQ
 
 【问题描述】
 
-模拟器仿真的format有nchw、nhwc和nhwcstride，三种format分别在什么时候使用？仿真输出的result_x.txt和result_x_hwc.txt应该怎么对应？
-
+模拟器仿真的format有nchw、nhwc和nhwcstride，三种format分别在什么时候使用？仿真输出的result_x_p.txt和result_x_hwc_p.txt应该怎么对应？
 【解决方法】
 
-1. 输入数据为(n,h,w,c)格式时可以不指定该参数，默认是nhwc。输入数据为(n,c,h,w)格式时需要指定参数：--format
-   nchw。当用户自己申请inputblobs
-   mem需自行将输入数据转为nhwcstride格式，并指定—format
-   nhwcstride，数据排布相关介绍详见 :doc:`SDK使用指南<../user_guides_base/sdk>`。
+1. 输入数据为(n,h,w,c)格式时可以不指定该参数，默认是nhwc。输入数据为(n,c,h,w)格式时需要指定参数：--format  nchw。
+   当用户自己申请inputblobs mem需自行将输入数据转为nhwcstride格式，
+   并指定—format nhwcstride， :doc:`SDK使用指南<../user_guides_base/sdk>`。
 
-2. 为方便用户根据自己的需要选择，所以输出结果有两种排布nhwc和nchw，result_x_hwc.txt对应的是nhwc，result_x.txt对应的是nchw。
+2. 为方便用户根据自己的需要选择，所以输出结果有两种排布nhwc和nchw，result_x_hwc_p.txt对应的是nhwc，result_x_p.txt对应的是nchw。
 
-3. 量化平台是onnx，则仿真使用nchw，对比结果使用result_x.txt。
+3. 量化平台是onnx，则仿真使用nchw，对比结果使用result_x_p.txt。
 
 什么原因会导致编译时间长？
 --------------------------

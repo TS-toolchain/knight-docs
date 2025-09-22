@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. 使用指南综述 &mdash; Knight_doc V3.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
@@ -22,7 +22,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. 快速上手指南" href="../quick_demo/quick_demo.html" />
+    <link rel="next" title="3. 简介" href="../quick_demo/quick_demo.html" />
     <link rel="prev" title="1. 修改记录" href="../doc_info/doc_info.html" /> 
 </head>
 
@@ -135,15 +135,17 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../quick_demo/quick_demo.html">3. 快速上手指南</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user_guides_base/quant.html">4. 量化使用指南</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user_guides_base/compile.html">5. 编译仿真性能分析使用指南</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user_guides_base/sdk.html">6. SDK使用指南</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">进阶指南</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../user_guides_advanced/qat.html">1. QAT使用说明</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user_guides_advanced/mc.html">2. 模型压缩使用指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_demo/quick_demo.html">3. 简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_demo/quick_demo.html#id2">4. 开发环境准备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_demo/quick_demo.html#knight">5. Knight命令说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_demo/quick_demo.html#id6">6. 模型转换配置文件示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_demo/quick_demo.html#id7">7. 模型转换命令执行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_demo/quick_demo.html#id8">8. 仿真命令执行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_demo/quick_demo.html#id13">9. 板端运行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_demo/quick_demo.html#id22">10. 功能特性说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guides_base/quant.html">11. 量化使用指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guides_base/compile.html">12. 编译仿真性能分析使用指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guides_base/sdk.html">13. SDK使用指南</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">附录</span></p>
 <ul>
@@ -441,7 +443,7 @@ tune-Lib_XXX.tar.gz</p></td>
 <td><blockquote>
 <div><p>Knight Finetune库,详情参见</p>
 </div></blockquote>
-<p><a class="reference internal" href="../user_guides_advanced/qat.html"><span class="doc">QAT使用说明</span></a></p>
+<p><span class="xref std std-doc">QAT使用说明</span></p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>TS.Knight-MC_XXX.tar.
@@ -449,7 +451,7 @@ gz</p></td>
 <td></td>
 <td><p>封闭</p></td>
 <td><p>Knight压缩工具详情参见
-<a class="reference internal" href="../user_guides_advanced/mc.html"><span class="doc">模型压缩使用指南</span></a></p></td>
+<span class="xref std std-doc">模型压缩使用指南</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -927,7 +929,7 @@ Knight<span class="w"> </span>compare<span class="w"> </span>--run-config<span c
 <span class="w">    </span><span class="nt">&quot;input_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;input&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;data_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;path/to/img_data&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;color_space&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BGR&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;is_yolo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span>
+<span class="w">    </span><span class="nt">&quot;is_yolo&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">    </span><span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1614,7 +1616,7 @@ ump并列的目录下有量化后的onnx模型；</p></td>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../doc_info/doc_info.html" class="btn btn-neutral float-left" title="1. 修改记录" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../quick_demo/quick_demo.html" class="btn btn-neutral float-right" title="3. 快速上手指南" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../quick_demo/quick_demo.html" class="btn btn-neutral float-right" title="3. 简介" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

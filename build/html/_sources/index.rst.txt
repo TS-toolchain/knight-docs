@@ -15,14 +15,6 @@ Knight 工具链使用指南
   user_guides_base/compile.rst
   user_guides_base/sdk.rst
 
-.. toctree::
-  :maxdepth: 4
-  :numbered:
-  :caption: 进阶指南
-  :name: Advanced
-
-  user_guides_advanced/qat.rst
-  user_guides_advanced/mc.rst
 
 
 .. toctree::
