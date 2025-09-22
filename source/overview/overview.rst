@@ -121,17 +121,9 @@ API相应接口进行自定义算子注册。最后，与整个应用程序一�
 .. note::
 
    注意：在整个开发流程中有如下3个检查点：
-
-   1. 用户使用Knight
-   build工具完成模型转换后，精度比对工具可查看量化后精度是否满足业务要求；
-
-   2.
-   同时model_check工具验证模拟器推理结果和Knight定点模型推理结果一致；
-
-   3. 用户使用Knight
-   RNE运行时库对测试数据进行推理后，需保证其推理结果和Knight
-   RNE模拟库推理结果一致；
-
+   1. 用户使用Knight build工具完成模型转换后，精度比对工具可查看量化后精度是否满足业务要求；
+   2. 同时model_check工具验证模拟器推理结果和Knight定点模型推理结果一致；
+   3. 用户使用Knight RNE运行时库对测试数据进行推理后，需保证其推理结果和Knight RNE模拟库推理结果一致；
    以上3个检查点若不满足预期，可联系清微技术人员进行支持。
 
 软件包目录
@@ -174,9 +166,10 @@ ReleaseDeliverables目录中为软件产品，示例如下：
    ├── TS-Finetune-Lib_3.5.tar.gz
 
 .. note::
-   注意：以上内容仅为示例，不同版本以实际产品包为准。
 
- ``ts.knight-XXX.tar.gz`` 为 ``Knight`` 镜像压缩包，参见 `运行镜像`_ ，运行镜像后进入Knight容器，容器内文件目录如下表所示。
+   注意：以上内容仅为示例，不同版本以实际产品包为准。
+   ``ts.knight-XXX.tar.gz`` 为 ``Knight`` 镜像压缩包，参见 `运行镜像`_ ，运行镜像后进入Knight容器，
+   容器内文件目录如下表所示。
 
 +------------------+-----------+----------+---------------------------------+
 |  一级            | 二级目录  |开源/封闭 | 说明                            |
@@ -258,15 +251,25 @@ Knight库文件目录如下表所示，库相关内容详情参见《TS.Knight-S
 --------
 
    《TS.Knight-快速上手指南》
+
    《TS.Knight-量化使用指南》
+
    《TS.Knight-量化工具FAQ》
+
    《TS.Knight-编译仿真性能分析使用指南》
+
    《TS.Knight-SDK使用指南》
+
    《TS.Knight-Finetune-Lib使用指南》
+
    《TS.Knight-MC使用指南》
+
    《TS.Knight-xxx-RNE编译器算子规格表》
+
    《TS.Knight-xxx量化算子规格表》
+
    《TS.Knight-转换算子规格表》
+
    《TS.Knight-支持模块清单》
 
 安装部署
@@ -382,6 +385,7 @@ Ubuntu 16的默认docker版本是18.x，低于19.03，所以需要手动安装do
     :alt: pipeline
     :align: center
 
+\
 
 运行镜像
 --------
@@ -394,7 +398,8 @@ docker镜像内默认使用root用户。如果使用非root用户，则需要保
 运行命令参数介绍
 ~~~~~~~~~~~~~~~~
 
-docker run -v <宿主目录>:<docker容器目录> -u 用户名 -it 镜像名称:镜像Tag
+.. code-block:: shell
+   docker run -v <宿主目录>:<docker容器目录> -u 用户名 -it 镜像名称:镜像Tag
 
 
 +-------+--------------------------------------------------------------+
@@ -447,7 +452,6 @@ docker run -v <宿主目录>:<docker容器目录> -u 用户名 -it 镜像名称:
 -Lib，TX5112x_TX5239x201-Lib，TX5215x_TX5239x200\_ TX5239x220_TX5239x300
 -Lib，TX5336x_TX5256x-Lib以及TX5110x-Lib使用详情参见《TS.Knight-SDK使用指南》。
 
-Knight Finetune库使用详情参见《TS.Knight-Finetune-Lib使用指南》。
 
 支持芯片
 ========
@@ -479,11 +483,13 @@ Knight作为工具链功能的总入口，支持以下参数：
 -  --default-chip:
    配置芯片型号-ch/--chip默认值，用户可通过以下命令行配置新的默认值。
 
-..
+.. code-block:: shell
 
    Knight --default-chip TX5368AV200
 
 通过Knight命令并配置芯片型号-ch/--chip参数即可调用相应型号下的工具链功能。Knight命令行模板如下所示。
+
+.. code-block:: shell
 
    Knight -ch/--chip [芯片型号] [子命令] …
 
@@ -504,6 +510,7 @@ compile查看帮助信息界面示例如下。
 .. figure:: ./media/image12.png
     :alt: pipeline
     :align: center
+\
 
 配置文件介绍
 ------------
@@ -584,21 +591,18 @@ Knight compare工具
 
 Compare工具给出了两种精度指标，MRE和余弦相似度。此外还提供了均方根误差（rmse）,最大单点误差（maxdiff），有偏性（bias），参考如下：
 
-======== ===================
-================================================================
-**简称** **名称**            **说明**
-mre      平均相对误差        数值越大，误差越大
-cos      余弦相似度          数值越小，误差越大
-rmse     均方根误差          数值越大，误差越大
-maxdiff  单点最大误差(m1/m2) 数值越大，误差越大
-bias     有偏性（b1,b2)      第一个数据大，表示数据偏向右边。第二个数据大，表示数据偏向左边。
-======== ===================
-================================================================
+
+- mre: 平均相对误差, 数值越大，误差越大
+- cos: 余弦相似度,数值越小，误差越大
+- rmse: 均方根误差 ,数值越大，误差越大
+- maxdiff: 单点最大误差(m1/m2),数值越大，误差越大
+- bias: 有偏性（b1,b2),第一个数据大，表示数据偏向右边。第二个数据大，表示数据偏向左边。
 
 Compare工具使用前，需要完成模型转换和模拟器推理，Compare工具支持量化前后精度比对（量化-浮点），定点模型推理结果和模拟推理结果数据比对（量化-模拟器），以及模拟器推理结果和模拟库推理结果比对（模拟器-模拟库）三种数据比较方式。
 
 参数说明
 --------
+
 
 +----------------+---------+-------+-----------------------------------+
 |   参数名称     |必需/可选  |   默认值 |   说明                            |
@@ -748,7 +752,6 @@ Compare工具使用前，需要完成模型转换和模拟器推理，Compare工
 
 
 
-
 使用示例
 --------
 
@@ -808,11 +811,14 @@ Compare工具使用前，需要完成模型转换和模拟器推理，Compare工
 示例四：详细数据比较
 
 .. code-block:: bash
+
    Knight compare -qd /TS-KnightDemo/output/resnet18/quant/ -on fc -sl 2 -si
 
 示例五：按照指定精度字段排序
 
-Knight compare -qd /TS-KnightDemo/output/resnet18/quant/ **--no-cos --no-mre --rmse --maxdiff --sort rmse**
+.. code-block:: bash
+
+   Knight compare -qd /TS-KnightDemo/output/resnet18/quant/ **--no-cos --no-mre --rmse --maxdiff --sort rmse**
 
 示例六：保存比较结果
 
@@ -839,6 +845,7 @@ index和output name的映射关系。
 示例七：选择要比较的算子类型
 
 .. code-block:: bash
+
    Knight compare -qd /TS-KnightDemo/output/resnet18/quant --op-type Conv,Gemm
  
 
@@ -849,10 +856,12 @@ index和output name的映射关系。
 a) 在宿主机开放权限，允许所有用户访问X11 的显示接口：
 
 如果没有安装X11，请执行如下命令:
+
 .. code-block:: bash
    sudo apt-get install x11-xserver-utils
 
 如果$HOME目录下没有.Xauthority文件，创建空文件touch .Xauthority并执行：
+
 .. code-block:: bash
    xhost +
 
@@ -1092,10 +1101,9 @@ model_modifier工具
 使用示例
 ~~~~~~~~
 
+.. code-block:: bash
 
-model_modifier --model /TS-KnightDemo/Samples/resnet18/models/onnx_model/resnet18.onnx
-
---submodel-name reset18_bn1_layer1_1_relu_1 --input-names bn1 --output-names layer1_1_relu_1 --save-dir ./
+   model_modifier --model /TS-KnightDemo/Samples/resnet18/models/onnx_model/resnet18.onnx --submodel-name reset18_bn1_layer1_1_relu_1 --input-names bn1 --output-names layer1_1_relu_1 --save-dir ./
 
 
 model_info工具
@@ -1107,25 +1115,19 @@ model_info工具
 
 参数说明
 ~~~~~~~~
-+--------------------+---------+-------+---------------------------------------+
-|   参数名称          |必选/可选| 默认值|   说明                                 |
-+====================+=========+=======+=======================================+
-|-m或--model         | 必选    | 无    | 待显示的模型路径，仅支持ONNX格式         |
-+--------------------+---------+-------+-----------------------------------+
-|-ds或--dequant-scale| 可选    | 无    |若设置，显示量化后模型的输出层及对应的反量化系数。    |
 
-**参数名称**    **必选/可选** **默认值** **说明**
--m或            必选          无         待显示的模型路径，仅支持ONNX格式
-                                        
---model                                 
--ds或           可选          无         若设置，显示量化后模型的输出层及对应的反量化系数。
-                                        
---dequant-scale                         
--qi或           可选          无         若设置，显示量化后模型的量化配置信息。
-                                        
---quant-info                            
--h或--help      可选          无         显示帮助信息。
-=============== ============= ==========
++-----------------+-------+-----+----------------------------+
+| 参数名称            | 必选/可选 | 默认值 | 说明                         |
++=================+=======+=====+============================+
+| -m或             |       |     |                            |
+| --model         | 必选    | 无   | 待显示的模型路径，仅支持ONNX格式         |
+| -ds或            |       |     |                            |
+| --dequant-scale | 可选    | 无   | 若设置，显示量化后模型的输出层及对应的反量化系数。  |
+| -qi或            |       |     |                            |
+| --quant-info    | 可选    | 无   | 若设置，显示量化后模型的量化配置信息。        |
+| -h或--help       | 可选    | 无   | 显示帮助信息。                    |
+|                 |       |     |                            |
++-----------------+-------+-----+----------------------------+
 
 
 .. _使用示例-3:
@@ -1134,6 +1136,7 @@ model_info工具
 ~~~~~~~~
 
 .. code-block:: bash
+
    model_info -m /TS-KnightDemo/output/resnet18/rne/resnet18_quantize.onnx -ds
 
 
@@ -1146,7 +1149,7 @@ model_check.py工具
 
 用户执行完量化命令和编译命令后，可使用该脚本进行检查点2，检查点3（参见\ `章节1.3.2 <\l>`__\ ）结果验证。
 
-容器内\ */TS-Knight-software/tools/model_check/model_check.py*\ 参数说明如下表所示：
+容器内/TS-Knight-software/tools/model_check/model_check.py 参数说明如下表所示：
 
 .. _参数说明-4:
 
@@ -1192,12 +1195,15 @@ model_check.py工具
 ~~~~~~~~
 
 步骤一：完成量化编译
+
 .. code-block:: bash
+
    Knight build -rc /TS-KnightDemo/Samples/configs/resnet18_build_config.json
 
 步骤二：验证模型正确性
 
 .. code-block:: bash
+
    python model_check.py --quant-model /output/resnet18_onnx/quant/resnet18_quantize.onnx \
    --compile-model /output/resnet18_onnx/rne/resnet18_quantize_r.tsmodel
 
@@ -1269,6 +1275,7 @@ Knight容器能否使用非root权限启动？
 【解决方法】
 
 Knight容器默认使用root用户启动，同样可以支持使用非root权限启动，启动命令如下：
+
 .. code-block:: bash
    docker run -it -u ${uid} ts.knight:xxx /bin/bash
 
@@ -1283,19 +1290,19 @@ Knight镜像如何增量更新
 
 1) 首先启动Knight容器：
 
-..
+.. code-block:: bash
 
    docker run --name=knight_docker -it ts.knight:xxx /bin/bash
 
 2) 将需要更新的模块文件在宿主机上的目录${host_module_file}拷贝到Knight容器中相应目录${docker_module_dir}下，命令示例如下：
 
-..
+.. code-block:: bash
 
    docker cp ${ host_module_dir} 容器ID: ${docker_module_dir}
 
 3) 将容器保存为新镜像，命令示例如下：
 
-..
+.. code-block:: bash
 
    docker commit 容器ID ts.knight-new:xxx
 
